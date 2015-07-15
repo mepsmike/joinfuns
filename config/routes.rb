@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'prototype#index'
   get 'beta_sign_in' => 'prototype#sign_in', as: :sign_in
   get 'beta_sign_up' => 'prototype#sign_up', as: :sign_up
