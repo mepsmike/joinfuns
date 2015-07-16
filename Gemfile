@@ -87,9 +87,15 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'omniauth'
 gem 'omniauth-facebook'
-
+gem 'paperclip'
 # maps and geocoding
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'underscore-rails'
 gem 'jquery-turbolinks'
+gem 'gon'
+
+
+#bootstrap3 datetime-picker
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
