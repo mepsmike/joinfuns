@@ -16,12 +16,10 @@
 	<div class="row">
 		<div class='col-sm-6'>
 			<div class="form-group">
-				<div class='input-group date' id='dateeee'>
+				<div class='input-group date' >
 					<%= f.label :start_time, "start_time" %>
-					<%= f.text_field :start_time  %>
-					<span class="input-group-addon">
-					<span class="glyphicon glyphicon-calendar"></span>
-					</span>
+					<%= f.text_field :end_time ,:class=>"form-control", :id=>'dateeee' %>
+				
 				</div>
 			</div>
 		</div>
@@ -29,19 +27,16 @@
 
 		<div class='col-sm-6'>
 			<div class="form-group">
-				<div class='input-group date' id='dateeee2'>
+				<div class='input-group date' >
 					<%= f.label :end_time, "end_time" %>
-					<%= f.text_field :end_time  %>
-					<span class="input-group-addon">
-					<span class="glyphicon glyphicon-calendar"></span>
-					</span>
+					<%= f.text_field :end_time ,:class=>"form-control", :id=>'dateeee2' %>
+			
 				</div>
 			</div>
 		</div>
 	</div>
 
 
-<%= f.datetime_select :start_time, :ampm => true, :minute_step => 15 %>
 <%= f.label :description, "Description" %>
 <%= f.text_area :description %>
 
@@ -54,8 +49,14 @@
 
 <%= content_for :handwrite_js do %>
  <script>
- $("#dateeee").datetimepicker()
  $("#dateeee2").datetimepicker()
+ $("#dateeee").datetimepicker()
+        $("#dateeee").on("dp.change", function (e) {
+            $('#dateeee2').data("DateTimePicker").minDate(e.date);
+        });
+        $("#dateeee2").on("dp.change", function (e) {
+            $('#dateeee').data("DateTimePicker").maxDate(e.date);
+        });
  </script>
 <% end %>
  
