@@ -11,6 +11,7 @@ class EventsController < ApplicationController
 	def new
 
 		@event= Event.new
+		8.times{ @event.photos.build }
 
 	end
 
@@ -19,6 +20,7 @@ class EventsController < ApplicationController
 		@event= Event.new(get_params)
 		@event.save
 		redirect_to events_path
+	
 	end
 
 
@@ -27,6 +29,8 @@ class EventsController < ApplicationController
 
 	def get_params
 
-		params.require(:event).permit(:title,:description,:address,:hoster,:start_time,:end_time)
+		params.require(:event).permit(:title,:description,:address,:hoster,:start_time,:end_time,photos_attributes:[:pic])
+	
 	end
+
 end

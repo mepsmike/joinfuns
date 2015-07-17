@@ -9,9 +9,38 @@
 
 
 
+
+
 JoinFuns.initialMap = ->
 
-handler = Gmaps.build('Google')
+
+class CustomMarkerBuilder extends Gmaps.Google.Builders.Marker
+  create_marker: ->
+    options = _.extend @marker_options(), @rich_marker_options()
+    @serviceObject = new RichMarker options
+
+  rich_marker_options: ->
+    marker = document.createElement("div")
+    marker.setAttribute('class', 'custom_marker_content')
+    marker.innerHTML = this.args.custom_marker
+    { content: marker }
+
+  create_infowindow: ->
+    return null unless _.isString @args.custom_infowindow
+
+    boxText = document.createElement("div")
+    boxText.setAttribute("class", 'custom_infowindow_content')
+    boxText.innerHTML = @args.custom_infowindow
+    @infowindow = new InfoBox(@infobox(boxText))
+
+  infobox: (boxText)->
+    content: boxText
+    pixelOffset: new google.maps.Size(-140, 0)
+    boxStyle:
+      width: "280px"
+
+
+handler = Gmaps.build('Google', builders: { Marker: CustomMarkerBuilder })
 
 handler.buildMap {
      internal: id: 'map'
@@ -27,25 +56,13 @@ handler.buildMap {
     { 
       lat: gon.sticker[0]
       lng: gon.sticker[1]
-
+      custom_marker:"<div class=event-demo></div>"
+      
     }
-   
-    #{
-    #  lat: 25.063718
-    #  lng:121.54964
-    #}
-    #{
-    
-    #  lat: 25.0607843
-    #  lng: 121.5439248
-    #}
-   
   ])
   handler.bounds.extendWith markers
   handler.fitMapToBounds()
-  if navigator.geolocation
-      navigator.geolocation.getCurrentPosition(displayOnMap)
-      return
+ 
   return
 
   

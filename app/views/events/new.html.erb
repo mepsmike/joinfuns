@@ -1,20 +1,23 @@
 <div class="container">
-<%= form_for @event do |f| %>
+<%= form_for @event ,:html => { :multipart => true } do |f|  %>
 
-<div >
-<%= f.label :title, "title" %>
+<div class="input-field">
 <%= f.text_field :title  %>
+<%= f.label :title, "title" %>
 </div>
 
-<%= f.label :hoster, "hoster" %>
+<div class="input-field">
 <%= f.text_field :hoster %>
+<%= f.label :hoster, "hoster" %>
+</div>
 
-<%= f.label :address, "address" %>
+<div class="input-field">
 <%= f.text_field :address %>
-
+<%= f.label :address, "address" %>
+</div>
 
 	<div class="row">
-		<div class='col-sm-6'>
+		<div class='col-md-6'>
 			<div class="form-group">
 				<div class='input-group date' >
 					<%= f.label :start_time, "start_time" %>
@@ -25,7 +28,7 @@
 		</div>
 	
 
-		<div class='col-sm-6'>
+		<div class='col-md-6'>
 			<div class="form-group">
 				<div class='input-group date' >
 					<%= f.label :end_time, "end_time" %>
@@ -37,10 +40,20 @@
 	</div>
 
 
-<%= f.label :description, "Description" %>
-<%= f.text_area :description %>
+<div class="input-field">
+	<%= f.text_area :description,:class=>"materialize-textarea" %>
+	<%= f.label :description, "Description" %> 
+</div>
+   
+ <%= f.fields_for :photos do |photo| %>  
+    
+      <%= photo.file_field :pic %>
+  
+ <% end %>
 
-<%= f.submit "Create" %>
+  
+
+<%= f.submit "Create",:class=>"btn waves-light btn-large" %>
 
 
 
