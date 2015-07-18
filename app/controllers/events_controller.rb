@@ -18,6 +18,7 @@ class EventsController < ApplicationController
 	def create
 
 		@event= Event.new(get_params)
+	
 		@event.save
 		redirect_to events_path
 	
@@ -29,7 +30,7 @@ class EventsController < ApplicationController
 
 	def get_params
 
-		params.require(:event).permit(:title,:description,:address,:hoster,:start_time,:end_time,photos_attributes:[:pic])
+		params.require(:event).permit(:title,:contact_phone,:price,:event_type,:description,:address,:hoster,:start_time,:end_time,photos_attributes:[:pic])
 	
 	end
 
