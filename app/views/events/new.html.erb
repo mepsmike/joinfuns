@@ -16,40 +16,61 @@
 <%= f.label :address, "address" %>
 </div>
 
-	<div class="row">
-		<div class='col-md-6'>
-			<div class="form-group">
-				<div class='input-group date' >
-					<%= f.label :start_time, "start_time" %>
-					<%= f.text_field :end_time ,:class=>"form-control", :id=>'dateeee' %>
-				
-				</div>
-			</div>
-		</div>
+
+<div class="input-field">
+<%= f.text_field :contact_phone %>
+<%= f.label :contact_phone, "contact_phone" %>
+</div>
+
+
+<div class="input-field">
+<%= f.text_field :price %>
+<%= f.label :price, "price" %>
+</div>
+
 	
+<div class="row ">
+<div class="input-field col s12">
 
-		<div class='col-md-6'>
-			<div class="form-group">
-				<div class='input-group date' >
-					<%= f.label :end_time, "end_time" %>
-					<%= f.text_field :end_time ,:class=>"form-control", :id=>'dateeee2' %>
-			
-				</div>
-			</div>
-		</div>
-	</div>
+<%= f.datetime_select :start_time%>
+<%= f.label :start_time, "start_time" %>
+ </div>
+ </div>
 
+	
+<div class="row ">
+<div class="input-field col s12">
+
+<%= f.datetime_select :end_time%>
+<%= f.label :end_time, "end_time" %>
+ </div>
+ </div>
+
+
+<div class="input-field">
+
+<%= f.select :event_type do %>
+  <% [['DM', 'DM'], ['event', 'event']].each do |c| -%>
+    <%= content_tag(:option, c.first, value: c.last) %>
+  <% end %>
+<% end %>
+<label>choose type</label>
+</div>
 
 <div class="input-field">
 	<%= f.text_area :description,:class=>"materialize-textarea" %>
 	<%= f.label :description, "Description" %> 
 </div>
-   
+
+
+
+
  <%= f.fields_for :photos do |photo| %>  
     
       <%= photo.file_field :pic %>
   
  <% end %>
+
 
   
 
@@ -62,14 +83,7 @@
 
 <%= content_for :handwrite_js do %>
  <script>
- $("#dateeee2").datetimepicker()
- $("#dateeee").datetimepicker()
-        $("#dateeee").on("dp.change", function (e) {
-            $('#dateeee2').data("DateTimePicker").minDate(e.date);
-        });
-        $("#dateeee2").on("dp.change", function (e) {
-            $('#dateeee').data("DateTimePicker").maxDate(e.date);
-        });
+ $('select').material_select();
  </script>
 <% end %>
  
