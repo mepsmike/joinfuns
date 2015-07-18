@@ -1,89 +1,76 @@
 <div class="container">
-<%= form_for @event ,:html => { :multipart => true } do |f|  %>
+  <%= form_for @event ,:html => { :multipart => true } do |f|  %>
 
-<div class="input-field">
-<%= f.text_field :title  %>
-<%= f.label :title, "title" %>
-</div>
+    <div class="input-field">
+      <%= f.text_field :title  %>
+      <%= f.label :title, "title" %>
+    </div>
 
-<div class="input-field">
-<%= f.text_field :hoster %>
-<%= f.label :hoster, "hoster" %>
-</div>
+    <div class="input-field">
+      <%= f.text_field :hoster %>
+      <%= f.label :hoster, "hoster" %>
+    </div>
 
-<div class="input-field">
-<%= f.text_field :address %>
-<%= f.label :address, "address" %>
-</div>
-
-
-<div class="input-field">
-<%= f.text_field :contact_phone %>
-<%= f.label :contact_phone, "contact_phone" %>
-</div>
+    <div class="input-field">
+      <%= f.text_field :address %>
+      <%= f.label :address, "address" %>
+    </div>
 
 
-<div class="input-field">
-<%= f.text_field :price %>
-<%= f.label :price, "price" %>
-</div>
-
-	
-<div class="row ">
-<div class="input-field col s12">
-
-<%= f.datetime_select :start_time%>
-<%= f.label :start_time, "start_time" %>
- </div>
- </div>
-
-	
-<div class="row ">
-<div class="input-field col s12">
-
-<%= f.datetime_select :end_time%>
-<%= f.label :end_time, "end_time" %>
- </div>
- </div>
+    <div class="input-field">
+      <%= f.text_field :contact_phone %>
+      <%= f.label :contact_phone, "contact_phone" %>
+    </div>
 
 
-<div class="input-field">
-
-<%= f.select :event_type do %>
-  <% [['DM', 'DM'], ['event', 'event']].each do |c| -%>
-    <%= content_tag(:option, c.first, value: c.last) %>
-  <% end %>
-<% end %>
-<label>choose type</label>
-</div>
-
-<div class="input-field">
-	<%= f.text_area :description,:class=>"materialize-textarea" %>
-	<%= f.label :description, "Description" %> 
-</div>
+    <div class="input-field">
+      <%= f.text_field :price %>
+      <%= f.label :price, "price" %>
+    </div>
 
 
+    <div class="row ">
+      <div class="input-field col s12">
+        <%= f.datetime_select :start_time%>
+        <%= f.label :start_time, "start_time" %>
+      </div>
+    </div>
 
 
- <%= f.fields_for :photos do |photo| %>  
-    
+    <div class="row ">
+      <div class="input-field col s12">
+        <%= f.datetime_select :end_time%>
+        <%= f.label :end_time, "end_time" %>
+      </div>
+    </div>
+
+
+    <div class="input-field">
+      <%= f.select :event_type do %>
+        <% [['DM', 'DM'], ['event', 'event']].each do |c| -%>
+          <%= content_tag(:option, c.first, value: c.last) %>
+        <% end %>
+      <% end %>
+      <label>choose type</label>
+    </div>
+
+    <div class="input-field">
+      <%= f.text_area :description,:class=>"materialize-textarea" %>
+      <%= f.label :description, "Description" %>
+    </div>
+
+    <%= f.fields_for :photos do |photo| %>
       <%= photo.file_field :pic %>
-  
- <% end %>
+    <% end %>
 
+    <%= f.submit "Create",:class=>"btn waves-light btn-large" %>
 
-  
-
-<%= f.submit "Create",:class=>"btn waves-light btn-large" %>
-
-
-
-<% end %>
+  <% end %>
 </div>
 
 <%= content_for :handwrite_js do %>
- <script>
- $('select').material_select();
- </script>
+  <script>
+    $('select').material_select();
+  </script>
 <% end %>
- 
+
