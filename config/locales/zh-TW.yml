@@ -205,3 +205,8 @@ zh-TW:
   recaptcha:
     errors:
       incorrect-captcha-sol: '驗證碼錯誤！'
+
+  enums:
+    category:
+      event: '活動'
+      dm: 'DM'

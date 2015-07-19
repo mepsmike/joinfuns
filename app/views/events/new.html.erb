@@ -31,11 +31,7 @@
       </div>
 
       <div class="input-field">
-        <%= f.select :event_type do %>
-          <% [['DM', 'DM'], ['event', 'event']].each do |c| -%>
-            <%= content_tag(:option, c.first, value: c.last) %>
-          <% end %>
-        <% end %>
+        <%= f.select :category, enum_option_pairs(Event, :category), {include_blank: '請選擇類型'} %>
       </div>
 
       <div class="input-field">
