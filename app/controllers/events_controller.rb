@@ -2,7 +2,13 @@ class EventsController < ApplicationController
   layout :setting_layout
 
   def index
-    @event = Event.last
+    # TODO:
+    # This action should show all events
+    # (maybe latest 20~50 events)
+  end
+
+  def show
+    @event = Event.find(params[:id])
     @sticker = Geocoder.coordinates(@event.address)
     gon.sticker = @sticker
   end
@@ -17,7 +23,7 @@ class EventsController < ApplicationController
     @event= Event.new(get_params)
     @event.save
 
-    redirect_to events_path
+    redirect_to event_path(@event)
   end
 
 
@@ -30,7 +36,7 @@ class EventsController < ApplicationController
 
   def setting_layout
     case action_name
-    when 'index'
+    when 'index', 'show'
       'map_view'
     else
       'application'

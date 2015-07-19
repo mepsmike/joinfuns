@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root 'prototype#index'
 
-  resources :events, only: [:index, :new, :create]
+  resources :events, only: [:index, :show, :new, :create]
 
   get 'beta_sign_in' => 'prototype#sign_in', as: :sign_in
   get 'beta_sign_up' => 'prototype#sign_up', as: :sign_up
