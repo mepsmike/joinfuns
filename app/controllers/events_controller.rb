@@ -1,10 +1,10 @@
 class EventsController < ApplicationController
   def index
+    render layout: 'map_view'
+
     @event = Event.last
     @sticker = Geocoder.coordinates(@event.address)
     gon.sticker = @sticker
-
-    render :template => "prototype/main"
   end
 
   def new

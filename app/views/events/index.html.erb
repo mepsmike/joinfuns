@@ -1,5 +1,16 @@
-<%= link_to "新增" ,new_event_path %>
+<!-- map canvas -->
+<div class="map-canvas" id="map"></div>
 
-<p>
-<%#= Geocoder.coordinates("新北市板橋區文聖街11巷22號") %>
-</p>
+<!-- user position marker -->
+<%= render partial: 'partials/user_position_marker' %>
+
+<!-- panels -->
+<%= render partial: 'partials/filter_panel' %>
+
+<%= content_for :handwrite_js do %>
+  <script>
+    $(document).ready(JoinFuns.renderCreatedEventMarker());
+    $(document).ready(JoinFuns.initMaterialSelect());
+    $(document).ready(JoinFuns.filterTriggerInit());
+  </script>
+<% end %>
