@@ -1,19 +1,16 @@
 class PrototypeController < ApplicationController
+  layout :setting_layout
 
   def index
-    render layout: 'landing'
   end
 
   def sign_in
-    render layout: 'landing'
   end
 
   def sign_up
-    render layout: 'landing'
   end
 
   def main
-    render layout: 'map_view'
   end
 
   def subjects_index
@@ -22,4 +19,16 @@ class PrototypeController < ApplicationController
   def subject_show
   end
 
+  private
+
+  def setting_layout
+    case action_name
+    when 'index', 'sign_in', 'sign_up'
+      'landing'
+    when 'main'
+      'map_view'
+    else
+      'application'
+    end
+  end
 end

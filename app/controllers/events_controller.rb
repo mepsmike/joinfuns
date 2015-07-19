@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
-  def index
-    render layout: 'map_view'
+  layout :setting_layout
 
+  def index
     @event = Event.last
     @sticker = Geocoder.coordinates(@event.address)
     gon.sticker = @sticker
@@ -26,5 +26,14 @@ class EventsController < ApplicationController
 
   def get_params
     params.require(:event).permit(:title, :contact_phone, :price, :event_type, :description, :address, :hoster, :start_time, :end_time, photos_attributes:[:pic])
+  end
+
+  def setting_layout
+    case action_name
+    when 'index'
+      'map_view'
+    else
+      'application'
+    end
   end
 end

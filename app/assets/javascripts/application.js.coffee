@@ -7,13 +7,7 @@
 #= require _plugins
 #= require _app-base
 
-
-
-
-
 JoinFuns.renderCreatedEventMarker = ->
-
-
   class CustomMarkerBuilder extends Gmaps.Google.Builders.Marker
     create_marker: ->
       options = _.extend @marker_options(), @rich_marker_options()
@@ -39,7 +33,6 @@ JoinFuns.renderCreatedEventMarker = ->
       boxStyle:
         width: "280px"
 
-
   handler = Gmaps.build('Google', builders: { Marker: CustomMarkerBuilder })
 
   handler.buildMap {
@@ -58,10 +51,10 @@ JoinFuns.renderCreatedEventMarker = ->
       }
     ])
 
-  handler.bounds.extendWith markers
-  handler.fitMapToBounds()
+    handler.bounds.extendWith markers
+    handler.fitMapToBounds()
 
-  return
+    return
 
 
 JoinFuns.initialMap = ->
