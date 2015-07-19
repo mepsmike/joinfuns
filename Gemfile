@@ -64,6 +64,7 @@ group :development, :test do
   gem 'capistrano-bundler', '~> 1.1.2'
   gem 'capistrano-rails', '~> 1.1.1'
   gem 'capistrano-rbenv', github: 'capistrano/rbenv'
+  gem 'slackistrano', require: false
 end
 
 gem 'mysql2'
@@ -79,7 +80,6 @@ gem 'modernizr-rails'
 gem 'awesome_rails_console'
 gem 'growlyflash', '0.6.2'
 gem 'sweet-alert-confirm', '~> 0.1.0'
-gem 'hipchat'
 gem 'rails-settings-cached', '0.4.1'
 gem 'settingslogic'
 gem 'cells', '~> 4.0.0.beta2'
