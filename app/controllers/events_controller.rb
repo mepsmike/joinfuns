@@ -1,10 +1,16 @@
 class EventsController < ApplicationController
+  layout :setting_layout
+
   def index
-    @event = Event.last
+    # TODO:
+    # This action should show all events
+    # (maybe latest 20~50 events)
+  end
+
+  def show
+    @event = Event.find(params[:id])
     @sticker = Geocoder.coordinates(@event.address)
     gon.sticker = @sticker
-
-    render :template => "prototype/main"
   end
 
   def new
@@ -17,7 +23,7 @@ class EventsController < ApplicationController
     @event= Event.new(get_params)
     @event.save
 
-    redirect_to events_path
+    redirect_to event_path(@event)
   end
 
 
@@ -26,5 +32,14 @@ class EventsController < ApplicationController
 
   def get_params
     params.require(:event).permit(:title, :contact_phone, :price, :event_type, :description, :address, :hoster, :start_time, :end_time, photos_attributes:[:pic])
+  end
+
+  def setting_layout
+    case action_name
+    when 'index', 'show'
+      'map_view'
+    else
+      'application'
+    end
   end
 end

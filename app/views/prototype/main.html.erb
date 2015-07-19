@@ -1,113 +1,16 @@
-<%= render partial: 'common/header' %>
-
 <!-- map canvas -->
 <div class="map-canvas" id="map"></div>
 
 <!-- user position marker -->
-<div class="user-position-marker">
-  <a href="#"></a>
-  <div class="i-am-here">
-    <span>Hey! I'm Here!</span>
-  </div>
-</div>
+<%= render partial: 'partials/user_position_marker' %>
 
 <!-- panels -->
-
-<div class="filter-panel-wrapper trans-03s">
-  <form action="#">
-    <!-- Distance -->
-    <div class="filter-section-wrapper">
-      <div class="filter-section">
-        <h4>Distance</h4>
-        <p class="range-field">
-          <input type="range" min="0.0" max="10.0" />
-        </p>
-        <span>0km</span><span class="right">10km</span>
-      </div>
-      <div class="filter-section">
-        <input placeholder="Type Address" type="text">
-      </div>
-    </div>
-
-    <!-- Active Type -->
-    <div class="filter-section-wrapper">
-      <div class="filter-section">
-        <h4>Active Type</h4>
-        <div class="input-field">
-          <select>
-            <option value="0">All Category</option>
-            <option value="1">Eat</option>
-            <option value="2">Play</option>
-            <option value="3">Charity</option>
-            <option value="4">Education</option>
-          </select>
-        </div>
-      </div>
-      <div class="filter-section">
-        <input placeholder="Type Keyword" type="text">
-      </div>
-      <div class="filter-section">
-        <a href="#">Food<i class="material-icons right">chevron_right</i></a>
-      </div>
-    </div>
-
-    <!-- Time -->
-    <div class="filter-section-wrapper">
-      <div class="filter-section">
-        <h4>Time</h4>
-        <div class="input-field">
-          <select>
-            <option value="0">Recently</option>
-            <option value="1">in 2 weeks</option>
-            <option value="2">in 1 month</option>
-            <option value="3">in 6 month</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <!-- Price -->
-    <div class="filter-section-wrapper">
-      <div class="filter-section">
-        <h4>Price</h4>
-        <div class="input-field">
-          <select>
-            <option value="0">Free</option>
-            <option value="1">1 ~ 299</option>
-            <option value="2">Over 300</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <div class="filter-section-wrapper">
-      <div class="filter-submit-btn">
-        <button type='submit' class="btn">Submit</button>
-      </div>
-    </div>
-  </form>
-</div>
-
-<!-- event markers
-<% rand(1..8).times.each do %>
-  <div class="event-demo" style="top: <%= rand(10..45) %>%; left: <%= rand(10..45) %>%;"></div>
-<% end %>
- -->
-
-<!-- dm markers
-<% rand(1..8).times.each do %>
-  <div class="dm-demo" style="top: <%= rand(55..90) %>%; left: <%= rand(55..90) %>%;"></div>
-<% end %>
- -->
-
-<%= render partial: 'common/footer' %>
+<%= render partial: 'partials/filter_panel' %>
 
 <%= content_for :handwrite_js do %>
   <script>
     $(document).ready(JoinFuns.initialMap());
-
     $(document).ready(JoinFuns.initMaterialSelect());
     $(document).ready(JoinFuns.filterTriggerInit());
-    //alert(gon.sticker[0])
   </script>
 <% end %>

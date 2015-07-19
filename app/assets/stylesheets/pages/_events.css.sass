@@ -1,0 +1,24 @@
+.new-event-form-wrapper
+  +container(580px)
+  margin-top: 25px
+  .new-event-form
+    @extend %landing-panel-style
+    @extend %landing-form-style
+    min-height: 500px
+    color: $white
+    input, input:focus
+      padding: 2em
+    textarea
+      height: auto
+      padding: .5em
+      border: none
+      +reset-focus
+      resize: none
+      border-bottom: 1px solid $gray
+    .file-field
+      .btn
+        position: absolute
+        top: 4px
+        left: .5em
+      .file-path
+        text-align: right
