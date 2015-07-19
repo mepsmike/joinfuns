@@ -85,9 +85,13 @@ JoinFuns.initialMap = ->
 
 
 JoinFuns.initMaterialSelect = ->
-  $ ->
-    $('select').material_select()
-    $(".dropdown-button").dropdown()
+  $('select').material_select()
+  $(".dropdown-button").dropdown()
+
+JoinFuns.initMaterialDatepicker = ->
+  $('.datepicker').pickadate
+    selectMonths: true
+    selectYears: 15
 
 JoinFuns.filterTriggerInit = ->
   filterTrigger = $('.filter-trigger')

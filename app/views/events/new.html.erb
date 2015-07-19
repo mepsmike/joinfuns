@@ -1,76 +1,72 @@
-<div class="container">
+<div class="new-event-form-wrapper">
   <%= form_for @event ,:html => { :multipart => true } do |f|  %>
+    <div class="new-event-form row">
 
-    <div class="input-field">
-      <%= f.text_field :title  %>
-      <%= f.label :title, "title" %>
-    </div>
-
-    <div class="input-field">
-      <%= f.text_field :hoster %>
-      <%= f.label :hoster, "hoster" %>
-    </div>
-
-    <div class="input-field">
-      <%= f.text_field :address %>
-      <%= f.label :address, "address" %>
-    </div>
-
-
-    <div class="input-field">
-      <%= f.text_field :contact_phone %>
-      <%= f.label :contact_phone, "contact_phone" %>
-    </div>
-
-
-    <div class="input-field">
-      <%= f.text_field :price %>
-      <%= f.label :price, "price" %>
-    </div>
-
-
-    <div class="row ">
-      <div class="input-field col s12">
-        <%= f.datetime_select :start_time%>
-        <%= f.label :start_time, "start_time" %>
+      <div class="input-field">
+        <%= f.text_field :title, placeholder: '活動標題' %>
       </div>
-    </div>
 
-
-    <div class="row ">
-      <div class="input-field col s12">
-        <%= f.datetime_select :end_time%>
-        <%= f.label :end_time, "end_time" %>
+      <div class="input-field">
+        <%= f.text_field :hoster, placeholder: '主辦單位（主辦人）' %>
       </div>
-    </div>
 
+      <div class="input-field">
+        <%= f.text_field :address, placeholder: '活動地址' %>
+      </div>
 
-    <div class="input-field">
-      <%= f.select :event_type do %>
-        <% [['DM', 'DM'], ['event', 'event']].each do |c| -%>
-          <%= content_tag(:option, c.first, value: c.last) %>
+      <div class="input-field">
+        <%= f.text_field :contact_phone, placeholder: '聯絡電話' %>
+      </div>
+
+      <div class="input-field">
+        <%= f.text_field :price, placeholder: '活動費用' %>
+      </div>
+
+      <div class="input-field">
+        <%= f.date_field :start_time, class: 'datepicker date', placeholder: '活動開始時間' %>
+      </div>
+
+      <div class="input-field">
+        <%= f.date_field :end_time, class: 'datepicker date', placeholder: '活動結束時間' %>
+      </div>
+
+      <div class="input-field">
+        <%= f.select :event_type do %>
+          <% [['DM', 'DM'], ['event', 'event']].each do |c| -%>
+            <%= content_tag(:option, c.first, value: c.last) %>
+          <% end %>
         <% end %>
+      </div>
+
+      <div class="input-field">
+        <%= f.text_area :description, rows: '10', placeholder: '活動描述' %>
+      </div>
+
+      <%= f.fields_for :photos do |photo| %>
+        <div class="file-field input-field">
+          <input class="file-path validate" type="text"/>
+          <div class="btn">
+            <span>活動圖片</span>
+            <input type="file" />
+          </div>
+        </div>
       <% end %>
-      <label>choose type</label>
+
+      <div class="submit-btn">
+        <%= button_tag type: 'submit', data: {disable_with: "資料上傳中 <i class='fa fa-circle-o-notch fa-spin'></i>"} do %>
+          送出資料
+        <% end %>
+      </div>
+
     </div>
-
-    <div class="input-field">
-      <%= f.text_area :description,:class=>"materialize-textarea" %>
-      <%= f.label :description, "Description" %>
-    </div>
-
-    <%= f.fields_for :photos do |photo| %>
-      <%= photo.file_field :pic %>
-    <% end %>
-
-    <%= f.submit "Create",:class=>"btn waves-light btn-large" %>
-
   <% end %>
 </div>
 
+
 <%= content_for :handwrite_js do %>
   <script>
-    $('select').material_select();
+    $(document).ready(JoinFuns.initMaterialSelect());
+    $(document).ready(JoinFuns.initMaterialDatepicker());
   </script>
 <% end %>
 
