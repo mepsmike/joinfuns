@@ -75,13 +75,15 @@ html, body
       .unit
         font-size: $fz-xs
 
-.application-container
+.landing-container
   width: 100%
   height: 100%
   @extend %bg-cover-image
   overflow: scroll
   z-index: index($elements, application-container)
   text-align: center
+
+.application-container
 
 .main-navibar
   $logo-width: image-width('logo-white@2x.png') / 2
@@ -93,6 +95,7 @@ html, body
   z-index: index($elements, main-navibar)
   +box-shadow(none)
   border-bottom: 5px solid darken($yellow, 20)
+  text-align: center
   .logo-wrapper
     +span(3)
     height: $v-navi-height
@@ -175,7 +178,7 @@ html, body
         border: none
 
 .main-footer
-  position: absolute
+  position: fixed
   bottom: 0
   height: 27px
   width: 100%
