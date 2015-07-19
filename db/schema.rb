@@ -13,18 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150719065245) do
 
-  create_table "activities", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.string   "location"
-    t.string   "organizer"
-    t.string   "related_link"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
   create_table "events", force: :cascade do |t|
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
@@ -65,6 +53,8 @@ ActiveRecord::Schema.define(version: 20150719065245) do
     t.datetime "updated_at",                          null: false
     t.string   "cell_phone"
     t.string   "birthday"
+    t.string   "fb_uid"
+    t.string   "fb_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

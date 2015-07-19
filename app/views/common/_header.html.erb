@@ -13,7 +13,7 @@
           <div class="user-avatar">
             <%= image_tag 'avatar-placeholder.gif', class: 'responsive-img circle' %>
           </div>
-          <span class="user-name">UserName</span>
+          <span class="user-name"><%= current_user.email%></span>
         </a>
       </li>
     </ul>
