@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150718170043) do
+ActiveRecord::Schema.define(version: 20150719034942) do
 
   create_table "events", force: :cascade do |t|
     t.datetime "created_at",    null: false
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 20150718170043) do
     t.datetime "updated_at",                          null: false
     t.string   "cell_phone"
     t.string   "birthday"
+    t.string   "fb_uid"
+    t.string   "fb_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

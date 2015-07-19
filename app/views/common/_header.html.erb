@@ -7,13 +7,13 @@
   <div class="main-menu">
     <ul>
       <li><%= link_to 'Subject', subjects_path %></li>
-      <li><a href="#">Create New</a></li>
+      <li><%= link_to 'create new',new_event_path%></li>
       <li class='user-menu-trigger'>
         <a href="#">
           <div class="user-avatar">
             <%= image_tag 'avatar-placeholder.gif', class: 'responsive-img circle' %>
           </div>
-          <span class="user-name">UserName</span>
+          <span class="user-name"><%= current_user.email%></span>
         </a>
       </li>
     </ul>
