@@ -13,6 +13,7 @@ class PrototypeController < ApplicationController
   end
 
   def main
+    render layout: 'map_view'
   end
 
   def subjects_index

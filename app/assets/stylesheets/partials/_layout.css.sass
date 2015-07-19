@@ -75,7 +75,7 @@ html, body
       .unit
         font-size: $fz-xs
 
-.landing-container
+.landing-container, .map-view-container
   width: 100%
   height: 100%
   @extend %bg-cover-image
@@ -84,6 +84,7 @@ html, body
   text-align: center
 
 .application-container
+  padding-bottom: $v-footer-height + 20px
 
 .main-navibar
   $logo-width: image-width('logo-white@2x.png') / 2
@@ -94,7 +95,7 @@ html, body
   background-color: $yellow
   z-index: index($elements, main-navibar)
   +box-shadow(none)
-  border-bottom: 5px solid darken($yellow, 20)
+  border-bottom: $v-navi-border solid darken($yellow, 20)
   text-align: center
   .logo-wrapper
     +span(3)
@@ -133,10 +134,8 @@ html, body
       height: 30px
 
 .main-function-bar-wrapper
-  $function-bar-height: 35px
-
   position: relative
-  height: $function-bar-height
+  height: $v-function-bar-height
   background-color: $black-op85
   border-bottom: 1px solid $silver
   z-index: index($elements, main-function-bar)
@@ -144,8 +143,8 @@ html, body
   .filter-trigger
     +span(3)
     padding: 0 5em
-    height: $function-bar-height
-    line-height: $function-bar-height
+    height: $v-function-bar-height
+    line-height: $v-function-bar-height
     text-align: left
     cursor: pointer
     .material-icons
@@ -180,7 +179,7 @@ html, body
 .main-footer
   position: fixed
   bottom: 0
-  height: 27px
+  height: $v-footer-height
   width: 100%
   padding-top: 5px
   padding-right: 2em
@@ -192,8 +191,8 @@ html, body
 
 .map-canvas
   position: absolute
-  top: 80px
+  top: $v-header-height
   right: 0
-  bottom: 27px
+  bottom: $v-footer-height
   left: 0
   background-color: #eee
