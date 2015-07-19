@@ -10,7 +10,6 @@
 
 
 
-
 JoinFuns.initialMap = ->
 
 
@@ -53,19 +52,23 @@ handler.buildMap {
 
   markers = handler.addMarkers([
 
-    { 
+    {
       lat: gon.sticker[0]
       lng: gon.sticker[1]
       custom_marker:"<div class=event-demo></div>"
-      
+
     }
+
   ])
   handler.bounds.extendWith markers
   handler.fitMapToBounds()
- 
+  if navigator.geolocation
+      navigator.geolocation.getCurrentPosition
+      return
+
   return
 
-  
+
 
 ###
 JoinFuns.initialMap = ->
