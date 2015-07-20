@@ -8,70 +8,8 @@
 <%= render partial: 'partials/filter_panel' %>
 
 <!-- dm panels -->
+<%= render partial: 'partials/dm_panel' %>
 
-<div class="dm-panel-wrapper">
-  <!-- cover -->
-  <div class="dm-cover">
-    <button>
-      <i id="dm-close-btn"></i>
-    </button>
-      <div class="cover-content-wrapper">
-        <h4>Grinungen</h4>
-        <span>host loracle</span>
-    </div>
-  </div>
-  <div class="dm-info-wrapper">
-  <div class="partials-img">
-    <!-- mini photo -->
-    <% 8.times.each do %>
-      <img src="" alt="">
-    <% end %>
-  </div>
-  <!-- dm information -->
-  <div class="dm-info">
-    <ul>
-      <li><span><i>icoH</i>Grinungen</span></li>
-      <li>Host:Oracle Designsp</li>
-      <li>city: Lorem ipsum dolor sit amet, consectetur </li>
-      <li>Time：2015/08/25(sun)09:00 ~ 08/29(thu)21:00</li>
-      <li>Tel : 02-3265-8545</li>
-    </ul>
-    <!-- dm price -->
-    <div class="dm-price">Price:
-      <% 3.times.each do %>
-      <span>NT 300</span>
-      <% end %>
-    </div>
-  </div>
-  <div class="dm-description">
-    <div class="description-wrapper">
-      <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum consequatur, repellat nobis ad natus fugit recusandae dicta hic soluta aut possimus molestias, labore
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum consequatur, repellat nobis ad natus fugit recusandae dicta hic soluta aut possimus molestias, labore culpa similique perspiciatis doloribus quasi blanditiis quidem.
-      </p>
-    </div>
-  </div>
-  <div class="dm-btns">
-    <ul>
-      <li>
-        <a href="#" class="dm-options share">
-        <span class="fb-icon">F</span>
-        <span class="content">Share</span>
-      </a>
-      </li>
-      <li>
-        <a href="#" class="dm-options favorite">
-          <span>Favorite</span>
-        </a>
-      </li>
-      <li>
-        <a href="#" class="dm-options join">
-          <span>Join</span>
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
 
 <%= content_for :handwrite_js do %>
   <script>

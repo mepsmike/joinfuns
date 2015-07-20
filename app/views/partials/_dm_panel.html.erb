@@ -1,0 +1,79 @@
+<div class="dm-panel-wrapper">
+
+  <!-- close button -->
+  <i class="close-btn fa fa-close trans-03s" role="button"></i>
+
+  <!-- cover -->
+  <div class="dm-cover" style="background-image: url('http://topwalls.net/wallpapers/2012/03/cute-cat-1024x1280.jpg');">
+    <div class="content-wrapper">
+      <h3 class="title">Grinungen</h3>
+      <span class="subtitle">host loracle</span>
+    </div>
+  </div>
+
+  <div class="dm-info-wrapper">
+    <div class="photos-wrapper">
+
+      <!-- mini photo -->
+      <% 8.times.each do %>
+        <a href="#" class="photos">
+
+          <!-- backend 照片要有 100 x 100 的縮圖版本 -->
+          <%= image_placeholder width: 100, height: 100, text: 'pic' %>
+        </a>
+      <% end %>
+    </div>
+
+    <!-- dm information -->
+    <div class="dm-info">
+
+      <!-- class [dm, event] 可切換 icon -->
+      <h4 class="title dm">Grinungen</h4>
+      <ul>
+        <li class="host">Host:Oracle Designsp</li>
+        <li class="city">City: Lorem ipsum dolor sit amet, consectetur </li>
+        <li class="time">Time：2015/08/25(sun)09:00 ~ 08/29(thu)21:00</li>
+        <li class="tel">Tel : 02-3265-8545</li>
+      </ul>
+
+      <!-- dm price -->
+      <div class="dm-price">
+        <span>Price:</span>
+
+        <!-- price list -->
+        <div class="price actived"><span>NT </span><span>300</span></div>
+        <div class="price"><span>NT </span><span>600</span></div>
+        <div class="price"><span>NT </span><span>900</span></div>
+      </div>
+    </div>
+
+    <div class="dm-description-wrapper">
+      <div class="description">
+        <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum consequatur, repellat nobis ad natus fugit recusandae dicta hic soluta aut possimus molestias, labore
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum consequatur, repellat nobis ad natus fugit recusandae dicta hic soluta aut possimus molestias, labore culpa similique perspiciatis doloribus quasi blanditiis quidem.
+        </p>
+      </div>
+    </div>
+    <div class="dm-options-wrapper">
+      <ul>
+        <li>
+          <a href="#" class="option share">
+            <span class="fb-icon"><%= icon 'facebook' %></span>
+            <span class="content">Share</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="option favorite">
+            <span>Favorite</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="option join">
+            <span>Join</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

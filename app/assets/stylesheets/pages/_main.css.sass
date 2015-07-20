@@ -1,6 +1,7 @@
 // Main Page
 .user-position-marker
-  position: relative
+  position: absolute
+  width: 100%
   height: 0
   z-index: index($elements, user-position-marker)
   top: 50%
@@ -138,7 +139,7 @@
 //Klien
 
 .dm-panel-wrapper
-  background: #fff
+  background: $white
   width: 25%
   position: absolute
   right: 0
@@ -146,162 +147,141 @@
   height: auto
   bottom: 27px
   overflow-x: hidden
-  z-index: 7
-
-.dm-cover
-  position: relative
-  width: 100%
-  padding-bottom: 70%
-  font-family: $font-family-sans-serif
-  background-image: url("http://topwalls.net/wallpapers/2012/03/cute-cat-1024x1280.jpg")
-  background-color: red
-  background-position: left top
-  background-repeat: no-repeat
-  @extend %bg-cover-image
-
-// cross icon
-#dm-close-btn::before
-  content: "X"
-  display: block
-  width: 30px
-  height: 30px
-  float: right
-  font-size: 20px
-  font-style: normal
-  font-weight: lighter
-  color: #fff
-
-.dm-cover::before
-  position: absolute
-  top: 0
-  left: 0
-  content: ''
-  width: 100%
-  height: 100%
-  background: rgba(0,0,0,.06)
-
-.dm-cover button
-  background: none
-  border: none
-
-.cover-content-wrapper
-  position: absolute
-  text-align: center
-  width: 100%
-  top: 40%
-
-
-.dm-cover i
-  position: absolute
-  display: block
-  right: 10px
-  top: 10px
-  color: #fff
-
-.dm-cover h4
-  color: #fff
-  font-size: 30px
-  margin-bottom: 0px
-
-
-.dm-cover span
-  color: #fff
-  font-size: 12px
-
-
-.dm-info-wrapper
-  position: relative
-  width: 85%
-  margin: 20px auto 0
-
-.partials-img
-  +clearfix
-  content: ""
-  display: table
-  height: 0
-  clear: both
-
-.partials-img img
-  float: left
-  margin-right: 4px
-  margin-top: 4px
-  height: 34px
-  width: 34px
-  background: #abc
-
-.dm-info
+  z-index: index($elements, dm-panel)
   text-align: left
-  padding-bottom: 10px
-  ul
-    font-size: 11px
+
+  .close-btn
+    position: absolute
+    top: 10px
+    right: 10px
+    z-index: index($elements, dm-panel-close-btn)
+    font-size: $fz-xl
+    color: $white
+    cursor: pointer
+    &:hover
+      +text-shadow(0 0 3px $black-op80)
+
+  .dm-cover
+    position: relative
+    width: 100%
+    padding-bottom: 70%
     font-family: $font-family-sans-serif
-    li:nth-child(3)
-      color: #B2B2B2
-      margin-bottom: 15px
+    background-position: left top
+    background-repeat: no-repeat
+    @extend %bg-cover-image
+    &::before
+      position: absolute
+      top: 0
+      left: 0
+      content: ''
+      width: 100%
+      height: 100%
+      background: rgba(0,0,0,.06)
+    .title
+      color: $white
+      font-size: 30px
+      margin-bottom: 0px
+    .subtitle
+      color: $white
+      font-size: 12px
+    .content-wrapper
+      position: absolute
+      text-align: center
+      width: 100%
+      top: 40%
 
-.dm-price
-  text-align: left
-  color: #CABB63
-  font-family: $font-family-sans-serif
-  span
-    margin-right: 20px
+  .dm-info-wrapper
+    position: relative
+    padding: 1.5em
+    .photos-wrapper
+      +clearfix
+      .photos
+        display: block
+        +span(1 of 8)
+        padding: 0 2px
+        img
+          display: block
+          max-width: 100%
+    .dm-info
+      font-size: $fz-xs
+      .title
+        font-size: $fz-xl
+        &:before
+          display: inline-block
+          content: ""
+          margin-right: 5px
+          margin-bottom: -2px
+          width: 20px
+          height: 20px
+          @extend %bg-cover-image
+        &.dm:before
+          background-image: asset-url('dm-icon@2x.png')
+        &.event:before
+          background-image: asset-url('event-icon@2x.png')
+      .city
+        color: $gray
+        margin-bottom: 15px
+    .dm-price
+      color: $money-golden
+      font-family: $font-family-sans-serif
+      .price
+        display: inline-block
+        padding: 0 .5em
+        margin-left: .5em
+        +border-radius(50px)
+        cursor: pointer
+        &.actived
+          border: 2px solid $orange
+          color: $orange
+    .dm-description-wrapper
+      margin-top: 1em
+      margin-bottom: 1em
+      border-top: 2px solid $light-gray
+      border-bottom: 2px solid $light-gray
+      padding: 10px 0
+      .description
+        height: 100px
+        overflow-x: hidden
+        p:first-child
+          margin-top: 0
+        p:last-child
+          margin-bottom: 0
+    .dm-options-wrapper
+      $btn-height: 30px
 
-.dm-description
-  margin: 10px auto
-  border-top: 2px solid gray
-  border-bottom: 2px solid gray
-
-.description-wrapper
-  margin: 10px 0
-  height: 100px
-  overflow-x: hidden
-  text-align: left
-
-.dm-btns
-  +clearfix
-  position: relative
-  width: 100%
-  ul
-    +reset-list-style
-    +reset-box-model
-    li
-      background: #abc
-      +reset-box-model
-      display: block
-      +span(4 of 12)
-      background-color: #ccc
-
-.fb-icon
-  display: block
-  width: 35px
-  height: 100%
-  border-right: 2px solid #fff
-
-.content
-  display: block
-  position: absolute
-  top: 0
-  right: 0
-  bottom: 0
-  left: 35px
-
-.dm-options
-  position: relative
-  display: block
-  width: 100%
-  height: 30px
-  text-align: center
-  color: white
-  text-decoration: none
-  line-height: 34px
-  font-size: 12px
-  font-family: $font-family-sans-serif
-  border-right: 2px solid #fff
-
-.join
-  border-right: none
-  background-color: #EFDE6C
-.share
-  background-color: #3D5E96
-.favorite
-  background-color: #EEC0C0
+      +clearfix
+      ul
+        +reset-list-style
+        +reset-box-model
+      li
+        +reset-box-model
+        display: block
+        +span(4 of 12)
+        padding: 0 1px
+      .share
+        +sassy-button("flat", 0, 12px, $facebook-blue)
+        .fb-icon
+          display: block
+          width: $btn-height
+          height: 100%
+          font-size: $fz-xl
+          +box-sizing(content-box)
+          border-right: 2px solid $white
+        .content
+          display: block
+          position: absolute
+          top: 0
+          right: 0
+          bottom: 0
+          left: $btn-height
+      .favorite
+        +sassy-button("flat", 0, 12px, $light-peach)
+      .join
+        +sassy-button("flat", 0, 12px, $yellow)
+      .option
+        position: relative
+        padding: 0
+        width: 100%
+        height: $btn-height
+        text-align: center
+        line-height: $btn-height
