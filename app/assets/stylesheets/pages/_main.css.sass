@@ -200,14 +200,25 @@
         img
           display: block
           max-width: 100%
-
     .dm-info
       text-align: left
       padding-bottom: 10px
-      ul
-        font-size: 11px
-        font-family: $font-family-sans-serif
-      li:nth-child(3)
+      font-size: $fz-xs
+      .title
+        font-size: $fz-xl
+        &:before
+          display: inline-block
+          content: ""
+          margin-right: 5px
+          margin-bottom: -2px
+          width: 20px
+          height: 20px
+          @extend %bg-cover-image
+        &.dm:before
+          background-image: asset-url('dm-icon@2x.png')
+        &.event:before
+          background-image: asset-url('event-icon@2x.png')
+      .city
         color: $gray
         margin-bottom: 15px
     .dm-price

@@ -6,13 +6,14 @@
   <!-- cover -->
   <div class="dm-cover" style="background-image: url('http://topwalls.net/wallpapers/2012/03/cute-cat-1024x1280.jpg');">
     <div class="content-wrapper">
-      <h4 class="title">Grinungen</h4>
+      <h3 class="title">Grinungen</h3>
       <span class="subtitle">host loracle</span>
     </div>
   </div>
 
   <div class="dm-info-wrapper">
     <div class="photos-wrapper">
+
       <!-- mini photo -->
       <% 8.times.each do %>
         <a href="#" class="photos">
@@ -22,15 +23,19 @@
         </a>
       <% end %>
     </div>
+
     <!-- dm information -->
     <div class="dm-info">
+
+      <!-- class [dm, event] 可切換 icon -->
+      <h4 class="title dm">Grinungen</h4>
       <ul>
-        <li><span><i>icoH</i>Grinungen</span></li>
-        <li>Host:Oracle Designsp</li>
-        <li>city: Lorem ipsum dolor sit amet, consectetur </li>
-        <li>Time：2015/08/25(sun)09:00 ~ 08/29(thu)21:00</li>
-        <li>Tel : 02-3265-8545</li>
+        <li class="host">Host:Oracle Designsp</li>
+        <li class="city">City: Lorem ipsum dolor sit amet, consectetur </li>
+        <li class="time">Time：2015/08/25(sun)09:00 ~ 08/29(thu)21:00</li>
+        <li class="tel">Tel : 02-3265-8545</li>
       </ul>
+
       <!-- dm price -->
       <div class="dm-price">Price:
         <% 3.times.each do %>
