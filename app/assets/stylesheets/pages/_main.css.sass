@@ -192,19 +192,16 @@
     position: relative
     width: 85%
     margin: 20px auto 0
-    .partials-img
+    .photos-wrapper
       +clearfix
-      content: ""
-      display: table
-      height: 0
-      clear: both
-      img
-        float: left
-        margin-right: 4px
-        margin-top: 4px
-        height: 34px
-        width: 34px
-        background: $gray
+      .photos
+        display: block
+        +span(1 of 8)
+        padding: 0 2px
+        img
+          display: block
+          max-width: 100%
+
     .dm-info
       text-align: left
       padding-bottom: 10px

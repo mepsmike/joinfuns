@@ -12,10 +12,14 @@
   </div>
 
   <div class="dm-info-wrapper">
-    <div class="partials-img">
+    <div class="photos-wrapper">
       <!-- mini photo -->
       <% 8.times.each do %>
-        <img src="" alt="">
+        <a href="#" class="photos">
+
+          <!-- backend 照片要有 100 x 100 的縮圖版本 -->
+          <%= image_placeholder width: 100, height: 100, text: 'pic' %>
+        </a>
       <% end %>
     </div>
     <!-- dm information -->
