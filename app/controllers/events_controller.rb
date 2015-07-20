@@ -2,9 +2,16 @@ class EventsController < ApplicationController
   layout :setting_layout
 
   def index
-    # TODO:
-    # This action should show all events
-    # (maybe latest 20~50 events)
+
+    @events = Event.all
+    @hash = Gmaps4rails.build_markers(@events) do |event, marker|
+      marker.lat Geocoder.coordinates(event.address)[0]
+      marker.lng Geocoder.coordinates(event.address)[1]
+
+
+
+    end
+
   end
 
   def show

@@ -12,7 +12,14 @@
 
 <%= content_for :handwrite_js do %>
   <script>
-    $(document).ready(JoinFuns.initialMap());
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(<%=raw @hash.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
+
+    //$(document).ready(JoinFuns.initialMap());
     $(document).ready(JoinFuns.initMaterialSelect());
     $(document).ready(JoinFuns.filterTriggerInit());
   </script>
