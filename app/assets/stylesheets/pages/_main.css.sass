@@ -147,6 +147,7 @@
   bottom: 27px
   overflow-x: hidden
   z-index: index($elements, dm-panel)
+  text-align: left
 
   .close-btn
     position: absolute
@@ -201,7 +202,6 @@
           display: block
           max-width: 100%
     .dm-info
-      text-align: left
       padding-bottom: 10px
       font-size: $fz-xs
       .title
@@ -222,11 +222,17 @@
         color: $gray
         margin-bottom: 15px
     .dm-price
-      text-align: left
-      color: $darker-yellow
+      color: $money-golden
       font-family: $font-family-sans-serif
-      span
-        margin-right: 20px
+      .price
+        display: inline-block
+        padding: 0 .5em
+        margin-left: .5em
+        +border-radius(50px)
+        cursor: pointer
+        &.actived
+          border: 2px solid $orange
+          color: $orange
     .dm-description
       margin: 10px auto
       border-top: 2px solid $light-gray
