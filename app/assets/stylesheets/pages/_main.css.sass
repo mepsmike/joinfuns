@@ -148,6 +148,17 @@
   overflow-x: hidden
   z-index: 7
 
+  .close-btn
+    position: absolute
+    top: 10px
+    right: 10px
+    z-index: 8
+    font-size: $fz-xl
+    color: $white
+    cursor: pointer
+    &:hover
+      +text-shadow(0 0 3px $black-op80)
+
 .dm-cover
   position: relative
   width: 100%
@@ -159,18 +170,6 @@
   background-repeat: no-repeat
   @extend %bg-cover-image
 
-// cross icon
-#dm-close-btn::before
-  content: "X"
-  display: block
-  width: 30px
-  height: 30px
-  float: right
-  font-size: 20px
-  font-style: normal
-  font-weight: lighter
-  color: #fff
-
 .dm-cover::before
   position: absolute
   top: 0
@@ -179,10 +178,6 @@
   width: 100%
   height: 100%
   background: rgba(0,0,0,.06)
-
-.dm-cover button
-  background: none
-  border: none
 
 .cover-content-wrapper
   position: absolute
