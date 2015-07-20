@@ -109,5 +109,26 @@ JoinFuns.filterTriggerInit = ->
 
     return
 
+JoinFuns.dmPanelInit = ->
+  dmPanel = $('.dm-panel-wrapper')
+  closeBtn = dmPanel.find('.close-btn')
+  priceTags = '.dm-price .price'
 
+  closeDmPanel = ->
+    dmPanel.removeClass('actived')
 
+  closeBtn.on 'click', ->
+    closeDmPanel()
+
+  dmPanel.on 'click', priceTags, ->
+    priceValue = $(@).find('.value').html()
+    pricesWrapper = $(@).parents('.dm-price')
+
+    selectPrice = (self)->
+      pricesWrapper.find('.actived').removeClass('actived')
+      self.addClass('actived')
+      # console.log(priceValue)
+      # TODO:
+      # SetPrice -> put priceValue to hidden input form.
+
+    selectPrice($(@))

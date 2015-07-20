@@ -142,7 +142,7 @@
   background: $white
   width: 25%
   position: absolute
-  right: 0
+  right: -25%
   top: 80px
   height: auto
   bottom: 27px
@@ -150,6 +150,8 @@
   z-index: index($elements, dm-panel)
   text-align: left
   +box-shadow(0 0 15px $black-op30)
+  &.actived
+    right: 0
 
   .close-btn
     position: absolute
