@@ -202,7 +202,6 @@
           display: block
           max-width: 100%
     .dm-info
-      padding-bottom: 10px
       font-size: $fz-xs
       .title
         font-size: $fz-xl
@@ -233,15 +232,19 @@
         &.actived
           border: 2px solid $orange
           color: $orange
-    .dm-description
-      margin: 10px auto
+    .dm-description-wrapper
+      margin-top: 1em
+      margin-bottom: 1em
       border-top: 2px solid $light-gray
       border-bottom: 2px solid $light-gray
-    .description-wrapper
-      margin: 10px 0
-      height: 100px
-      overflow-x: hidden
-      text-align: left
+      padding: 10px 0
+      .description
+        height: 100px
+        overflow-x: hidden
+        p:first-child
+          margin-top: 0
+        p:last-child
+          margin-bottom: 0
     .dm-btns
       +clearfix
       position: relative
