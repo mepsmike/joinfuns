@@ -4,12 +4,25 @@ class EventsController < ApplicationController
   def index
 
     @events = Event.all
+
     @hash = Gmaps4rails.build_markers(@events) do |event, marker|
       address=Geocoder.coordinates(event.address)
       marker.lat address[0]
       marker.lng address[1]
       marker.json({ :id => event.id })
-
+      if event.category_cd == 1
+        marker.picture({
+          :url => view_context.image_path("dm-icon@2x.png"),
+          :width   => 86,
+          :height  => 102
+        })
+      else
+        marker.picture({
+          :url => view_context.image_path("event-icon@2x.png"),
+          :width   => 86,
+          :height  => 102
+        })
+      end
     end
 
   end
