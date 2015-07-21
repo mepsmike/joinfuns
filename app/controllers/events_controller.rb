@@ -7,10 +7,10 @@ class EventsController < ApplicationController
     @hash = Gmaps4rails.build_markers(@events) do |event, marker|
       marker.lat Geocoder.coordinates(event.address)[0]
       marker.lng Geocoder.coordinates(event.address)[1]
-
-
+      marker.json({ :id => event.id })
 
     end
+
 
   end
 

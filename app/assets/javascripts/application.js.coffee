@@ -7,6 +7,7 @@
 #= require _plugins
 #= require _app-base
 
+
 JoinFuns.renderCreatedEventMarker = ->
   class CustomMarkerBuilder extends Gmaps.Google.Builders.Marker
     create_marker: ->
