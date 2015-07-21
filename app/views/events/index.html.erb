@@ -12,6 +12,7 @@
 
 <%= content_for :handwrite_js do %>
   <script>
+    $(".dm-panel-wrapper").hide();
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
       //markers = handler.addMarkers(<%=raw @hash.to_json %>);
@@ -36,7 +37,23 @@
       return function(event){
         // On marker click, make AJAX request on "flats#show"
         //$.get("/flats/" + marker.id);
-        alert(marker.id)
+
+        $.ajax({
+          url: '/events/'+marker.id+'.js',
+          type: 'GET',
+          data: {
+
+          },
+          error: function(xhr) {
+            alert('Ajax request 發生錯誤');
+          },
+          success: function(response) {
+            console.log(response)
+            $(".dm-panel-wrapper").show()
+
+
+          }
+        });
       }
     }
 

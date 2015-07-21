@@ -5,19 +5,23 @@ class EventsController < ApplicationController
 
     @events = Event.all
     @hash = Gmaps4rails.build_markers(@events) do |event, marker|
-      marker.lat Geocoder.coordinates(event.address)[0]
-      marker.lng Geocoder.coordinates(event.address)[1]
+      address=Geocoder.coordinates(event.address)
+      marker.lat address[0]
+      marker.lng address[1]
       marker.json({ :id => event.id })
 
     end
-
 
   end
 
   def show
     @event = Event.find(params[:id])
-    @sticker = Geocoder.coordinates(@event.address)
-    gon.sticker = @sticker
+    #@sticker = Geocoder.coordinates(@event.address)
+    #gon.sticker = @sticker
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new
@@ -30,7 +34,7 @@ class EventsController < ApplicationController
     @event= Event.new(get_params)
     @event.save
 
-    redirect_to event_path(@event)
+    redirect_to events_path
   end
 
 
