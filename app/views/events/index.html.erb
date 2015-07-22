@@ -13,78 +13,65 @@
 <%= content_for :handwrite_js do %>
   <script>
     $(".dm-panel-wrapper").hide();
-    handler = Gmaps.build('Google');
-    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-      //markers = handler.addMarkers(<%=raw @hash.to_json %>);
+      handler = Gmaps.build('Google');
+      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+
+      if(navigator.geolocation)
+      navigator.geolocation.getCurrentPosition(getpos);
+
+      function getpos(pos){
+        var pin = handler.addMarker({
+          lat: pos.coords.latitude,
+          lng: pos.coords.longitude
+        });
+        handler.map.centerOn(pin);
+      }
+
 
       markers_json = <%=raw @hash.to_json %>;
-    markers = _.map(markers_json, function(marker_json){
-      marker = handler.addMarker(marker_json);
-      _.extend(marker, marker_json);
-      return marker;
-    });
+      markers = _.map(markers_json, function(marker_json){
+        marker = handler.addMarker(marker_json);
+        _.extend(marker, marker_json);
+        return marker;
+      });
 
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-
-    // Add event listener on marker click
-    for (var i = 0; i <  markers.length; ++i) {
-      var marker = markers[i];
-      google.maps.event.addListener(marker.serviceObject, 'click', onMarkerClick(marker, event));
-    }
-
-    function onMarkerClick(marker, event){
-      return function(event){
-        // On marker click, make AJAX request on "flats#show"
-        //$.get("/flats/" + marker.id);
-
-        $.ajax({
-          url: '/events/'+marker.id+'.js',
-          type: 'GET',
-          data: {
-
-          },
-          error: function(xhr) {
-            alert('Ajax request 發生錯誤');
-          },
-          success: function(response) {
-            console.log(response)
-            $(".dm-panel-wrapper").show()
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      //handler.getMap().setZoom(10)
 
 
-          }
-        });
+
+      // Add event listener on marker click
+      for (var i = 0; i <  markers.length; ++i) {
+        var marker = markers[i];
+        google.maps.event.addListener(marker.serviceObject, 'click', onMarkerClick(marker, event));
       }
-    }
+
+      function onMarkerClick(marker, event){
+        return function(event){
+          // On marker click, make AJAX request on "flats#show"
+          //$.get("/flats/" + marker.id);
+
+          $.ajax({
+            url: '/events/'+marker.id+'.js',
+            type: 'GET',
+            data: {
+
+            },
+            error: function(xhr) {
+              alert('Ajax request 發生錯誤');
+            },
+            success: function(response) {
+              console.log(response)
+              $(".dm-panel-wrapper").show()
 
 
-      //Gmaps.store.markers = markers.map(function(m) {
-      //  marker = handler.addMarker(m);
-      //  marker.serviceObject.set('id', m.id); // You can add other attributes using set
-      //  return marker;
-      //});
+            }
+          })
+        }
+      }
 
-
-      //handler.bounds.extendWith(markers);
-      //handler.fitMapToBounds();
-
-
-      //for (var i=0;i < markers.length; i++){
-      //  var marker = markers[i];
-
-      //  google.maps.event.addListener(marker.getServiceObject(), "click", function(evt) {
-      //    console.log(marker);
-
-       // });
-      })
-    //});
-
-
-
-
-
-
-
+    })
 
     //$(document).ready(JoinFuns.initialMap());
     $(document).ready(JoinFuns.initMaterialSelect());
