@@ -295,3 +295,95 @@
       height: $btn-height
       text-align: center
       line-height: $btn-height
+
+
+.shorten_dm-panel-wrapper
+  padding: 4px
+  background: $white
+  width: 25%
+  position: absolute
+  right: 0
+  top: 80px
+  height: 131px
+  +box-shadow(0 0 15px $black-op30)
+  .shorten_close-btn
+    position: absolute
+    top: 10px
+    right: 10px
+    font-size: $fz-m
+    color: $silver
+    cursor: pointer
+
+  .shorten_dm-cover
+    float: left
+    width: 30%
+    height: 100%
+    font-family: $font-family-sans-serif
+    +box-shadow(0 0 10px $black-op30)
+    @extend %bg-cover-image
+
+  .shorten_dm-info-wrapper
+    display: block
+    width: 70%
+    float: left
+    ul
+      +reset-list-style
+      +reset-box-model
+      li
+        +reset-box-model
+        padding: 2px 5px
+        //right side span
+    .title
+      font-size: $fz-m
+      margin: 0
+      &:before
+        display: inline-block
+        content: ""
+        margin-right: 5px
+        margin-bottom: -3px
+        width: 15px
+        height: 15px
+        @extend %bg-cover-image
+      &.dm:before
+        background-image: asset-url('dm-icon@2x.png')
+      &.event:before
+        background-image: asset-url('event-icon@2x.png')
+
+    .shorten_dm_info
+      font-size: $fz-xs
+      span
+        display: block
+      .host
+        margin-bottom: 3px
+
+  .shorten_dm-price
+    color: $money-golden
+    font-family: $font-family-sans-serif
+    font-size: $fz-xs
+    .price
+      display: inline-block
+      padding: 0 .5em
+      margin-left: .5em
+      +border-radius(50px)
+      cursor: pointer
+      &.actived
+        border: 2px solid $orange
+        color: $orange
+
+  .shorten-dm-options-wrapper
+    $btn-height: 20px
+    ul
+      +reset-list-style
+      +reset-box-model
+      li
+        +reset-box-model
+        background: #bbb
+    .join
+      +sassy-button("flat", 0, 12px, $yellow)
+    .option
+      position: relative
+      padding: 0
+      width: 50%
+      height: $btn-height
+      text-align: center
+      line-height: $btn-height
