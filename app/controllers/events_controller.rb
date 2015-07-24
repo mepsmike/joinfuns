@@ -3,7 +3,11 @@ class EventsController < ApplicationController
 
   def index
 
-    @events = Event.all
+    if params[:search]
+      @events = Event.search(params[:address])
+    else
+      @events = Event.all
+    end
 
     @hash = Gmaps4rails.build_markers(@events) do |event, marker|
       address=Geocoder.coordinates(event.address)
@@ -23,6 +27,7 @@ class EventsController < ApplicationController
           :height  => 102
         })
       end
+
     end
 
   end
@@ -66,4 +71,15 @@ class EventsController < ApplicationController
       'application'
     end
   end
+
+  def search
+    @events = @events.where("address like ?", params[:address]) unless address.blank?
+
+    @events = @events.where("title like ?", params[:keyword]) unless keyword.blank?
+
+    @events
+
+  end
+
+
 end
