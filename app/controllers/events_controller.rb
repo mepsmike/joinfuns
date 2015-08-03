@@ -68,7 +68,11 @@ class EventsController < ApplicationController
   end
 
   def set_events
-    return @events = Event.search(params[:address],params[:keyword],params[:time]) if params[:search]
+    address = params[:address]
+    keyword = params[:keyword]
+    time = params[:time]
+
+    return @events = Event.search(time: time, keyword: keyword, address: address) if params[:search]
     @events = Event.all
   end
 

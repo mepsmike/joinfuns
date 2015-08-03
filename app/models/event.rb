@@ -7,34 +7,38 @@ class Event < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
 
+  def self.search(args)
+    address = args[:address]
+    keyword = args[:keyword]
+    time_code = args[:time].to_i
 
-
-  def self.search(address,keyword,time)
     # where(:title, query) -> This would return an exact match of the query
-    test = Event.all
+    filtered_events = Event.all
 
     #where("address like ?", "%#{address}%") unless address.blank?
-    test = test.where("address like ?", "%#{address}%" ) unless address.blank?
-  #Rails.logger.debug("ing")
-  #Rails.logger.debug(@events)
-    test = test.where("title like ?","%#{keyword}%") unless keyword.blank?
-
-    time = case
-
-    when 0
-      test=test.between_times(Time.zone.now - 1.weeks,Time.zone.now) unless time.blank?
-    when 1
-      test=test.between_times(Time.zone.now - 2.weeks,Time.zone.now) unless time.blank?
-    when 2
-      test=test.between_times(Time.zone.now - 4.weeks,Time.zone.now) unless time.blank?
-    when 3
-      test=test.between_times(Time.zone.now - 24.weeks,Time.zone.now) unless time.blank?
-    end
-
-    test
-  #Rails.logger.debug("after")
-  #Rails.logger.debug(@events)
+    filtered_events = filtered_events.where("address like ?", "%#{address}%" ) if address.present?
+    filtered_events = filtered_events.where("title like ?", "%#{keyword}%") if keyword.present?
+    filtered_events = filter_by_time(code: time_code, collection: filtered_events) if time_code.present?
+    filtered_events
   end
 
+  private
+
+  def self.filter_by_time(args)
+    code = args[:code]
+    collection = args[:collection]
+    current_time = Time.zone.now
+
+    case code
+    when 0
+      collection.between_times(current_time - 1.weeks, current_time)
+    when 1
+      collection.between_times(current_time - 2.weeks, current_time)
+    when 2
+      collection.between_times(current_time - 4.weeks, current_time)
+    when 3
+      collection.between_times(current_time - 24.weeks, current_time)
+    end
+  end
 
 end
