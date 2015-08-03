@@ -167,13 +167,13 @@ html, body
         height: 24px
         margin: 0
         color: $white
-        +input-placeholder
-          text-align: center
-          color: darken($white, 30)
         background-color: rgba($white, .1)
         border: 1px solid darken($white, 50)
         +border-radius(100px 100px)
         text-align: center
+      input[placeholder]
+        text-align: center
+        color: darken($white, 30)
     .search-button
       +span(2)
       padding: 5px
