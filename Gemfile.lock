@@ -6,6 +6,13 @@ GIT
       capistrano (~> 3.1)
       sshkit (~> 1.3)
 
+GIT
+  remote: git://github.com/radar/by_star
+  revision: d2d997c98b43999283d6c443351dfae3815c02b4
+  specs:
+    by_star (2.2.1)
+      activesupport
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -436,6 +443,7 @@ DEPENDENCIES
   bootstrap-sass
   bower-rails
   bullet
+  by_star!
   byebug
   capistrano (~> 3.1.0)
   capistrano-bundler (~> 1.1.2)
@@ -489,3 +497,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   underscore-rails
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.10.5

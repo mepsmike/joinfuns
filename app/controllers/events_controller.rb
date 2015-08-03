@@ -4,15 +4,15 @@ class EventsController < ApplicationController
   def index
 
     if params[:search]
-      @events = Event.search(params[:address])
+      @events = Event.search(params[:address],params[:keyword],params[:time])
     else
       @events = Event.all
     end
 
     @hash = Gmaps4rails.build_markers(@events) do |event, marker|
-      address=Geocoder.coordinates(event.address)
-      marker.lat address[0]
-      marker.lng address[1]
+      #address=Geocoder.coordinates(event.address)
+      marker.lat event.latitude
+      marker.lng event.longitude
       marker.json({ :id => event.id })
       if event.category_cd == 1
         marker.picture({
