@@ -1,0 +1,192 @@
+%border-layout
+  border: 1px solid $grayish
+  +border-radius(6px)
+
+
+.dm-page-wrapper
+  width: 100%
+  padding: 10px
+  background: rgba(255,255,255,1)
+  width: $b-desktop
+  @extend %m0auto
+  .dm-page-path
+
+
+  .page-promotion
+    padding: 20px
+    width: 100%
+    +box-shadow(0 0 10px $grayish)
+    +clearfix
+    @extend %border-layout
+    .page-title
+      @extend %m0auto
+      font-size: $fz-xl
+
+
+
+    .poster-wrapper
+      float: left
+      width: 40%
+      display: block
+      padding-right: 10px
+      img
+        display: block
+        width: 100%
+        // background-image: asset-url('target@2x.png')
+        // @extend %bg-cover-image
+
+
+
+    .page-description
+      @extend %m0auto
+      position: relative
+      float: right
+      width: 60%
+      padding: 0 30px
+      height: 450px
+
+      .page-info
+        font-size: $fz-m
+        line-height: 2em
+
+      ul li
+        list-style-type: initial
+        list-style-position: inside
+
+
+      .page-event-price
+        font-family: $font-family-sans-serif
+        border-top: 2px solid $gray
+        padding: 15px 0
+        .price
+          color: $gray
+          display: inline-block
+          padding: 0 .5em
+          margin-left: .5em
+          +border-radius(5px)
+          cursor: pointer
+          font-size: $fz-l
+          &.actived
+            border: 1px solid $red
+            color: $red
+
+      .page-options-wrapper
+        $btn-height: 40px
+        +clearfix
+        width: 100%
+        padding: 10px 0
+        border-top: 2px solid $gray
+        ul
+          +reset-list-style
+          +reset-box-model
+          li
+            +reset-box-model
+            display: block
+            +span(4 of 12)
+            padding: 0 5px
+
+
+        .share
+          background: $facebook-blue
+        .favorite
+          background: $grayish
+        .join
+          background: $yellow
+
+        .option
+          display: block
+          width: 100%
+          height: $btn-height
+          line-height: $btn-height
+          text-align: center
+          color: $white
+          +border-radius(20px)
+
+
+/////////////////next sheet///////
+
+
+.page-secondary
+  @extend %border-layout
+  margin-top: 20px
+  padding: 20px
+  width: 100%
+  +box-shadow(0 0 10px $grayish)
+  +clearfix
+  .page-editor
+    float: left
+    width: 70%
+    padding: 10px
+    border: 2px solid $grayish
+    +border-radius(6px)
+    .ck-editor
+      min-height: 600px
+      border: 1px solid $grayish
+      +border-radius(6px)
+
+    .leaveword
+      width: 100%
+      height: 180px
+      padding: 12px
+      color: $gray
+      font-size: $fz-l
+      @extend %border-layout
+
+
+      textarea
+        @extend %border-layout
+        height: 75px
+
+      .submit
+        $submit-height: 45px
+        float: right
+        width: 150px
+        color: $white
+        height: $submit-height
+        line-height: $submit-height
+        text-align: center
+        background: $grayish
+        +border-radius(6px)
+        cursor: pointer
+
+    .page-msg-wrapper
+      $unit-height: 35px
+      @extend %border-layout
+      height: 220px
+      padding: 15px
+      margin-top: 40px
+      overflow-y: auto
+      .unit-wrapper
+        border-bottom: 2px solid $grayish
+        +clearfix
+        padding: 10px
+        .avatar
+          +span(1)
+          float: left
+          // width: 35px
+          // height: 35px
+          img
+            width: $unit-height
+            height: $unit-height
+            display: block
+            +border-radius(50%)
+        .name
+          +span(2)
+          float: left
+          white-space: nowrap
+          overflow: hidden
+          text-overflow: ellipsis
+          line-height: $unit-height
+          +word-break(break-all)
+
+        .leave-msg
+          +span(9)
+          float: left
+          padding: 6px
+
+  .page-shorten-dm
+    float: left
+    width: 30%
+    height: 300px
+    padding: 5px
+    @extend %border-layout
