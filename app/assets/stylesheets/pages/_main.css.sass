@@ -138,7 +138,7 @@
 
 //Klien
 .dm-notifier-wrapper
-  $dm-panel-height: 95px
+  $dm-panel-height: 100px
   $dm-panel-width: 350px
 
   padding: 5px
@@ -181,16 +181,11 @@
     width: 75%
     float: left
     padding-left: .5em
-    ul
-      +reset-list-style
-      +reset-box-model
-      li
-        +reset-box-model
-        padding: 2px 5px
-        //right side span
     .title
+      margin: .2em 0
       font-size: $fz-m
-      margin: 0
+      font-weight: bolder
+      // color: $dark-gray
       &:before
         display: inline-block
         content: ""
@@ -206,6 +201,7 @@
 
     .shorten-dm-info
       font-size: $fz-xs
+      font-weight: bold
       span
         display: block
       .host
@@ -219,6 +215,7 @@
       display: inline-block
       padding: 0 .5em
       margin-left: .5em
+      margin-bottom: .5em
       +border-radius(50px)
       cursor: pointer
       &.actived
@@ -241,3 +238,6 @@
       width: 50%
       text-align: center
       line-height: $btn-height
+    .unit-stat
+      display: inline-block
+      color: $yellow

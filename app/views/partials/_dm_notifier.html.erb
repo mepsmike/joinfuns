@@ -1,6 +1,6 @@
 <div class="dm-notifier-wrapper">
   <% 5.times do |x| %>
-    <div class="notifier-unit">
+    <div class="notifier-unit trans-03s">
       <!-- cover   actived trans-03s-->
 
       <!-- close button -->
@@ -14,31 +14,29 @@
         <!-- class [dm, event] 可切換 icon -->
         <h4 class="title dm">Grinungen</h4>
 
-        <ul>
-          <li>
-            <div class="shorten-dm-info">
-              <span class="host">Host:Oracle Designsp</span>
-            </div>
-          </li>
-          <li>
-          <!-- shorten-dm-price -->
-            <div class="shorten-dm-price">
-              <span>Price:</span>
-              <!-- price divst -->
-              <div class="price actived"><span>NT </span><span class="value">300</span></div>
-              <div class="price"><span>NT </span><span class="value">600</span></div>
-              <div class="price"><span>NT </span><span class="value">900</span></div>
-            </div>
-          </li>
+        <div class="shorten-dm-info">
+          <span class="host">Host:Oracle Designsp</span>
+        </div>
+
+        <!-- shorten-dm-price -->
+        <div class="shorten-dm-price">
+          <span>Price:</span>
+          <!-- price divst -->
+          <div class="price actived"><span>NT </span><span class="value">300</span></div>
+          <div class="price"><span>NT </span><span class="value">600</span></div>
+          <div class="price"><span>NT </span><span class="value">900</span></div>
+        </div>
+
         <!-- option buttons -->
-          <li>
-            <div class="shorten-dm-options-wrapper">
-              <a href="#" class="option join">
-                <span>Join</span>
-              </a>
-            </div>
-          </li>
-        </ul>
+        <div class="shorten-dm-options-wrapper">
+          <a href="#" class="option join">
+            <span>Join</span>
+          </a>
+          <div class="unit-stat">
+            <span class="stat"><%= number_with_delimiter rand(99999) %></span><span> Join it</span>
+          </div>
+        </div>
+
       </div>
     </div>
   <% end %>
