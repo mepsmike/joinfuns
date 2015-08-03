@@ -28,7 +28,13 @@
     <div class="dm-info">
 
       <!-- class [dm, event] 可切換 icon -->
-      <h4 class="title dm">Grinungen</h4>
+      <h4 class="title dm">
+        <%if defined?(event)%>
+          <%=event.title%>
+        <%else%>
+
+        <%end%>
+      </h4>
       <ul>
         <li class="host">Host:Oracle Designsp</li>
         <li class="city">City: Lorem ipsum dolor sit amet, consectetur </li>
