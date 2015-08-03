@@ -2,34 +2,19 @@ class EventsController < ApplicationController
   layout :setting_layout
 
   def index
-
-    if params[:search]
-      @events = Event.search(params[:address],params[:keyword],params[:time])
-    else
-      @events = Event.all
-    end
+    set_events
 
     @hash = Gmaps4rails.build_markers(@events) do |event, marker|
       #address=Geocoder.coordinates(event.address)
       marker.lat event.latitude
       marker.lng event.longitude
       marker.json({ :id => event.id })
-      if event.category_cd == 1
-        marker.picture({
-          :url => view_context.image_path("dm-icon@2x.png"),
-          :width   => 86,
-          :height  => 102
-        })
-      else
-        marker.picture({
-          :url => view_context.image_path("event-icon@2x.png"),
-          :width   => 86,
-          :height  => 102
-        })
-      end
-
+      marker.picture({
+        :url => view_context.image_path("#{event.category}-icon@2x.png"),
+        :width   => 86,
+        :height  => 102
+      })
     end
-
   end
 
   def show
@@ -49,18 +34,28 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event= Event.new(get_params)
-    @event.save
+    @event= Event.new(event_params)
+    category = view_context.te(@event, :category)
 
-    redirect_to events_path
+    if @event.save
+      flash[:success] = "#{category} 已成功建立！"
+      redirect_to events_path
+    else
+      flash[:error] = "請檢查欄位後再試一次。"
+      render :new
+    end
   end
 
-
+  # def search
+  #   @events = @events.where("address like ?", params[:address]) unless address.blank?
+  #   @events = @events.where("title like ?", params[:keyword]) unless keyword.blank?
+  #   @events
+  # end
 
   private
 
-  def get_params
-    params.require(:event).permit(:title, :contact_phone, :price, :event_type, :description, :address, :hoster, :start_time, :end_time, photos_attributes:[:pic])
+  def event_params
+    params.require(:event).permit(:title, :category, :contact_phone, :price, :event_type, :description, :address, :hoster, :start_time, :end_time, photos_attributes:[:pic])
   end
 
   def setting_layout
@@ -72,14 +67,9 @@ class EventsController < ApplicationController
     end
   end
 
-  def search
-    @events = @events.where("address like ?", params[:address]) unless address.blank?
-
-    @events = @events.where("title like ?", params[:keyword]) unless keyword.blank?
-
-    @events
-
+  def set_events
+    return @events = Event.search(params[:address],params[:keyword],params[:time]) if params[:search]
+    @events = Event.all
   end
-
 
 end
