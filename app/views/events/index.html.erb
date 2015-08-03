@@ -7,15 +7,11 @@
 <!-- panels -->
 <%= render partial: 'partials/filter_panel' %>
 
-<!-- dm panels -->
-<%= render partial: 'partials/dm_panel' %>
-
-<!-- shorten_dm panels -->
-<%= render partial: 'partials/shorten_dm' %>
+<!-- dm notifier style panel -->
+<%= render partial: 'partials/dm_notifier' %>
 
 <%= content_for :handwrite_js do %>
   <script>
-    $(".dm-panel-wrapper").hide();
       handler = Gmaps.build('Google');
       handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
 
@@ -76,7 +72,7 @@
 
     })
 
-    //$(document).ready(JoinFuns.initialMap());
+    $(document).ready(JoinFuns.initialMap());
     $(document).ready(JoinFuns.initMaterialSelect());
     $(document).ready(JoinFuns.filterTriggerInit());
     $(document).ready(JoinFuns.dmPanelInit());

@@ -1,0 +1,43 @@
+<div class="dm-notifier-wrapper">
+  <% 5.times do |x| %>
+    <div class="notifier-unit trans-03s">
+      <!-- cover   actived trans-03s-->
+
+      <!-- close button -->
+      <i class="shorten-close-btn fa fa-close trans-03s" role="button"></i>
+
+      <div class="shorten-dm-cover" style="background-image: url('http://topwalls.net/wallpapers/2012/03/cute-cat-1024x1280.jpg');">
+      </div>
+
+        <!-- shorten-dm information -->
+      <div class="shorten-dm-info-wrapper">
+        <!-- class [dm, event] 可切換 icon -->
+        <h4 class="title dm">Grinungen</h4>
+
+        <div class="shorten-dm-info">
+          <span class="host">Host:Oracle Designsp</span>
+        </div>
+
+        <!-- shorten-dm-price -->
+        <div class="shorten-dm-price">
+          <span>Price:</span>
+          <!-- price divst -->
+          <div class="price actived"><span>NT </span><span class="value">300</span></div>
+          <div class="price"><span>NT </span><span class="value">600</span></div>
+          <div class="price"><span>NT </span><span class="value">900</span></div>
+        </div>
+
+        <!-- option buttons -->
+        <div class="shorten-dm-options-wrapper">
+          <a href="#" class="option join">
+            <span>Join</span>
+          </a>
+          <div class="unit-stat">
+            <span class="stat"><%= number_with_delimiter rand(99999) %></span><span> Join it</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  <% end %>
+</div>
