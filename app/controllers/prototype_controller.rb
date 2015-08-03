@@ -19,6 +19,10 @@ class PrototypeController < ApplicationController
   def subject_show
   end
 
+  def dm_poster
+
+  end
+
   private
 
   def setting_layout
