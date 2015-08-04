@@ -105,9 +105,52 @@
         <% end %>
       </div>
     </div>
-  </div>
-  <!-- right side shorten dm -->
-  <div class="page-shorten-dm">
+  <!-- right side shorten dm Klein-->
+    <div class="shorten-dm-wrapper">
+      <div class="main-title">
+        <span>熱門活動</span>
+      </div>
+      <div class="unit-shorten-cover">
+<% 10.times do %>
+        <div class="unit-shorten-dm">
+
+          <!-- close button -->
+          <i class="shorten-close-btn fa fa-close" role="button"></i>
+
+          <div class="shorten-dm-cover" style="background-image: url('http://topwalls.net/wallpapers/2012/03/cute-cat-1024x1280.jpg');">
+          </div>
+          <div class="info-wrapper">
+
+            <h4 class="title dm">Groningen</h4>
+            <!-- shorten dm info -->
+            <div class="shorten-dm-info">
+              <span class="host">Host：</span>
+              <span>Oracle Designsp</span>
+            </div>
+            <!-- price -->
+            <div class="shorten-price">
+              <span>Price：</span>
+              <!-- price list -->
+              <div class="price actived"><span>NT</span><span class="value">300</span></div>
+              <div class="price"><span>NT</span><span class="value">600</span></div>
+              <div class="price"><span>NT</span><span class="value">900</span></div>
+            </div>
+            <!-- option -->
+            <div class="option-wrapper">
+              <a href="#" class="option join">
+                <span>參加</span>
+              </a>
+              <div class="join-count">
+                <span><%= number_with_delimiter(rand(1..100000), :delimiter => ","  ) %></span>
+                <span>Join it</span>
+              </div>
+            </div>
+          </div>
+        </div>
+<% end %>
+      </div>
+    </div>
+
   </div>
 
 </div>
