@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
     user.fb_uid = auth.uid
     user.fb_token = auth.credentials.token
     user.email = auth.info.email
+    user.image = auth.info.image
+    user.name = auth.info.name
     user.password = Devise.friendly_token[0,20]
     user.save!
     return user
