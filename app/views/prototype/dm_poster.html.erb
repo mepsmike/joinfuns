@@ -95,10 +95,10 @@
         <% @comments.each do |c|%>
         <div class="unit-wrapper">
           <div class="avatar">
-            <%= image_placeholder width: 100, height: 100, text: 'pic' %>
+            <%= image_tag current_user.image %>
           </div>
           <span class="name" title="Hey Mike 塞me">
-            <%= current_user.email %>
+            <%= current_user.name %>
           </span>
           <div class="leave-msg">
             <span>
