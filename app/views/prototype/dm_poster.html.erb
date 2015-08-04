@@ -82,23 +82,27 @@
       </div>
       <div class="leaveword">
         <span>留言：</span>
-        <textarea name="leaveword" id="leaveword" cols="30" rows="10"></textarea>
-        <div class="submit">
+        <%= form_for @comment,:url => event_comments_path(@event) do |c|%>
+        <!-- <textarea name="leaveword" id="leaveword" cols="30" rows="10"></textarea> -->
+        <%= c.text_area :content,:id=>"leaveword",:name=>"leaveword",:rows=>8 %>
+        <%= c.submit "發表" ,:id =>"commit", :class => "submit" %>
+       <!--  <div class="submit">
           <span>送出留言</span>
-        </div>
+        </div> -->
+        <% end %>
       </div>
       <div class="page-msg-wrapper">
-        <% 3.times do %>
+        <% @comments.each do |c|%>
         <div class="unit-wrapper">
           <div class="avatar">
             <%= image_placeholder width: 100, height: 100, text: 'pic' %>
           </div>
           <span class="name" title="Hey Mike 塞me">
-            Hey Mike 塞me
+            <%= current_user.email %>
           </span>
           <div class="leave-msg">
             <span>
-              Impedit tio, alias. Imptio, alias. Impedit tio, altio,altimptio, alias. Impedit tio, altio,altimptio, alias. Impedit tio, altio,altimptio, alias. Impedit tio, altio,alti
+              <%= c.content %>
             </span>
           </div>
         </div>

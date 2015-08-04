@@ -26,6 +26,8 @@ class EventsController < ApplicationController
     #   format.html
     #   format.js
     # end
+    @comment = Comment.new
+    @comments = @event.comments
     render "prototype/dm_poster"
   end
 
