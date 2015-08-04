@@ -130,6 +130,7 @@
       width: 100%
       height: 180px
       padding: 12px
+      margin-top: 10px
       color: $gray
       font-size: $fz-l
       @extend %border-layout
@@ -148,7 +149,7 @@
         line-height: $submit-height
         text-align: center
         background: $grayish
-        +border-radius(6px)
+        +border-radius(4px)
         cursor: pointer
 
     .page-msg-wrapper
@@ -164,7 +165,6 @@
         padding: 10px
         .avatar
           +span(1)
-          float: left
           // width: 35px
           // height: 35px
           img
@@ -174,7 +174,6 @@
             +border-radius(50%)
         .name
           +span(2)
-          float: left
           white-space: nowrap
           overflow: hidden
           text-overflow: ellipsis
@@ -183,12 +182,99 @@
 
         .leave-msg
           +span(9)
-          float: left
           padding: 6px
 
-  .page-shorten-dm
+
+  .shorten-dm-wrapper
     float: left
     width: 30%
-    height: 300px
-    padding: 5px
-    @extend %border-layout
+    padding: 0 5px
+    .main-title
+      background: $yellow
+      height: 30px
+      width: 100%
+      line-height: 30px
+      text-align: center
+    .unit-shorten-cover
+      height: 1000px
+      overflow-y: auto
+
+      .unit-shorten-dm
+        position: relative
+        border: 1px solid $grayish
+        padding: 5px
+        +clearfix
+
+        .shorten-close-btn
+          position: absolute
+          // z-index: index($elements, shorten-dm-close-btn)
+          font-size: $fz-m
+          color: $silver
+          cursor: pointer
+          top: 10px
+          right: 10px
+
+
+        .shorten-dm-cover
+         float: left
+         width: 100px
+         height: 100px
+
+        .info-wrapper
+          font-size: $fz-s
+          float: left
+          padding: 0 5px
+          width: calc(100% - 100px)
+          .title
+            +reset-box-model
+            font-size: $fz-xl
+            margin: 2px 0
+            &:before
+              display: inline-block
+              content: ""
+              margin-right: 5px
+              margin-bottom: -5px
+              width: 20px
+              height: 20px
+              @extend %bg-cover-image
+            &.dm:before
+              background-image: asset-url('dm-icon@2x.png')
+            &.event:before
+              background-image: asset-url('event-icon@2x.png')
+
+
+
+          .shorten-price
+            color: $money-golden
+            font-family: $font-family-sans-serif
+            .price
+              display: inline-block
+              padding: 0 .2em
+              margin: 5px 0
+              margin-left: .2em
+              +border-radius(6px)
+              cursor: pointer
+              &.actived
+                border: 2px solid $orange
+                color: $orange
+
+          .option-wrapper
+            $btn-height: 25px
+            +clearfix
+            .join
+              +sassy-button("flat", 6px, 12px, $faded-orange)
+            .option
+              padding: 0
+              width: 50%
+              height: $btn-height
+              text-align: center
+              line-height: $btn-height
+              float: left
+            .join-count
+              float: left
+              width: 50%
+              text-align: right
+              padding-right: 10px
+              padding-top: 8px
+              color: $faded-orange
+
