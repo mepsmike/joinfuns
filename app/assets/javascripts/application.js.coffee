@@ -94,21 +94,27 @@ JoinFuns.initMaterialDatepicker = ->
     selectMonths: true
     selectYears: 15
 
-JoinFuns.filterTriggerInit = ->
-  filterTrigger = $('.filter-trigger')
+class JoinFuns.FilterPanel
+  constructor: ->
+    @trigger = $('[data-behavior="filter-trigger"]')
+    @icon = @trigger.find('[data-behavior="icon"]')
+    @panel = $('[data-behavior="filter-panel"]')
+    @setEvent() # 立即執行
 
-  filterTrigger.on 'click', ->
-    triggerIcon = $(@).find('.material-icons')
-    filterPanel = $('.filter-panel-wrapper')
+  setEvent: ->
+    @trigger.on 'click', @togglePanel
 
-    if filterPanel.hasClass('actived')
-      filterPanel.removeClass 'actived'
-      triggerIcon.html('expand_more')
-    else
-      filterPanel.addClass 'actived'
-      triggerIcon.html('expand_less')
+  togglePanel: =>
+    return @hidePanel() if @panel.hasClass('actived')
+    @showPanel()
 
-    return
+  hidePanel: ->
+    @panel.removeClass 'actived'
+    @icon.html('expand_more')
+
+  showPanel: ->
+    @panel.addClass 'actived'
+    @icon.html('expand_less')
 
 JoinFuns.dmPanelInit = ->
   dmPanel = $('.dm-panel-wrapper')
