@@ -15,7 +15,7 @@
       <h2 class="page-title">威秀影城[OPEN OPEN] 電影特映會</h2>
       <ul class="page-info">
         <li>
-          <span class="date">活動時間：</span><span>開始於 2015-07-</span>
+          <span class="date">活動時間：</span><span><%= @event.start_time %></span>~<span><%= @event.end_time %></span>
         </li>
         <li>
           <span class="event">費用資訊：</span><span>城市通話抽獎</span>
@@ -27,10 +27,10 @@
           <span class="organizer">主辦單位：</span><span>Citytalk城市通</span>
         </li>
         <li>
-          <span class="sponsor">主辦人：</span><span>XXX</span>
+          <span class="sponsor">主辦人：</span><span><%= @event.hoster %></span>
         </li>
         <li>
-          <span class="address">地址：</span><span>Tapei Taiwan</span>
+          <span class="address">地址：</span><span><%= @event.address %></span>
         </li>
         <li>
           <span class="websit">網址：</span><span>http://ASDFWASFASF</span>
@@ -39,7 +39,7 @@
           <span class="email">email：</span><span>emai.asdfa@gmail.com</span>
         </li>
         <li>
-          <span class="phone">電話：</span><span>02-277772728</span>
+          <span class="phone">電話：</span><span><%= @event.contact_phone %></span>
         </li>
       </ul>
       <!-- page price -->

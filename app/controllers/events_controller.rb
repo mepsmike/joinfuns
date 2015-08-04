@@ -10,7 +10,8 @@ class EventsController < ApplicationController
       marker.lng event.longitude
       marker.json({ :id => event.id })
       marker.picture({
-        :url => view_context.image_path("#{event.category}-icon@2x.png"),
+        #:url => view_context.image_path("#{event.category}-icon@2x.png"),
+        :url => view_context.image_path("dm-icon@2x.png"),
         :width   => 86,
         :height  => 102
       })
@@ -21,10 +22,11 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     #@sticker = Geocoder.coordinates(@event.address)
     #gon.sticker = @sticker
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    # respond_to do |format|
+    #   format.html
+    #   format.js
+    # end
+    render "prototype/dm_poster"
   end
 
   def new
