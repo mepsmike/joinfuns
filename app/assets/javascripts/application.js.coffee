@@ -94,42 +94,60 @@ JoinFuns.initMaterialDatepicker = ->
     selectMonths: true
     selectYears: 15
 
-JoinFuns.filterTriggerInit = ->
-  filterTrigger = $('.filter-trigger')
+class JoinFuns.FilterPanel
+  constructor: ->
+    @trigger = $('[data-behavior="filter-trigger"]')
+    @icon = @trigger.find('[data-behavior="icon"]')
+    @panel = $('[data-behavior="filter-panel"]')
+    @setEvent() # 立即執行
 
-  filterTrigger.on 'click', ->
-    triggerIcon = $(@).find('.material-icons')
-    filterPanel = $('.filter-panel-wrapper')
+  setEvent: ->
+    @trigger.on 'click', @togglePanel
 
-    if filterPanel.hasClass('actived')
-      filterPanel.removeClass 'actived'
-      triggerIcon.html('expand_more')
-    else
-      filterPanel.addClass 'actived'
-      triggerIcon.html('expand_less')
+  togglePanel: =>
+    return @hidePanel() if @panel.hasClass('actived')
+    @showPanel()
 
-    return
+  hidePanel: ->
+    @panel.removeClass 'actived'
+    @icon.html('expand_more')
 
-JoinFuns.dmPanelInit = ->
-  dmPanel = $('.dm-panel-wrapper')
-  closeBtn = dmPanel.find('.close-btn')
-  priceTags = '.dm-price .price'
+  showPanel: ->
+    @panel.addClass 'actived'
+    @icon.html('expand_less')
 
-  closeDmPanel = ->
-    dmPanel.removeClass('actived')
+class JoinFuns.Notifiers
+  constructor: ->
+    @notifierWrapper = $('[data-behavior="notifiers-wrapper"]')
+    @notifiers = $.map $('[data-behavior="notifier"]'), (notifier) ->
+      new Notifier(notifier)
 
-  closeBtn.on 'click', ->
-    closeDmPanel()
+  class Notifier
+    constructor: (notifier) ->
+      @notifier = $(notifier)
+      @tagsWrapper = @notifier.find('[data-behavior="prices-wrapper"]')
+      @priceTags = $.map @tagsWrapper.find('[data-behavior="price-tag"]'), (priceTag) =>
+        new PriceTag(priceTag, @tagsWrapper)
+      @setEvent()
 
-  dmPanel.on 'click', priceTags, ->
-    priceValue = $(@).find('.value').html()
-    pricesWrapper = $(@).parents('.dm-price')
+    setEvent: ->
+      @notifier.on 'click', '[data-behavior="close-btn"]', @hideNotifier
 
-    selectPrice = (self)->
-      pricesWrapper.find('.actived').removeClass('actived')
-      self.addClass('actived')
-      # console.log(priceValue)
-      # TODO:
-      # SetPrice -> put priceValue to hidden input form.
+    hideNotifier: =>
+      @notifier.fadeOut()
 
-    selectPrice($(@))
+  class PriceTag
+    constructor: (priceTag, priceTagsWrapper) ->
+      @priceTagsWrapper = $(priceTagsWrapper)
+      @priceTag = $(priceTag)
+      @price = @priceTag.find('.value').text()
+      # @inputField = @priceTagsWrapper.find('[data-behavior="input"]')
+      @setEvent()
+
+    setEvent: ->
+      @priceTag.on 'click', @setPrice
+
+    setPrice: =>
+      @priceTagsWrapper.find('.actived').removeClass('actived')
+      @priceTag.addClass('actived')
+      # TODO: put @price into @inputField
