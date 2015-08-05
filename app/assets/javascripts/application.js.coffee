@@ -116,26 +116,38 @@ class JoinFuns.FilterPanel
     @panel.addClass 'actived'
     @icon.html('expand_less')
 
-JoinFuns.dmPanelInit = ->
-  dmPanel = $('.dm-panel-wrapper')
-  closeBtn = dmPanel.find('.close-btn')
-  priceTags = '.dm-price .price'
+class JoinFuns.Notifiers
+  constructor: ->
+    @notifierWrapper = $('[data-behavior="notifiers-wrapper"]')
+    @notifiers = $.map $('[data-behavior="notifier"]'), (notifier) ->
+      new Notifier(notifier)
 
-  closeDmPanel = ->
-    dmPanel.removeClass('actived')
+  class Notifier
+    constructor: (notifier) ->
+      @notifier = $(notifier)
+      @tagsWrapper = @notifier.find('[data-behavior="prices-wrapper"]')
+      @priceTags = $.map @tagsWrapper.find('[data-behavior="price-tag"]'), (priceTag) =>
+        new PriceTag(priceTag, @tagsWrapper)
+      @setEvent()
 
-  closeBtn.on 'click', ->
-    closeDmPanel()
+    setEvent: ->
+      @notifier.on 'click', '[data-behavior="close-btn"]', @hideNotifier
 
-  dmPanel.on 'click', priceTags, ->
-    priceValue = $(@).find('.value').html()
-    pricesWrapper = $(@).parents('.dm-price')
+    hideNotifier: =>
+      @notifier.fadeOut()
 
-    selectPrice = (self)->
-      pricesWrapper.find('.actived').removeClass('actived')
-      self.addClass('actived')
-      # console.log(priceValue)
-      # TODO:
-      # SetPrice -> put priceValue to hidden input form.
+  class PriceTag
+    constructor: (priceTag, priceTagsWrapper) ->
+      @priceTagsWrapper = $(priceTagsWrapper)
+      @priceTag = $(priceTag)
+      @price = @priceTag.find('.value').text()
+      # @inputField = @priceTagsWrapper.find('[data-behavior="input"]')
+      @setEvent()
 
-    selectPrice($(@))
+    setEvent: ->
+      @priceTag.on 'click', @setPrice
+
+    setPrice: =>
+      @priceTagsWrapper.find('.actived').removeClass('actived')
+      @priceTag.addClass('actived')
+      # TODO: put @price into @inputField
