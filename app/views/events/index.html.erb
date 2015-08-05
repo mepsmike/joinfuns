@@ -12,6 +12,7 @@
 
 <%= content_for :handwrite_js do %>
   <script>
+
       handler = Gmaps.build('Google');
       handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
 
@@ -24,6 +25,10 @@
           lng: pos.coords.longitude
         });
         handler.map.centerOn(pin);
+        document.cookie= 'lat=' + escape(pos.coords.latitude)
+        document.cookie= 'lng=' + escape(pos.coords.longitude)
+
+
       }
 
 

@@ -24,7 +24,7 @@
           <span class="times">活動場次：</span><span>活動只有一場次</span>
         </li>
         <li>
-          <span class="organizer">主辦單位：</span><span>Citytalk城市通</span>
+          <span class="organizer">主辦單位：</span><span><%= @event.organizer %></span>
         </li>
         <li>
           <span class="sponsor">主辦人：</span><span><%= @event.hoster %></span>
@@ -33,10 +33,10 @@
           <span class="address">地址：</span><span><%= @event.address %></span>
         </li>
         <li>
-          <span class="websit">網址：</span><span>http://ASDFWASFASF</span>
+          <span class="websit">網址：</span><span><%= @event.website %></span>
         </li>
         <li>
-          <span class="email">email：</span><span>emai.asdfa@gmail.com</span>
+          <span class="email">email：</span><span><%= @event.email %></span>
         </li>
         <li>
           <span class="phone">電話：</span><span><%= @event.contact_phone %></span>
@@ -115,7 +115,7 @@
         <span>熱門活動</span>
       </div>
       <div class="unit-shorten-cover">
-<% 10.times do %>
+<% @events.each do |e| %>
         <div class="unit-shorten-dm">
 
           <!-- close button -->
@@ -125,11 +125,11 @@
           </div>
           <div class="info-wrapper">
 
-            <h4 class="title dm">Groningen</h4>
+            <h4 class="title dm"><%=e.title%></h4>
             <!-- shorten dm info -->
             <div class="shorten-dm-info">
               <span class="host">Host：</span>
-              <span>Oracle Designsp</span>
+              <span><%=e.hoster%></span>
             </div>
             <!-- price -->
             <div class="shorten-price">
@@ -142,7 +142,7 @@
             <!-- option -->
             <div class="option-wrapper">
               <a href="#" class="option join">
-                <span>參加</span>
+                <span><%=link_to "參加" , event_path(e)%></span>
               </a>
               <div class="join-count">
                 <span><%= number_with_delimiter(rand(1..100000), :delimiter => ","  ) %></span>

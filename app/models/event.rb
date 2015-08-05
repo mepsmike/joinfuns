@@ -12,6 +12,10 @@ class Event < ActiveRecord::Base
     address = args[:address]
     keyword = args[:keyword]
     time_code = args[:time].to_i
+    latitude = args[:latitude]
+    longitude = args[:longitude]
+    distance = args[:distance]
+
 
     # where(:title, query) -> This would return an exact match of the query
     filtered_events = Event.all
@@ -20,6 +24,7 @@ class Event < ActiveRecord::Base
     filtered_events = filtered_events.where("address like ?", "%#{address}%" ) if address.present?
     filtered_events = filtered_events.where("title like ?", "%#{keyword}%") if keyword.present?
     filtered_events = filter_by_time(code: time_code, collection: filtered_events) if time_code.present?
+    filtered_events = filtered_events.near([latitude,longitude],distance, :units=>:km) if distance.present?
     filtered_events
   end
 
