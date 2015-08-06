@@ -1,7 +1,9 @@
 class Event < ActiveRecord::Base
   has_many :photos
   has_many :comments
+  has_many :prices
   accepts_nested_attributes_for :photos
+  accepts_nested_attributes_for :prices
 
   as_enum :category, event: 0, dm: 1
 

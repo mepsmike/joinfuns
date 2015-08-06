@@ -62,7 +62,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :category, :contact_phone, :email, :website, :organizer, :price, :event_type, :description, :address, :hoster, :start_time, :end_time, photos_attributes:[:pic])
+    params.require(:event).permit(:title, :category, :contact_phone, :email, :website, :organizer, :price, :event_type, :description, :address, :hoster, :start_time, :end_time, photos_attributes:[:pic], prices_attributes:[:price1,:price2,:price3])
   end
 
   def setting_layout
