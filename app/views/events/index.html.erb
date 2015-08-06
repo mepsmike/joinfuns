@@ -51,30 +51,6 @@
         google.maps.event.addListener(marker.serviceObject, 'click', onMarkerClick(marker, event));
       }
 
-      function onMarkerClick(marker, event){
-        return function(event){
-          // On marker click, make AJAX request on "flats#show"
-          //$.get("/flats/" + marker.id);
-
-          $.ajax({
-            url: '/events/'+marker.id+'.js',
-            type: 'GET',
-            data: {
-
-            },
-            error: function(xhr) {
-              alert('Ajax request 發生錯誤');
-            },
-            success: function(response) {
-              console.log(response)
-              $(".dm-panel-wrapper").show()
-
-
-            }
-          })
-        }
-      }
-
     })
 
     //$(document).ready(JoinFuns.initialMap());

@@ -55,7 +55,8 @@
           <input class="file-path validate" type="text"/>
           <div class="btn">
             <span>活動圖片</span>
-            <input type="file" />
+            <!-- <input type="file" /> -->
+            <%= photo.file_field :pic %>
           </div>
         </div>
       <% end %>

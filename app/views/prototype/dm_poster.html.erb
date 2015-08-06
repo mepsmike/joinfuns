@@ -7,8 +7,8 @@
     <!-- page poster -->
     <div class="poster-wrapper">
 
-      <img src="http://blog.techartgroup.com/wp-content/uploads/2014/02/pic_news.jpg" alt="">
-      <%#= image_placeholder width: 100, height: 100, text: 'pic' %>
+      <!-- <img src="http://blog.techartgroup.com/wp-content/uploads/2014/02/pic_news.jpg" alt=""> -->
+      <%= image_tag @event.photos[0].pic.url %>
     </div>
     <!-- page description -->
     <div class="page-description">
@@ -121,7 +121,7 @@
           <!-- close button -->
           <i class="shorten-close-btn fa fa-close" role="button"></i>
 
-          <div class="shorten-dm-cover" style="background-image: url('http://topwalls.net/wallpapers/2012/03/cute-cat-1024x1280.jpg');">
+          <div class="shorten-dm-cover" style="background-image: url(<%=e.photos[0].pic.url %>);">
           </div>
           <div class="info-wrapper">
 
