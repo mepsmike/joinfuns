@@ -47,7 +47,7 @@
       </div>
 
       <div class="input-field">
-        <%= f.text_area :description, rows: '10', placeholder: '活動描述' %>
+        <%= f.text_area :description, rows: '10', placeholder: '活動描述', :class => "ckeditor" %>
       </div>
 
       <%= f.fields_for :photos do |photo| %>
@@ -73,6 +73,10 @@
 
 <%= content_for :handwrite_js do %>
   <script>
+    $('.ckeditor').ckeditor({
+
+  // optional config
+    });
     $(document).ready(JoinFuns.initMaterialSelect());
     $(document).ready(JoinFuns.initMaterialDatepicker());
   </script>
