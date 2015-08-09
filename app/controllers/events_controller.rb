@@ -67,7 +67,7 @@ class EventsController < ApplicationController
 
   def setting_layout
     case action_name
-    when 'index', 'show'
+    when 'index'
       'map_view'
     else
       'application'
