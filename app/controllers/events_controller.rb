@@ -22,7 +22,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @events = Event.all
+    @events = Event.all # TODO, show filter out hotest events
     #@sticker = Geocoder.coordinates(@event.address)
     #gon.sticker = @sticker
     # respond_to do |format|
@@ -31,7 +31,7 @@ class EventsController < ApplicationController
     # end
     @comment = Comment.new
     @comments = @event.comments
-    render "prototype/dm_poster"
+    # render "prototype/dm_poster"
   end
 
   def new
