@@ -32,9 +32,9 @@
 
         <!-- option buttons -->
         <div class="shorten-dm-options-wrapper">
-          <a href="#" class="option join">
-            <span><%= link_to "Join",event_path(x), :target => "_blank" %></span>
-          </a>
+          <%= link_to event_path(x), class: 'option join', target: '_blank' do %>
+            <span>Join</span>
+          <% end %>
           <div class="unit-stat">
             <span class="stat"><%= number_with_delimiter rand(99999) %></span><span> Join it</span>
           </div>
