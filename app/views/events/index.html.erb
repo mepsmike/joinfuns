@@ -12,6 +12,7 @@
 
 <%= content_for :handwrite_js do %>
   <script>
+
       handler = Gmaps.build('Google');
       handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
 
@@ -24,6 +25,10 @@
           lng: pos.coords.longitude
         });
         handler.map.centerOn(pin);
+        document.cookie= 'lat=' + escape(pos.coords.latitude)
+        document.cookie= 'lng=' + escape(pos.coords.longitude)
+
+
       }
 
 
@@ -36,7 +41,7 @@
 
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
-      //handler.getMap().setZoom(13)
+      //handler.getMap().setZoom(13);
 
 
 
@@ -46,33 +51,9 @@
         google.maps.event.addListener(marker.serviceObject, 'click', onMarkerClick(marker, event));
       }
 
-      function onMarkerClick(marker, event){
-        return function(event){
-          // On marker click, make AJAX request on "flats#show"
-          //$.get("/flats/" + marker.id);
-
-          $.ajax({
-            url: '/events/'+marker.id+'.js',
-            type: 'GET',
-            data: {
-
-            },
-            error: function(xhr) {
-              alert('Ajax request 發生錯誤');
-            },
-            success: function(response) {
-              console.log(response)
-              $(".dm-panel-wrapper").show()
-
-
-            }
-          })
-        }
-      }
-
     })
 
-    $(document).ready(JoinFuns.initialMap());
+    //$(document).ready(JoinFuns.initialMap());
     $(document).ready(JoinFuns.initMaterialSelect());
     $(document).ready(new JoinFuns.FilterPanel);
     $(document).ready(new JoinFuns.Notifiers);

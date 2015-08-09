@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
-
+  has_many :comments
   def self.from_omniauth(auth)
     # Case 1: Find existing user by facebook uid
     user = User.find_by_fb_uid( auth.uid )
@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
     user.fb_uid = auth.uid
     user.fb_token = auth.credentials.token
     user.email = auth.info.email
+    user.image = auth.info.image
+    user.name = auth.info.name
     user.password = Devise.friendly_token[0,20]
     user.save!
     return user

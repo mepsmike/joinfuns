@@ -11,9 +11,11 @@
       <li class='user-menu-trigger'>
         <a href="#">
           <div class="user-avatar">
-            <%= image_tag get_avatar_url, class: 'responsive-img circle' %>
+
+            <%= image_tag current_user.image, class: 'responsive-img circle' %>
+
           </div>
-          <span class="user-name"><%= current_user.email%></span>
+          <span class="user-name"><%= current_user.name%></span>
         </a>
       </li>
     </ul>

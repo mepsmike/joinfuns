@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722072410) do
+ActiveRecord::Schema.define(version: 20150806065623) do
+
+  create_table "comments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "event_id"
+  end
 
   create_table "events", force: :cascade do |t|
     t.datetime "created_at",    null: false
@@ -28,6 +36,10 @@ ActiveRecord::Schema.define(version: 20150722072410) do
     t.integer  "category_cd"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "organizer"
+    t.string   "website"
+    t.string   "email"
+    t.string   "type_cd"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -38,6 +50,15 @@ ActiveRecord::Schema.define(version: 20150722072410) do
     t.string   "pic_content_type"
     t.integer  "pic_file_size"
     t.datetime "pic_updated_at"
+  end
+
+  create_table "prices", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "event_id"
+    t.integer  "price1"
+    t.integer  "price2"
+    t.integer  "price3"
   end
 
   create_table "users", force: :cascade do |t|
@@ -57,6 +78,8 @@ ActiveRecord::Schema.define(version: 20150722072410) do
     t.string   "birthday"
     t.string   "fb_uid"
     t.string   "fb_token"
+    t.string   "image"
+    t.string   "name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

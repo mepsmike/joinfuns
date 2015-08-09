@@ -7,7 +7,11 @@
       </div>
 
       <div class="input-field">
-        <%= f.text_field :hoster, placeholder: '主辦單位（主辦人）' %>
+        <%= f.text_field :organizer, placeholder: '主辦單位' %>
+      </div>
+
+      <div class="input-field">
+        <%= f.text_field :hoster, placeholder: '主辦人' %>
       </div>
 
       <div class="input-field">
@@ -19,8 +23,16 @@
       </div>
 
       <div class="input-field">
-        <%= f.text_field :price, placeholder: '活動費用' %>
+        <%= f.text_field :email, placeholder: 'Email' %>
       </div>
+
+      <div class="input-field">
+        <%= f.text_field :website, placeholder: '網站' %>
+      </div>
+
+      <!-- <div class="input-field">
+        <%= f.text_field :price, placeholder: '活動費用' %>
+      </div -->>
 
       <div class="input-field">
         <%= f.date_field :start_time, class: 'datepicker date', placeholder: '活動開始時間' %>
@@ -35,15 +47,28 @@
       </div>
 
       <div class="input-field">
-        <%= f.text_area :description, rows: '10', placeholder: '活動描述' %>
+        <%= f.text_area :description, rows: '10', placeholder: '活動描述', :class => "ckeditor" %>
       </div>
+
+      <%= f.fields_for :prices, Price.new do |price| %>
+        <div class="input-field">
+          <%= price.text_field :price1, placeholder: '活動費用1' %>
+        </div>
+        <div class="input-field">
+          <%= price.text_field :price2, placeholder: '活動費用2' %>
+        </div>
+        <div class="input-field">
+          <%= price.text_field :price3, placeholder: '活動費用3' %>
+        </div>
+      <% end %>
 
       <%= f.fields_for :photos do |photo| %>
         <div class="file-field input-field">
           <input class="file-path validate" type="text"/>
           <div class="btn">
             <span>活動圖片</span>
-            <input type="file" />
+            <!-- <input type="file" /> -->
+            <%= photo.file_field :pic %>
           </div>
         </div>
       <% end %>
@@ -61,6 +86,10 @@
 
 <%= content_for :handwrite_js do %>
   <script>
+    $('.ckeditor').ckeditor({
+
+  // optional config
+    });
     $(document).ready(JoinFuns.initMaterialSelect());
     $(document).ready(JoinFuns.initMaterialDatepicker());
   </script>

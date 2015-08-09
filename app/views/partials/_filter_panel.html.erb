@@ -6,7 +6,8 @@
       <div class="filter-section">
         <h4>Distance</h4>
         <p class="range-field">
-          <input type="range" min="0.0" max="10.0" />
+        <!--<input type="range" min="0.0" max="10.0" />-->
+        <%= range_field_tag 'distance',:min=>"0.0", :max=>"10.0" %>
         </p>
         <span>0km</span><span class="right">10km</span>
       </div>
@@ -82,3 +83,5 @@
   <!--</form>-->
   <% end %>
 </div>
+
+
