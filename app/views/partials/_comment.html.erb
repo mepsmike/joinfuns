@@ -9,5 +9,10 @@
     <span>
       <%= c.content %>
     </span>
+    <% if c.created_at > Time.now.beginning_of_day %>
+      <span><%="#{time_ago_in_words(c.created_at)}前"%></span>
+    <% else %>
+      <span><%= c.created_at.strftime("%b %d, %Y") %></span>
+    <% end %>
   </div>
 </div>
