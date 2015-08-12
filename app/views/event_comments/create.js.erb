@@ -1,0 +1,3 @@
+var html='<%= j(render :partial => "partials/comment", :locals => { :c => @comment } )%>';
+
+$(".page-msg-wrapper").append(html)

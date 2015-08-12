@@ -82,7 +82,7 @@
       </div>
       <div class="leaveword">
         <span>留言：</span>
-        <%= form_for @comment,:url => event_comments_path(@event) do |c|%>
+        <%= form_for @comment,:url => event_comments_path(@event),:remote=>true do |c|%>
         <!-- <textarea name="leaveword" id="leaveword" cols="30" rows="10"></textarea> -->
         <%= c.text_area :content %>
         <%= c.submit "發表" ,:id =>"commit", :class => "submit" %>
@@ -93,7 +93,7 @@
       </div>
       <div class="page-msg-wrapper">
         <% @comments.each do |c|%>
-        <div class="unit-wrapper">
+        <!-- <div class="unit-wrapper">
           <div class="avatar">
             <%= image_tag current_user.image %>
           </div>
@@ -105,7 +105,8 @@
               <%= c.content %>
             </span>
           </div>
-        </div>
+        </div> -->
+          <%= render partial: "partials/comment",:locals => { :c => c }  %>
         <% end %>
       </div>
     </div>
