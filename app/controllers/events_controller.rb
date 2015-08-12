@@ -30,8 +30,9 @@ class EventsController < ApplicationController
     #   format.js
     # end
     @comment = Comment.new
-    @comments = @event.comments
+    @comments = @event.comments.order("created_at desc")
     # render "prototype/dm_poster"
+    @collect = get_collect
   end
 
   def new
@@ -51,6 +52,28 @@ class EventsController < ApplicationController
       flash[:error] = "請檢查欄位後再試一次。"
       render :new
     end
+  end
+
+  def collect
+
+    @event = Event.find(params[:id])
+
+    collect = get_collect
+
+    if collect
+      collect.destroy
+    else
+      current_user.collects.create!( :event => @event )
+    end
+
+    respond_to do |format|
+     format.html {
+       redirect_to event_path(@event)
+     }
+     format.js
+    end
+
+
   end
 
   # def search
@@ -84,6 +107,12 @@ class EventsController < ApplicationController
 
     return @events = Event.search(time: time, keyword: keyword, address: address, distance: distance, latitude: latitude, longitude: longitude) if params[:search]
     @events = Event.all
+  end
+
+  def get_collect
+
+    current_user.collects.find_by_event_id( params[:id] )
+
   end
 
 end

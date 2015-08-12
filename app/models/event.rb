@@ -2,6 +2,8 @@ class Event < ActiveRecord::Base
   has_many :photos
   has_many :comments
   has_many :prices
+  has_many :collects
+  has_many :user_collects, :through => :collects, :source => :user
   accepts_nested_attributes_for :photos
   accepts_nested_attributes_for :prices
 

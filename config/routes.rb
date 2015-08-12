@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   resources :events, only: [:index, :show, :new, :create] do
     resources :comments, :controller => 'event_comments'
+    member do
+      post :collect
+    end
   end
 
   get 'beta_sign_in' => 'prototype#sign_in', as: :sign_in
