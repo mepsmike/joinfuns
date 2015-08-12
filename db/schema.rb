@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150806065623) do
+ActiveRecord::Schema.define(version: 20150812130650) do
 
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 20150806065623) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "title"
     t.string   "hoster"
     t.string   "address"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150806065623) do
     t.string   "website"
     t.string   "email"
     t.string   "type_cd"
+    t.integer  "comments_count", default: 0
   end
 
   create_table "photos", force: :cascade do |t|
