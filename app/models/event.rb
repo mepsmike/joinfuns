@@ -15,16 +15,19 @@ class Event < ActiveRecord::Base
   def self.search(args)
     address = args[:address]
     keyword = args[:keyword]
+    combine_keyword = args[:combine_keyword]
     time_code = args[:time].to_i
     latitude = args[:latitude]
     longitude = args[:longitude]
     distance = args[:distance]
 
 
+
     # where(:title, query) -> This would return an exact match of the query
     filtered_events = Event.all
 
     #where("address like ?", "%#{address}%") unless address.blank?
+    filtered_events = filtered_events.where("address like ? or title like ?", "%#{combine_keyword}%", "%#{combine_keyword}%" ) if combine_keyword.present?
     filtered_events = filtered_events.where("address like ?", "%#{address}%" ) if address.present?
     filtered_events = filtered_events.where("title like ?", "%#{keyword}%") if keyword.present?
     filtered_events = filter_by_time(code: time_code, collection: filtered_events) if time_code.present?

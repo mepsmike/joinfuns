@@ -101,12 +101,13 @@ class EventsController < ApplicationController
   def set_events
     address = params[:address]
     keyword = params[:keyword]
+    combine_keyword = params[:combine_keyword]
     time = params[:time]
     distance = params[:distance]
     latitude = cookies[:lat]
     longitude = cookies[:lng]
 
-    return @events = Event.search(time: time, keyword: keyword, address: address, distance: distance, latitude: latitude, longitude: longitude) if params[:search]
+    return @events = Event.search(combine_keyword: combine_keyword, time: time, keyword: keyword, address: address, distance: distance, latitude: latitude, longitude: longitude) if params[:search]
     @events = Event.all
   end
 
