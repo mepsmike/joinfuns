@@ -25,9 +25,12 @@
         <div class="shorten-dm-price" data-behavior="prices-wrapper">
           <span>Price:</span>
           <!-- price divst -->
-          <div class="price actived" data-behavior="price-tag"><span>NT </span><span class="value">300</span></div>
+          <% x.prices.each do |p| %>
+            <div class="price" data-behavior="price-tag"><span>NT </span><span class="value"><%=p.price%></span></div>
+          <% end %>
+          <!-- <div class="price actived" data-behavior="price-tag"><span>NT </span><span class="value">300</span></div>
           <div class="price" data-behavior="price-tag"><span>NT </span><span class="value">600</span></div>
-          <div class="price" data-behavior="price-tag"><span>NT </span><span class="value">900</span></div>
+          <div class="price" data-behavior="price-tag"><span>NT </span><span class="value">900</span></div> -->
         </div>
 
         <!-- option buttons -->

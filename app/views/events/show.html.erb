@@ -46,9 +46,12 @@
       <div class="page-event-price">
         <span>票價資訊</span>
         <!-- price list -->
-        <div class="price actived"><span>NT</span><span class="value">300</span></div>
+        <%@event.prices.each do |p| %>
+          <div class="price"><span>NT</span><span class="value"><%=p.price%></span></div>
+        <% end %>
+        <!-- <div class="price actived"><span>NT</span><span class="value">300</span></div>
         <div class="price"><span>NT</span><span class="value">600</span></div>
-        <div class="price"><span>NT</span><span class="value">900</span></div>
+        <div class="price"><span>NT</span><span class="value">900</span></div> -->
 
       </div>
       <!-- options -->
@@ -142,9 +145,12 @@
             <div class="shorten-price">
               <span>Price：</span>
               <!-- price list -->
-              <div class="price actived"><span>NT</span><span class="value">300</span></div>
+              <% e.prices.each do |p| %>
+                <div class="price" data-behavior="price-tag"><span>NT </span><span class="value"><%=p.price%></span></div>
+              <% end %>
+              <!-- <div class="price actived"><span>NT</span><span class="value">300</span></div>
               <div class="price"><span>NT</span><span class="value">600</span></div>
-              <div class="price"><span>NT</span><span class="value">900</span></div>
+              <div class="price"><span>NT</span><span class="value">900</span></div> -->
             </div>
             <!-- option -->
             <div class="option-wrapper">

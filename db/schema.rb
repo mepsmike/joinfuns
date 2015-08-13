@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812135941) do
+ActiveRecord::Schema.define(version: 20150813143647) do
 
   create_table "collects", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -67,9 +67,7 @@ ActiveRecord::Schema.define(version: 20150812135941) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "event_id"
-    t.integer  "price1"
-    t.integer  "price2"
-    t.integer  "price3"
+    t.integer  "price"
   end
 
   create_table "users", force: :cascade do |t|
