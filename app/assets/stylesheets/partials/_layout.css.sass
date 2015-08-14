@@ -159,8 +159,8 @@ html, body
   .search-form-wrapper
     +span(9)
     .search-form-input
-      +span(10)
-      padding: 4px 2em
+      +span(8)
+      padding: 4px 0.5em // was 2em
       border-right: 1px solid $gray
       border-left: 1px solid $gray
       input, input:focus
@@ -170,18 +170,43 @@ html, body
         background-color: rgba($white, .1)
         border: 1px solid darken($white, 50)
         +border-radius(100px 100px)
+        +box-sizing(border-box)
+        padding-right: 60px
         text-align: center
       input[placeholder]
         text-align: center
         color: darken($white, 30)
-    .search-button
-      +span(2)
+      .search-button
+        position: absolute
+        top: 6px
+        right: 25%
+        margin-right: 11px
+        button
+          height: 20px
+          line-height: 20px
+          border: none
+          color: $white
+          background: $dark-yellow
+          +border-radius(25px)
+          i
+            padding: 0 12px
+            // line-height: 12px
+            font-size: 18px
+
+    .short-button
+      +span(4)
       padding: 5px
-      button
+      a
+        color: $yellow
+        +span(6 of 12)
+        display: block
         height: 24px
         line-height: 24px
         background: none
         border: none
+        text-align: center
+        &:first-child
+          border-right: 1px solid $yellow
 
 .main-footer
   position: fixed
