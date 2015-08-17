@@ -1,7 +1,7 @@
 <div class="dm-page-wrapper">
 <!-- navigation path -->
   <div class="dm-page-path">
-    <span>頁面路徑  / 主辦單位活動列表 / 台北威秀影城</span>
+    <span>頁面路徑  / <%= @event.organizer %> / <%=@event.title%> </span>
   </div>
   <div class="page-promotion">
     <!-- page poster -->
@@ -33,10 +33,10 @@
           <span class="address">地址：</span><span><%= @event.address %></span>
         </li>
         <li>
-          <span class="websit">網址：</span><span><%= @event.website %></span>
+          <span class="websit">網址：</span><span><%= link_to @event.website %></span>
         </li>
         <li>
-          <span class="email">email：</span><span><%= @event.email %></span>
+          <span class="email">email：</span><span><%= link_to @event.email %></span>
         </li>
         <li>
           <span class="phone">電話：</span><span><%= @event.contact_phone %></span>
@@ -46,9 +46,12 @@
       <div class="page-event-price">
         <span>票價資訊</span>
         <!-- price list -->
-        <div class="price actived"><span>NT</span><span class="value">300</span></div>
+        <%@event.prices.each do |p| %>
+          <div class="price"><span>NT</span><span class="value"><%=p.price%></span></div>
+        <% end %>
+        <!-- <div class="price actived"><span>NT</span><span class="value">300</span></div>
         <div class="price"><span>NT</span><span class="value">600</span></div>
-        <div class="price"><span>NT</span><span class="value">900</span></div>
+        <div class="price"><span>NT</span><span class="value">900</span></div> -->
 
       </div>
       <!-- options -->
@@ -60,9 +63,14 @@
             </a>
           </li>
           <li>
-            <a href="#" class="option favorite">
-              <span>收藏活動</span>
-            </a>
+            <%= link_to collect_event_path(@event),:method=>"post", :class=>"option favorite",:remote=>true do %>
+              <%if @collect %>
+                <span>取消收藏</span>
+              <% else %>
+                <span>收藏活動</span>
+              <% end %>
+            <% end %>
+
           </li>
           <li>
             <a href="#" class="option join">
@@ -82,7 +90,7 @@
       </div>
       <div class="leaveword">
         <span>留言：</span>
-        <%= form_for @comment,:url => event_comments_path(@event) do |c|%>
+        <%= form_for @comment,:url => event_comments_path(@event),:remote=>true do |c|%>
         <!-- <textarea name="leaveword" id="leaveword" cols="30" rows="10"></textarea> -->
         <%= c.text_area :content %>
         <%= c.submit "發表" ,:id =>"commit", :class => "submit" %>
@@ -92,8 +100,9 @@
         <% end %>
       </div>
       <div class="page-msg-wrapper">
+        <%= @event.comments_count %> 則評論
         <% @comments.each do |c|%>
-        <div class="unit-wrapper">
+        <!-- <div class="unit-wrapper">
           <div class="avatar">
             <%= image_tag current_user.image %>
           </div>
@@ -105,7 +114,8 @@
               <%= c.content %>
             </span>
           </div>
-        </div>
+        </div> -->
+          <%= render partial: "partials/comment",:locals => { :c => c }  %>
         <% end %>
       </div>
     </div>
@@ -135,9 +145,12 @@
             <div class="shorten-price">
               <span>Price：</span>
               <!-- price list -->
-              <div class="price actived"><span>NT</span><span class="value">300</span></div>
+              <% e.prices.each do |p| %>
+                <div class="price" data-behavior="price-tag"><span>NT </span><span class="value"><%=p.price%></span></div>
+              <% end %>
+              <!-- <div class="price actived"><span>NT</span><span class="value">300</span></div>
               <div class="price"><span>NT</span><span class="value">600</span></div>
-              <div class="price"><span>NT</span><span class="value">900</span></div>
+              <div class="price"><span>NT</span><span class="value">900</span></div> -->
             </div>
             <!-- option -->
             <div class="option-wrapper">

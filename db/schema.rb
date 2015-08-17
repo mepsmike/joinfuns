@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150806065623) do
+ActiveRecord::Schema.define(version: 20150814035833) do
+
+  create_table "collects", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "event_id"
+    t.integer  "user_id"
+  end
+
+  add_index "collects", ["event_id"], name: "index_collects_on_event_id"
+  add_index "collects", ["user_id"], name: "index_collects_on_user_id"
 
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -22,8 +32,8 @@ ActiveRecord::Schema.define(version: 20150806065623) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "title"
     t.string   "hoster"
     t.string   "address"
@@ -34,12 +44,13 @@ ActiveRecord::Schema.define(version: 20150806065623) do
     t.text     "description"
     t.integer  "price"
     t.integer  "category_cd"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
     t.string   "organizer"
     t.string   "website"
     t.string   "email"
     t.string   "type_cd"
+    t.integer  "comments_count", default: 0
   end
 
   create_table "photos", force: :cascade do |t|
@@ -56,9 +67,7 @@ ActiveRecord::Schema.define(version: 20150806065623) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "event_id"
-    t.integer  "price1"
-    t.integer  "price2"
-    t.integer  "price3"
+    t.decimal  "price"
   end
 
   create_table "users", force: :cascade do |t|

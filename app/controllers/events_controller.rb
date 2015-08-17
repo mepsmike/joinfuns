@@ -30,14 +30,16 @@ class EventsController < ApplicationController
     #   format.js
     # end
     @comment = Comment.new
-    @comments = @event.comments
+    @comments = @event.comments.order("created_at desc")
     # render "prototype/dm_poster"
+    @collect = get_collect
   end
 
   def new
     @event= Event.new
 
     8.times{ @event.photos.build }
+    3.times{ @event.prices.build }
   end
 
   def create
@@ -53,6 +55,28 @@ class EventsController < ApplicationController
     end
   end
 
+  def collect
+
+    @event = Event.find(params[:id])
+
+    collect = get_collect
+
+    if collect
+      collect.destroy
+    else
+      current_user.collects.create!( :event => @event )
+    end
+
+    respond_to do |format|
+     format.html {
+       redirect_to event_path(@event)
+     }
+     format.js
+    end
+
+
+  end
+
   # def search
   #   @events = @events.where("address like ?", params[:address]) unless address.blank?
   #   @events = @events.where("title like ?", params[:keyword]) unless keyword.blank?
@@ -62,7 +86,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :category, :contact_phone, :email, :website, :organizer, :price, :event_type, :description, :address, :hoster, :start_time, :end_time, photos_attributes:[:pic], prices_attributes:[:price1,:price2,:price3])
+    params.require(:event).permit(:title, :category, :contact_phone, :email, :website, :organizer, :price, :event_type, :description, :address, :hoster, :start_time, :end_time, photos_attributes:[:pic], prices_attributes:[:price])
   end
 
   def setting_layout
@@ -77,13 +101,20 @@ class EventsController < ApplicationController
   def set_events
     address = params[:address]
     keyword = params[:keyword]
+    combine_keyword = params[:combine_keyword]
     time = params[:time]
     distance = params[:distance]
     latitude = cookies[:lat]
     longitude = cookies[:lng]
 
-    return @events = Event.search(time: time, keyword: keyword, address: address, distance: distance, latitude: latitude, longitude: longitude) if params[:search]
+    return @events = Event.search(combine_keyword: combine_keyword, time: time, keyword: keyword, address: address, distance: distance, latitude: latitude, longitude: longitude) if params[:search]
     @events = Event.all
+  end
+
+  def get_collect
+
+    current_user.collects.find_by_event_id( params[:id] )
+
   end
 
 end

@@ -50,16 +50,11 @@
         <%= f.text_area :description, rows: '10', placeholder: '活動描述', :class => "ckeditor" %>
       </div>
 
-      <%= f.fields_for :prices, Price.new do |price| %>
+      <%= f.fields_for :prices do |price| %>
         <div class="input-field">
-          <%= price.text_field :price1, placeholder: '活動費用1' %>
+          <%= price.text_field :price, placeholder: '活動費用' %>
         </div>
-        <div class="input-field">
-          <%= price.text_field :price2, placeholder: '活動費用2' %>
-        </div>
-        <div class="input-field">
-          <%= price.text_field :price3, placeholder: '活動費用3' %>
-        </div>
+
       <% end %>
 
       <%= f.fields_for :photos do |photo| %>

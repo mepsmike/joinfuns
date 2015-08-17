@@ -1,0 +1,19 @@
+<div class="unit-wrapper">
+  <div class="avatar">
+    <%= image_tag c.user.image %>
+  </div>
+  <span class="name" title="<%=c.user.name%>">
+      <%=c.user.name%>
+  </span>
+  <div class="show-time">
+    <span>
+      <%= c.show_time(c.created_at) %>
+    </span>
+  </div>
+  <div class="leave-msg">
+    <span>
+      <%= c.content %>
+    </span>
+  </div>
+
+</div>
