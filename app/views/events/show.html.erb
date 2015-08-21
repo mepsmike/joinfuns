@@ -1,3 +1,14 @@
+<% content_for :head do %>
+  <meta property="og:url"  content="http://localhost:3000/<%= @event.id %>" />
+  <meta property="og:title"  content="<%= @event.title %>" />
+  <meta proverty="og:locale" content="zh-TW" />
+  <meta property="og:image" content="<%= @event.photos[0].pic.url %>" />
+  <meta property="og:description" content="<%= @event.description %>" />
+  <meta property="og:site_name"  content="joinfuns" />
+  <meta property="fb:app_id" content="652196168244318" />
+<% end %>
+
+
 <div class="dm-page-wrapper">
 <!-- navigation path -->
   <div class="dm-page-path">
@@ -58,9 +69,17 @@
       <div class="page-options-wrapper">
         <ul>
           <li>
-            <a href="#" class="option share">
+            <%=link_to "http://www.facebook.com/sharer.php/?u=#{@event.id}",:class=>"option share fb-share-button" do%>
               <span class="content">分享活動</span>
-            </a>
+           <%end%>
+
+           <%=link_to "javascript:fbShare('http://localhost:3000/event/#{@event.id}', '#{@event.title}', '#{@event.description}', 'http://goo.gl/dS52U', 520, 350)",:class=>"option share fb-share-button" do%>
+              <span class="content">分享活動</span>
+           <%end%>
+
+<!--             <a href="#" class="option share fb-share-button" data-href="http://localhost:3000"> -->
+<!--
+            </a> -->
           </li>
           <li>
             <%= link_to collect_event_path(@event),:method=>"post", :class=>"option favorite",:remote=>true do %>
@@ -171,3 +190,27 @@
   </div>
 
 </div>
+<div id="fb-root"></div>
+<%= content_for :handwrite_js do %>
+
+
+<script>
+
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.4&appId=652196168244318";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+function fbShare(url, title, descr, image, winWidth, winHeight) {
+    var winTop = (screen.height / 2) - (winHeight / 2);
+    var winLeft = (screen.width / 2) - (winWidth / 2);
+    window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + title + '&p[summary]=' + descr + '&p[url]=' + url + '&p[images][0]=' + image, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
+}
+
+</script>
+
+<% end %>
+
