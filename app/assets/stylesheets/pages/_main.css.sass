@@ -14,15 +14,30 @@
     @extend %bg-cover-image
   .i-am-here
     position: relative
-    bottom: 100px
+    bottom: 90px
     @extend %m0auto
-    width: 150px
-    padding: 1.5em
+    width: 130px
+    padding: .6em
     border: 2px solid $yellow
     +box-shadow(0 0 5px $black)
     color: $yellow
     background-color: $black-op90
     +border-radius(100px)
+    text-align: center
+    &::after
+      top: 100%
+      left: 50%
+      border: solid transparent
+      content: " "
+      height: 0
+      width: 0
+      position: absolute
+      top: 42px
+      pointer-events: none
+      border-color: transparent
+      border-top-color: $black-op90
+      border-width: 15px 6px 0 6px
+      margin-left: -6px
 
 .filter-panel-wrapper
   $submit-btn-height: 55px
