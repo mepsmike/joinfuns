@@ -24,7 +24,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     #@hit_count = @event.impressionist_count(:filter=>:ip_address)
-    @events = Event.all # TODO, show filter out hotest events
+    @events = Event.includes(:photos, :prices).all # TODO, show filter out hotest events
     #@sticker = Geocoder.coordinates(@event.address)
     #gon.sticker = @sticker
     # respond_to do |format|
@@ -109,8 +109,8 @@ class EventsController < ApplicationController
     latitude = cookies[:lat]
     longitude = cookies[:lng]
 
-    return @events = Event.search(combine_keyword: combine_keyword, time: time, keyword: keyword, address: address, distance: distance, latitude: latitude, longitude: longitude) if params[:search]
-    @events = Event.all
+    return @events = Event.includes(:photos, :prices).search(combine_keyword: combine_keyword, time: time, keyword: keyword, address: address, distance: distance, latitude: latitude, longitude: longitude) if params[:search]
+    @events = Event.includes(:photos, :prices).all
   end
 
   def events_order
