@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   get 'subjects' => 'prototype#subjects_index', as: :subjects
   get 'subject/23' => 'prototype#subject_show', as: :show_subject
   get 'dm_poster' => 'prototype#dm_poster'
+  get 'host_page' => 'prototype#host_page'
 end

@@ -23,6 +23,10 @@ class PrototypeController < ApplicationController
 
   end
 
+  def host_page
+    @events = Event.all
+  end
+
   private
 
   def setting_layout

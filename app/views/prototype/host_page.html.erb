@@ -1,0 +1,145 @@
+
+<div class="host-page-wrapper">
+<!-- navigation path -->
+  <div class="host-page-path">
+    <span>頁面路徑  / 主辦單位活動列表 / 台北威秀影城</span>
+  </div>
+
+  <div class="event-wrapper">
+<!-- host -->
+    <div class="inner-wrapper">
+      <div class="host-wrapper">
+<!-- header -->
+        <div class="header">
+          <i class="material-icons">accessibility</i>
+          <span>HOST | 主辦單位</span>
+        </div>
+<!-- avatar -->
+        <div class="avatar-wrapper">
+          <div class="user-avatar">
+            <img src="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" alt="">
+          </div>
+          <span>Arthur Reynolds</span>
+        </div>
+<!-- info detail -->
+        <ul class="host-info">
+          <li class="address">
+            <span>地址</span>
+            <span>kjklsdjfkjsdkfdskadsjef fisadjfkasdjf fisadjfkasdjf kdsjfkjds  kdsjfkjds</span>
+          </li>
+          <li class="website">
+            <span>網址</span>
+            <span>google.com.tw</span>
+          </li>
+          <li class="email">
+            <span>E-mail</span>
+            <span>asdaksdjfkassf@gmial.com</span>
+          </li>
+          <li class="tel">
+            <span>電話</span>
+            <span>0912098129048</span>
+          </li>
+          <li class="descrption">
+            <span>描述</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem soluta, quasi natus debitis aut quia dolor repellat aperiam veniam laborum facilis vel unde nihil repudiandae at? Facilis enim unde doloribus.</span>
+          </li>
+        </ul>
+<!-- phtotos -->
+        <div class="photos-wrapper">
+          <span>相關照片</span>
+          <ul>
+            <li>
+            <!-- rel= 內要放 host id -->
+              <a rel="host_id" href="#" class="fancybox">
+                <img src="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" alt="">
+              </a>
+            </li>
+            <li>
+              <a rel="host_id" href="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" class="fancybox">
+                <img src="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" alt="">
+              </a>
+            </li>
+            <li>
+              <a rel="host_id" href="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" class="fancybox">
+                <img src="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" alt="">
+              </a>
+            </li>
+            <li>
+              <a rel="host_id" href="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" class="fancybox">
+                <img src="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" alt="">
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+<!-- opening-event -->
+    <div class="inner-wrapper">
+      <div class="open-wrapper">
+<!-- header -->
+        <div class="header">
+          <i class="material-icons">assistant_photo</i>
+          <span>舉辦中</span>
+        </div>
+
+
+        <!-- options -->
+      <div class="options">
+        <a href="#">
+          <span>Event | 活動</span>
+        </a>
+        <a href="#">
+          <span>Subject | 投標</span>
+        </a>
+      </div>
+<!-- partials dm -->
+      <% 5.times do %>
+        <%= render partial: 'partials/short_dm' %>
+      <% end %>
+    </div>
+
+
+
+    </div>
+<!-- expired -->
+    <div class="inner-wrapper">
+      <div class="expired-wrapper">
+<!-- header -->
+        <div class="header">
+          <i class="material-icons">lock_outline</i>
+          <span>過期 | 活動</span>
+        </div>
+
+          <!-- options -->
+        <div class="options">
+          <a href="#">
+            <span>Event | 活動</span>
+          </a>
+          <a href="#">
+            <span>Subject | 投標</span>
+          </a>
+        </div>
+        <% 5.times do %>
+          <div class="overlay">
+            <span>expired</span>
+          </div>
+          <%= render partial: 'partials/short_dm' %>
+        <% end %>
+
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<%= content_for :handwrite_js do %>
+  <script>
+$(document).ready(function() {
+  $("a.fancybox").fancybox();
+});
+</script>
+<% end %>
