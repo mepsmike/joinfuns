@@ -16,6 +16,9 @@ html, body
   width: 100%
   height: 100%
 
+nav
+  background: none
+
 %m0auto
   margin: 0 auto
 
@@ -99,7 +102,10 @@ html, body
   +box-sizing(content-box)
   position: relative
   height: $v-navi-height
-  background-color: $yellow
+  background-image: asset-url('menu-bg.png')
+  background-size: 9px
+  background-color: $main-navi
+
   z-index: index($elements, main-navibar)
   +box-shadow(none)
   border-bottom: $v-navi-border solid darken($yellow, 20)
@@ -107,8 +113,7 @@ html, body
   .logo-wrapper
     +span(3)
     height: $v-navi-height
-    padding-top: 3px
-    background-color: $darker-yellow
+    font-size: $fz-l
     img
       display: inline-block
       width: $logo-width
@@ -116,15 +121,38 @@ html, body
     li
       +span(3)
       height: $v-navi-height
-      border-left: 1px solid $white
       line-height: $v-navi-height
+      i
+        color: $dark-gray
+        position: relative
+        top: 6px
+      &:hover i
+        color: $black
+
       a
         color: $dark-gray
         font-weight: 600
+        display: inline
+      &:hover a
+        color: $black
     .user-menu-trigger a
-      display: inline-block
-      padding-top: 5px
-      width: auto
+      padding: 0
+      &:first-child
+        +span(8)
+        display: block
+        padding-top: 5px
+        i
+          font-size: $fz-xl
+          padding-left: .2em
+          top: 5px
+          float: right //gear
+
+      &:last-child
+        +span(4)
+        display: block
+        padding-top: 1px
+        text-align: center
+
 
     .user-avatar
       display: block
@@ -140,6 +168,10 @@ html, body
       margin-left: .5em
       height: 30px
 
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+
 .main-function-bar-wrapper
   position: relative
   height: $v-function-bar-height
@@ -149,13 +181,21 @@ html, body
   color: $yellow
   .filter-trigger
     +span(3)
-    padding: 0 5em
     height: $v-function-bar-height
     line-height: $v-function-bar-height
     text-align: left
     cursor: pointer
-    .material-icons
-      margin-top: 5px
+    text-align: center
+    +noselect
+    span
+      margin: 0 8px
+    i:last-child
+      font-size: $fz-l
+
+
+
+
+
   .search-form-wrapper
     +span(9)
     .search-form-input
@@ -189,8 +229,7 @@ html, body
           background: $dark-yellow
           +border-radius(25px)
           i
-            padding: 0 12px
-            // line-height: 12px
+            padding: 0 20px
             font-size: 18px
 
     .short-button

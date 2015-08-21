@@ -6,8 +6,18 @@
 
   <div class="main-menu">
     <ul>
-      <li><%= link_to 'Subject', subjects_path %></li>
-      <li><%= link_to 'Create New', new_event_path %></li>
+      <li>
+        <%= link_to subjects_path do %>
+          <i class="material-icons">bookmark</i>
+          <span>Subject | 投標</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_event_path do %>
+          <i class="material-icons">add_box</i>
+          <span>Create New | 創建</span>
+        <% end %>
+      </li>
       <li class='user-menu-trigger'>
         <a href="#">
           <div class="user-avatar">
@@ -16,6 +26,10 @@
 
           </div>
           <span class="user-name"><%= current_user.name%></span>
+          <%= icon 'gear' %>
+        </a>
+        <a href="">
+          <i class="material-icons">arrow_forward</i>
         </a>
       </li>
     </ul>
