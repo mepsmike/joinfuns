@@ -24,7 +24,11 @@
 
 <div class="main-function-bar-wrapper">
   <div class="filter-trigger" data-behavior="filter-trigger">
-    <span>Filter</span><i class="material-icons right" data-behavior="icon">expand_more</i>
+
+      <%= icon 'list' %>
+      <span>Filter | 篩選條件 </span>
+      <%= icon 'angle-right', data: {behavior: 'icon'} %>
+
   </div>
   <form action="#">
   <%= form_tag events_path, :method => :get do %>
