@@ -100,3 +100,5 @@ gem 'simple_enum'
 gem 'by_star', :git => "git://github.com/radar/by_star"
 
 gem 'ckeditor_rails'
+
+gem 'fancybox2-rails', '~> 0.2.8'
