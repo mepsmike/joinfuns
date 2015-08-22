@@ -12,6 +12,8 @@ class Event < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
 
+  is_impressionable :counter_cache => true, :unique => true
+
   def self.search(args)
     address = args[:address]
     keyword = args[:keyword]

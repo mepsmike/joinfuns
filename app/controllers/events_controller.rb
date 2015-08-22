@@ -1,10 +1,11 @@
 class EventsController < ApplicationController
   layout :setting_layout
+  impressionist :actions=>[:show]
 
   def index
 
     set_events
-
+    events_order
 
     @hash = Gmaps4rails.build_markers(@events) do |event, marker|
       #address=Geocoder.coordinates(event.address)
@@ -22,6 +23,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    #@hit_count = @event.impressionist_count(:filter=>:ip_address)
     @events = Event.all # TODO, show filter out hotest events
     #@sticker = Geocoder.coordinates(@event.address)
     #gon.sticker = @sticker
@@ -109,6 +111,24 @@ class EventsController < ApplicationController
 
     return @events = Event.search(combine_keyword: combine_keyword, time: time, keyword: keyword, address: address, distance: distance, latitude: latitude, longitude: longitude) if params[:search]
     @events = Event.all
+  end
+
+  def events_order
+
+    if params[:order]
+
+      sort_by = case params[:order]
+        when 'hottest'
+          'impressions_count DESC '
+        when 'newest'
+          'created_at DESC'
+      end
+
+      @events = @events.order(sort_by)
+    else
+      @events = @events.order("events.id desc")
+    end
+
   end
 
   def get_collect

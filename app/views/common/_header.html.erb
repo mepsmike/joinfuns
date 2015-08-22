@@ -53,12 +53,17 @@
         </div>
       </div>
       <div class="short-button">
-        <a href="#">
+
+<!--         <a href="#">
           <span>Order</span>
           <i class="material-icons">storage</i>
         </a>
         <a href="#">熱門排序</a>
-        <a href="#">時間排序</a>
+        <a href="#">時間排序</a> -->
+
+        <%= link_to "熱門排序", :order => "hottest" %>
+        <%= link_to "最新排序", :order => "newest" %>
+
       </div>
     </div>
   </form>
