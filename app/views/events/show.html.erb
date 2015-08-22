@@ -12,7 +12,7 @@
 <div class="dm-page-wrapper">
 <!-- navigation path -->
   <div class="dm-page-path">
-    <span>頁面路徑 / <%= @event.organizer %> / <%=@event.title%> </span>
+    <span>頁面路徑 / <%= link_to @event.user.name,host_path(@event.user.id) %> / <%=@event.title%> </span>
   </div>
   <div class="page-promotion">
     <!-- page poster -->
