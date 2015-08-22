@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821043239) do
+ActiveRecord::Schema.define(version: 20150822142533) do
 
   create_table "collects", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20150821043239) do
     t.string   "type_cd"
     t.integer  "comments_count",    default: 0
     t.integer  "impressions_count", default: 0
+    t.integer  "user_id"
   end
 
   create_table "hosts", force: :cascade do |t|

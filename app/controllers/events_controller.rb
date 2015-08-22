@@ -46,6 +46,7 @@ class EventsController < ApplicationController
 
   def create
     @event= Event.new(event_params)
+    @event.user = current_user
     category = view_context.te(@event, :category)
 
     if @event.save
