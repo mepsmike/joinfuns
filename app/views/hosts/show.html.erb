@@ -87,16 +87,16 @@
 
         <!-- options -->
       <div class="options">
-        <a href="#">
+        <a href="#" id="in_event">
           <span>Event | 活動</span>
         </a>
-        <a href="#">
+        <a href="#" id="in_subject">
           <span>Subject | 投標</span>
         </a>
       </div>
 <!-- partials dm -->
-      <% 5.times do %>
-        <%= render partial: 'partials/short_dm' %>
+      <% @in_progress_events.each do |e|%>
+        <%= render partial: 'partials/short_dm',:locals => { :e => e, :status => "inprogress" } %>
       <% end %>
     </div>
 
@@ -114,18 +114,18 @@
 
           <!-- options -->
         <div class="options">
-          <a href="#">
+          <a href="#" id="over_event">
             <span>Event | 活動</span>
           </a>
-          <a href="#">
+          <a href="#" id="over_subject">
             <span>Subject | 投標</span>
           </a>
         </div>
-        <% 5.times do %>
+        <% @overdue_events.each do |e|%>
           <div class="overlay">
             <span>expired</span>
           </div>
-          <%= render partial: 'partials/short_dm' %>
+          <%= render partial: 'partials/short_dm',:locals => { :e => e , :status => "over"} %>
         <% end %>
 
 
@@ -140,6 +140,35 @@
   <script>
 $(document).ready(function() {
   $("a.fancybox").fancybox();
+
+  $("#in_event").on("click",function(e){
+
+    $('div[data-etype="0"][data-status="inprogress"]').hide();
+    $('div[data-etype="1"][data-status="inprogress"]').show();
+
+  })
+
+  $("#in_subject").on("click",function(e){
+
+    $('div[data-etype="0"][data-status="inprogress"]').show();
+    $('div[data-etype="1"][data-status="inprogress"]').hide();
+
+  })
+
+  $("#over_event").on("click",function(e){
+
+    $('div[data-etype="0"][data-status="over"]').hide();
+    $('div[data-etype="1"][data-status="over"]').show();
+
+  })
+
+  $("#over_subject").on("click",function(e){
+
+    $('div[data-etype="0"][data-status="over"]').show();
+    $('div[data-etype="1"][data-status="over"]').hide();
+
+  })
+
 });
 </script>
 <% end %>
