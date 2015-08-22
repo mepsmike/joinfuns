@@ -1,13 +1,23 @@
 <!-- header -->
 <nav class="main-navibar">
-  <%= link_to events_path, class: 'logo-wrapper', :'data-no-turbolink' => true do %>
-    <%= image_tag 'logo-white@2x.png' %>
+  <%= link_to events_path, class: 'logo-wrapper', :'data-no-turbolink' => true do%>
+    <%= image_tag 'main-logo-white@2x.png' %>
   <% end %>
 
   <div class="main-menu">
     <ul>
-      <li><%= link_to 'Subject', subjects_path %></li>
-      <li><%= link_to 'Create New', new_event_path %></li>
+      <li>
+        <%= link_to subjects_path do %>
+          <i class="material-icons">bookmark</i>
+          <span>Subject | 投標</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_event_path do %>
+          <i class="material-icons">add_box</i>
+          <span>Create New | 創建</span>
+        <% end %>
+      </li>
       <li class='user-menu-trigger'>
         <a href="#">
           <div class="user-avatar">
@@ -16,6 +26,10 @@
 
           </div>
           <span class="user-name"><%= current_user.name%></span>
+          <%= icon 'gear' %>
+        </a>
+        <a href="">
+          <i class="material-icons">arrow_forward</i>
         </a>
       </li>
     </ul>
@@ -24,22 +38,28 @@
 
 <div class="main-function-bar-wrapper">
   <div class="filter-trigger" data-behavior="filter-trigger">
-    <span>Filter</span><i class="material-icons right" data-behavior="icon">expand_more</i>
+
+      <%= icon 'list' %>
+      <span>Filter | 篩選條件 </span>
+      <%= icon 'angle-right', data: {behavior: 'icon'} %>
+
   </div>
   <form action="#">
-  <%= form_tag events_path, :method => :get do %>
     <div class="search-form-wrapper">
       <div class="search-form-input">
-        <input type="text" placeholder="Title | DM | Time | Subject">
+        <input type="text" placeholder="SEARCH">
         <div class="search-button">
           <button><i class="material-icons">search</i></button>
         </div>
       </div>
       <div class="short-button">
+        <a href="#">
+          <span>Order</span>
+          <i class="material-icons">storage</i>
+        </a>
         <a href="#">熱門排序</a>
         <a href="#">時間排序</a>
       </div>
     </div>
   </form>
-  <% end %>
 </div>

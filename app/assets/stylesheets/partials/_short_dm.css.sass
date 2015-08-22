@@ -1,0 +1,128 @@
+%shost-hort-dm
+  $dm-panel-height: 100px
+  $dm-panel-width: 350px
+
+  .options
+    +clearfix
+    padding: .3em
+    a
+      +span(6)
+      display: block
+      text-align: center
+      padding: .2em
+      span
+        display: block
+        color: $white
+        padding: 1em
+        border: 1px solid $white
+
+        &:hover
+          background: $header-red
+          color: $white
+          border: 1px solid transparent
+  .notifier-unit
+
+    +clearfix
+    position: relative
+    background-color: $white
+    width: 100%
+    padding: 5px
+    margin-bottom: 5px
+    +box-shadow(0 0 5px $black-op50)
+    &:hover
+      +box-shadow(0 0 8px $black-op80)
+  .shorten-close-btn
+    position: absolute
+    top: 10px
+    right: 10px
+    z-index: index($elements, shorten-dm-close-btn)
+    font-size: $fz-m
+    color: $silver
+    cursor: pointer
+
+  .shorten-dm-cover
+    float: left
+    width: 25%
+    height: $dm-panel-height
+    font-family: $font-family-sans-serif
+    +box-shadow(0 0 10px $black-op30)
+    @extend %bg-cover-image
+
+  .shorten-dm-info-wrapper
+    display: block
+    width: 75%
+    float: left
+    padding-left: .5em
+    .title
+      margin: .2em 0
+      font-size: $fz-m
+      font-weight: bolder
+      // color: $dark-gray
+      &:before
+        display: inline-block
+        content: ""
+        margin-right: 5px
+        margin-bottom: -3px
+        width: 15px
+        height: 15px
+        @extend %bg-cover-image
+      &.dm:before
+        background-image: asset-url('dm-icon@2x.png')
+      &.event:before
+        background-image: asset-url('event-icon@2x.png')
+
+    .shorten-dm-info
+      font-size: $fz-xs
+      font-weight: bold
+      span
+        display: block
+      .host
+        margin-bottom: 3px
+
+  .shorten-dm-price
+    color: $money-golden
+    font-family: $font-family-sans-serif
+    font-size: $fz-xs
+    .price
+      display: inline-block
+      padding: 0 .5em
+      margin-left: .5em
+      margin-bottom: .5em
+      +border-radius(50px)
+      cursor: pointer
+      &.actived
+        border: 2px solid $orange
+        color: $orange
+
+  .shorten-dm-options-wrapper
+    $btn-height: 20px
+    ul
+      +reset-list-style
+      +reset-box-model
+      li
+        +reset-box-model
+        background: #bbb
+    .join
+      +sassy-button("flat", 4px, 12px, $yellow)
+    .option
+      position: relative
+      padding: 3.5px 0
+      width: 50%
+      text-align: center
+      line-height: $btn-height
+    .unit-stat
+      display: inline-block
+      color: $yellow
+
+
+    width: 100%
+    padding: .2em 1em
+    +clearfix
+    .dm-wrapper
+      +span(6)
+      display: inline-block
+      background: $white
+      +box-shadow(0px 0px 10px $black-op30)
+      padding: .3em
+    .info
+      +span(6)

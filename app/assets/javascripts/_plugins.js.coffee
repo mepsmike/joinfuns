@@ -15,6 +15,7 @@
 #= require sweet-alert-confirm
 #= require underscore
 #= require gmaps/google
+#= require fancybox
 #= require turbolinks
 #= require ckeditor-jquery
 

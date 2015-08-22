@@ -110,11 +110,13 @@ class JoinFuns.FilterPanel
 
   hidePanel: ->
     @panel.removeClass 'actived'
-    @icon.html('expand_more')
+    @icon.removeClass 'fa-angle-left'
+    @icon.addClass 'fa-angle-right'
 
   showPanel: ->
     @panel.addClass 'actived'
-    @icon.html('expand_less')
+    @icon.removeClass 'fa-angle-right'
+    @icon.addClass 'fa-angle-left'
 
 class JoinFuns.Notifiers
   constructor: ->
