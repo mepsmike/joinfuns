@@ -27,6 +27,10 @@ class PrototypeController < ApplicationController
     @events = Event.all
   end
 
+  def host_new_subject
+
+  end
+
   private
 
   def setting_layout
