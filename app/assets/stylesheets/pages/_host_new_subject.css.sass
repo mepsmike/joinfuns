@@ -61,7 +61,8 @@
           display: block
           color: $yellow
         .circle-wrapper
-
+          .dots img
+             padding-bottom: 2em
           .step
             display: inline-block
             .circle
@@ -102,28 +103,33 @@
           margin-right: 0
           text-align: center
           +border-radius(6px)
+        label
+          border-right: 1px solid $white
+          padding: 0 1em
+          font-size: $fz-m
+          color: $white
+          float: left
+          margin-top: .8em
         span
-          display: inline-block
+          display: block
+          overflow: hidden
 
-          label
-            border-right: 1px solid $white
-            padding: .2em 1em
-            font-size: $fz-m
-            width: 100%
-            color: $white
+
           input[type="text"]
             +reset-box-model
             width: 82%
+            padding: 0 .5em
+            +box-sizing(border-box)
             &:focus
               outline: none
               +box-shadow(none) //for safari
-        &.actived
-          border: 1px solid $yellow
-          label
-            color: $yellow
-            border-right: 1px solid $yellow
-          input[type="text"]
-            color: $yellow
+        // &.actived
+        //   border: 1px solid $yellow
+        //   label
+        //     color: $yellow
+        //     border-right: 1px solid $yellow
+        //   input[type="text"]
+        //     color: $yellow
 
       .section-wrapper
         text-align: center
