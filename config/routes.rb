@@ -19,5 +19,6 @@ Rails.application.routes.draw do
   get 'host_page' => 'prototype#host_page'
   get 'host_new_subject' => 'prototype#host_new_subject'
   get 'host_new_event' => 'prototype#host_new_event'
+  get 'host_promotion' => 'prototype#host_promotion'
 
 end
