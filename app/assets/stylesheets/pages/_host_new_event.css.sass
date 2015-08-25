@@ -60,7 +60,8 @@
           display: block
           color: $yellow
         .circle-wrapper
-
+          .dots img
+             padding-bottom: 2em
           .step
             display: inline-block
             .circle
@@ -90,28 +91,41 @@
     .event-info
       +clearfix
       .price-option
+        clear: both
+        +clearfix
         span:first-child
-          border-right: 1px solid $white
+          border-right: 1px solid $silver
           padding: .2em
+          float: left
+          margin-top: .8em
           label
             font-size: $fz-m
             color: $white
+            padding: 0 1em
+        span:last-child
+          margin-top: 1em
+          float: left
+
 
         .add
-          display: inline-block
+          display: block
           border: 1px solid $silver
           +border-radius(6px)
           font-size: $fz-m
           margin: 0 2em
+          float: left
           i
             line-height: inherit
             padding: .3em 3em
             color: $white
+            top: 0  // init i pos
+            right: 0 // init i pos
 
       .info-box
         +border-radius(6px)
         border: 1px solid $silver
         margin: 1em 0
+
         +clearfix
         &.time
           +border-radius(0)
@@ -128,29 +142,32 @@
               &:focus
                 outline: none
                 +box-shadow(none) //for safari
-        .select-file
-
-          padding: .6em 3em
-          background: $black-op50
-          color: $yellow
-          margin-right: 0
-          text-align: center
-          +border-radius(6px)
+        label
+          float: left
+          padding: 0 1em
+          margin-top: .8em
+          font-size: $fz-m
+          color: $white
+          border-right: 1px solid $silver
         span
-          display: inline-block
-
-          label
-            border-right: 1px solid $white
-            padding: .2em 1em
-            font-size: $fz-m
-            width: 100%
-            color: $white
+          display: block
+          overflow: hidden
           input[type="text"]
             +reset-box-model
-            width: 100%
+            width: 80%
+            padding: 0 .5em
+            +box-sizing(border-box)
             &:focus
               outline: none
               +box-shadow(none) //for safari
+          a
+            float: right
+            padding: .6em 3em
+            background: $black-op50
+            color: $yellow
+            text-align: center
+            +border-radius(6px)
+
         &.actived
           border: 1px solid $yellow
           label
@@ -158,6 +175,8 @@
             border-right: 1px solid $yellow
           input[type="text"]
             color: $yellow
+
+
 
       .section-wrapper
         text-align: center
