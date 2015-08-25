@@ -3,7 +3,7 @@
 .application-container
   background: $black-op80 // test dark-bg
 
-  .new-event-wrapper
+  .new-promo-wrapper
     position: relative
     width: $w-desktop
     color: $white
@@ -26,10 +26,12 @@
       .user-name
         margin: 1em 0
         display: block
+        font-size: $fz-l
 
     .options
       .create
-        display: inline-block
+        display: block
+        width: 50%
         @extend %m0auto
         text-align: center
         padding: .2em
@@ -84,7 +86,7 @@
 
 
 
-    .event-info
+    .promo-info
       +clearfix
       .price-option
         span:first-child
@@ -93,7 +95,7 @@
           label
             font-size: $fz-m
             color: $white
-            padding: 1em
+
         .add
           display: inline-block
           border: 1px solid $silver
