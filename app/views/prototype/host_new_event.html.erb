@@ -1,0 +1,157 @@
+<!-- navigation path -->
+<div class="host-page-path">
+  <span>頁面路徑  / 主辦單位活動列表 / 台北威秀影城</span>
+</div>
+<!-- main wrapper -->
+<div class="new-event-wrapper">
+  <div class="new-event">
+    <i class="material-icons">accessibility</i><span>HOST | 新建類別</span>
+  </div>
+<!-- avatar -->
+  <div class="avatar-wrapper">
+    <div class="image-wrapper">
+      <%= image_placeholder width: 100, height: 100, text: 'pic' %>
+    </div>
+    <span class="user-name">Arthur Reynolds</span>
+  </div>
+<!-- options -->
+  <div class="options">
+    <div class="create actived">
+      <a href="#">
+        <span>Event | 新建活動</span>
+      </a>
+    </div>
+    <div class="create">
+      <a href="#">
+        <span>Subject | 新建活動</span>
+      </a>
+    </div>
+  </div>
+<!-- description -->
+  <div class="step-by-step">
+    <div class="step-wrapper">
+      <span>在JoinFuns建立的活動將獲得優先曝光</span>
+      <div class="circle-wrapper">
+
+        <div class="step actived">
+          <span class="circle">1</span>
+          <span>建立活動資訊</span>
+        </div>
+
+        <div class="step">
+          <span class="dots">
+            <%= image_tag 'dot-dot-bg.png' %>
+          </span>
+          <span>&nbsp</span>
+        </div>
+
+        <div class="step">
+          <span class="circle">2</span>
+          <span>選取宣傳工具</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<!-- event input 1st -->
+
+  <form class="event-info">
+<!-- drop selection -->
+<!-- #TODO -->
+    <div class="section-wrapper">
+      <div class="drop-section-wrapper">
+        <select>
+          <option value="" disabled selected>活動類別</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+      </div>
+    </div>
+    <div class="info-box actived">
+      <label for="event-title1">活動主題</label>
+      <span><input type="text" id="event-title1"></span>
+    </div>
+    <div class="info-box">
+      <label for="event-title2">主題圖片</label>
+      <span>
+        <input type="text" id="event-title2">
+        <a href="" class="select-file">選取檔案</a>
+      </span>
+    </div>
+    <div class="info-box">
+      <label for="event-title3">活動連結</label>
+      <span><input type="text" id="event-title3"></span>
+    </div>
+    <div class="info-box">
+      <label for="event-title4">活動地址</label>
+      <span><input type="text" id="event-title4"></span>
+    </div>
+
+<!-- time machine -->
+    <div class="info-box time">
+      <div class="inner-wrapper">
+        <label for="event-title0">活動開始時間</label>
+        <span><input type="time" id="event-title5"></span>
+      </div>
+    </div>
+    <div class="info-box time">
+      <div class="inner-wrapper">
+        <label for="event-title5">活動結束時間</label>
+        <span><input type="time" id="event-title5"></span>
+      </div>
+    </div>
+
+    <div class="price-option">
+      <span><label for="event-title5">活動價格</label></span>
+      <a href="#" class="add"><i class="material-icons">add</i></a>
+      <a href="#" class="add"><i class="material-icons">add</i></a>
+      <a href="#" class="add"><i class="material-icons">add</i></a>
+      <span>最多三組價格</span>
+    </div>
+
+    <div class="info-box">
+      <label for="event-title6">聯絡電話</label>
+      <span><input type="text" id="event-title6"></span>
+    </div>
+    <div class="info-box">
+      <label for="event-title7">連絡信箱</label>
+      <span><input type="text" id="event-title7"></span>
+    </div>
+
+<!-- ck - editor -->
+    <div class="editor-wrapper">
+      <span>文案編輯</span>
+      <div class="editor">
+        <span>Editor</span>
+      </div>
+    </div>
+
+<!-- form option -->
+    <div class="form-options">
+      <div class="option cancle">
+        <a href="#">
+          <span>取消建立</span>
+        </a>
+      </div>
+      <div class="option next">
+        <a href="#">
+          <span>下一步 | 選取宣傳工具</span>
+        </a>
+      </div>
+    </div>
+
+  </form>
+
+
+
+</div>
+
+<%= content_for :handwrite_js do %>
+  <script>
+    $(document).ready(function() {
+        $('select').material_select();
+      });
+  </script>
+<% end %>

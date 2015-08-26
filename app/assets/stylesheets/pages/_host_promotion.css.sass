@@ -1,0 +1,230 @@
+.main-function-bar-wrapper
+  display: none // for test
+.application-container
+  background: $black-op80 // test dark-bg
+
+  .new-promo-wrapper
+    position: relative
+    width: $w-desktop
+    color: $white
+    @extend %m0auto
+    i
+      position: relative
+      top: 6px
+      right: 6px
+
+    .avatar-wrapper
+      width: 100%
+      text-align: center
+      .image-wrapper
+        @extend %m0auto
+        width: 100px
+        height: 100px
+        overflow: hidden
+        +border-radius(50%)
+        border: 2px solid $silver
+      .user-name
+        margin: 1em 0
+        display: block
+        font-size: $fz-l
+
+    .options
+      .create
+        display: block
+        width: 50%
+        @extend %m0auto
+        text-align: center
+        padding: .2em
+        margin: 0 25%
+        span
+          height: 44px
+          line-height: 44px
+          width: 100%
+          display: inline-block
+          border: 1px solid $yellow
+          color: $yellow
+          +border-radius(6px)
+
+    .step-by-step
+      border-top: 2px solid $silver
+      border-bottom: 2px solid $silver
+      margin: 1em 0
+      .step-wrapper
+        @extend %m0auto
+        text-align: center
+        padding: 1em 0
+        span
+          display: block
+          color: $yellow
+        .circle-wrapper
+          .dots img
+             padding-bottom: 2em
+          .step
+            display: inline-block
+            .circle
+              @extend %m0auto
+              width: 50px
+              height: 50px
+              line-height: 50px
+              background: $silver
+              +border-radius(50%)
+              margin-top: 1em
+              margin-bottom: 1em
+              color: darken($silver,20%)
+              font-size: $fz-l
+              & + span
+            span
+              color: $white
+            &.actived
+              .circle
+                background: $yellow
+                color: $black
+              span
+                color: $yellow
+
+
+
+
+
+    .promo-info
+      +clearfix
+      .price-option
+        span:first-child
+          border-right: 1px solid $white
+          padding: .2em
+          label
+            font-size: $fz-m
+            color: $white
+
+        .add
+          display: inline-block
+          border: 1px solid $silver
+          +border-radius(6px)
+          font-size: $fz-m
+          margin: 0 2em
+          i
+            line-height: inherit
+            padding: .3em 3em
+            color: $white
+
+      .info-box
+        +border-radius(6px)
+        border: 1px solid $yellow
+        margin: 1em 0
+        padding: 1em
+        span
+          display: inline-block
+        .title
+          border-right: 1px solid $yellow
+          padding-right: 1em
+          font-size: $fz-m
+          color: $yellow
+          float: left
+        .balance
+          text-align: center
+          display: block
+          color: $yellow
+
+
+      .deposit-wrapper
+        +border-radius(6px)
+        // margin: 1em 0
+        // padding: 1em
+        text-align: center
+        background: $yellow
+        span
+          display: block
+          color: $black
+          height: 44px
+          line-height: 44px
+      .budget-wrapper
+        margin-top: 1em
+        width: 100%
+        .border-wrapper
+          +border-radius(6px)
+          border: 1px solid $silver
+          padding: 1em
+          +clearfix
+          padding: .3em 0
+          label
+            float: left
+            padding: 0px 1em
+            font-size: 1em
+            color: $white
+            border-right: 1px solid $silver
+            margin-top: 0.8em
+          span
+            display: block
+            +clearfix
+            input
+              width: 100%
+              +box-sizing(border-box)
+              border: none
+              text-align: center
+              margin: 0
+              padding: 0 1em
+              color: $white
+              &:focus
+                outline: none
+                border: none
+                +box-shadow(none) //for safari
+        .free-promo
+          float: right
+          padding: 0 2em
+          margin-top: 1em
+        label
+          color: $yellow
+
+      .select-wrapper
+        margin: 1em 0
+        .promo-time
+          border-right: 1px solid $silver
+          padding: 0 1em
+
+
+      .content-wrapper
+        +border-radius(6px)
+        border: 1px solid $yellow
+        padding: 1em 15em
+        .inner-wrapper
+          +clearfix
+          text-align: center
+          font-size: $fz-l
+          span
+            margin: 1em 0
+          .timing
+            +span(6)
+            span
+              color: $yellow
+          .charge
+            +span(6)
+            span
+              color: $yellow
+          .remaining
+            font-size: $fz-l
+            span
+              color: $yellow
+              font-size: $fz-xl
+
+
+      .form-options
+        +clearfix
+        margin: 1em 0
+        .option
+          +span(12)
+          text-align: center
+          padding: .2em
+          margin: 0.5em 0
+          span
+            height: 44px
+            line-height: 44px
+            color: $white
+            width: 100%
+            display: inline-block
+            border: 1px solid $white
+            +border-radius(6px)
+          &.actived span
+            border: 1px solid transparent
+            background: $yellow
+            color: $black
+

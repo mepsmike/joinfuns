@@ -17,4 +17,8 @@ Rails.application.routes.draw do
   get 'subject/23' => 'prototype#subject_show', as: :show_subject
   get 'dm_poster' => 'prototype#dm_poster'
   get 'host_page' => 'prototype#host_page'
+  get 'host_new_subject' => 'prototype#host_new_subject'
+  get 'host_new_event' => 'prototype#host_new_event'
+  get 'host_promotion' => 'prototype#host_promotion'
+
 end
