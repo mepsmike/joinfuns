@@ -136,9 +136,39 @@
         .drop-section-wrapper
           background: $yellow
           color: $black
-          padding: .2em
           outline: none
           +border-radius(6px)
+          .select-wrapper
+            .caret
+              right: 29em
+              top: 0.8em
+              font-size: 1em
+            input[type="text"]
+              text-align: center
+              +reset-box-model
+              &:focus
+                outline: none
+                +box-shadow(none) //for safari
+            ul
+              background-color: transparent
+              li
+                text-align: center
+                background: $black-op80
+                border: 1px solid $yellow
+                border-top: none
+                border-bottom: none
+                span
+                  color: $white
+                  &:hover
+                    background-color: $yellow
+                    color: $black
+                &:first-child
+                  +border-top-radius(6px)
+                  border-top: 1px solid $yellow
+                &:last-child
+                  +border-bottom-radius(6px)
+                  border-bottom: 1px solid $yellow
+
 
       .editor-wrapper
         span
