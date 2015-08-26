@@ -9,6 +9,7 @@
     <title>JoinFuns :: 探索身邊的新鮮事</title>
     <meta name="description" content="DESCRIPTION">
     <meta name="viewport" content="width=1280">
+    <%= content_for?(:head) ? yield(:head) : '' %>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->

@@ -18,6 +18,7 @@
 #= require fancybox
 #= require turbolinks
 #= require ckeditor-jquery
+#= require social-share-button
 
 
 

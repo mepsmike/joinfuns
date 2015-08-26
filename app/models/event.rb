@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
   has_many :comments
   has_many :prices
   has_many :collects
+  belongs_to :user
   has_many :user_collects, :through => :collects, :source => :user
   accepts_nested_attributes_for :photos
   accepts_nested_attributes_for :prices
@@ -11,6 +12,8 @@ class Event < ActiveRecord::Base
 
   geocoded_by :address
   after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
+
+  is_impressionable :counter_cache => true, :unique => true
 
   def self.search(args)
     address = args[:address]

@@ -98,6 +98,8 @@ gem 'gon'
 
 gem 'simple_enum'
 gem 'by_star', :git => "git://github.com/radar/by_star"
+gem 'social-share-button'
+gem 'impressionist'
 
 gem 'ckeditor_rails'
 

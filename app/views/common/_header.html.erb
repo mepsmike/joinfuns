@@ -45,21 +45,30 @@
 
   </div>
   <form action="#">
+  <%= form_tag events_path, :method => :get do %>
     <div class="search-form-wrapper">
       <div class="search-form-input">
-        <input type="text" placeholder="SEARCH">
+
+        <%= text_field_tag'combine_keyword', nil, placeholder: 'SEARCH' %>
         <div class="search-button">
           <button><i class="material-icons">search</i></button>
+          <%= hidden_field_tag "search" %>
         </div>
       </div>
       <div class="short-button">
-        <a href="#">
+
+<!--         <a href="#">
           <span>Order</span>
           <i class="material-icons">storage</i>
         </a>
         <a href="#">熱門排序</a>
-        <a href="#">時間排序</a>
+        <a href="#">時間排序</a> -->
+
+        <%= link_to "熱門排序", params.merge(:order => "hottest") %>
+        <%= link_to "最新排序", params.merge(:order => "newest") %>
+
       </div>
     </div>
   </form>
+  <% end %>
 </div>

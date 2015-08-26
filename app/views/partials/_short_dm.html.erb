@@ -1,30 +1,29 @@
-<% @events.each do |x| %>
-    <div class="notifier-unit trans-03s" data-behavior="notifier"
-   onclick="handler.getMap().panTo({lat:<%=x.latitude%>,lng:<%=x.longitude%>})";>
+
+    <div class="notifier-unit trans-03s" data-behavior="notifier" data-etype="<%=e.type_cd%>" data-status="<%=status%>">
 
       <!-- cover   actived trans-03s-->
 
       <!-- close button -->
       <i class="shorten-close-btn fa fa-close trans-03s" role="button" data-behavior="close-btn"></i>
 
-      <div class="shorten-dm-cover" style="background-image: url(<%=x.photos[0].pic.url %>);">
+      <div class="shorten-dm-cover" style="background-image: url(<%=e.photos[0].pic.url %>);">
 
       </div>
 
         <!-- shorten-dm information -->
       <div class="shorten-dm-info-wrapper">
         <!-- class [dm, event] 可切換 icon -->
-        <h4 class="title dm"><%= x.title %></h4>
+        <h4 class="title dm"><%= e.title %></h4>
 
         <div class="shorten-dm-info">
-          <span class="host"><%= x.hoster %></span>
+          <span class="host"><%= e.hoster %></span>
         </div>
 
         <!-- shorten-dm-price -->
         <div class="shorten-dm-price" data-behavior="prices-wrapper">
           <span>Price:</span>
           <!-- price divst -->
-          <% x.prices.each do |p| %>
+          <% e.prices.each do |p| %>
             <div class="price" data-behavior="price-tag"><span>NT </span><span class="value"><%=p.price%></span></div>
           <% end %>
           <!-- <div class="price actived" data-behavior="price-tag"><span>NT </span><span class="value">300</span></div>
@@ -34,7 +33,7 @@
 
         <!-- option buttons -->
         <div class="shorten-dm-options-wrapper">
-          <%= link_to event_path(x), class: 'option join', target: '_blank' do %>
+          <%= link_to event_path(e), class: 'option join', target: '_blank' do %>
             <span>Join</span>
           <% end %>
           <div class="unit-stat">
@@ -44,4 +43,3 @@
 
       </div>
     </div>
-  <% end %>
