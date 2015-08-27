@@ -10,10 +10,14 @@ class Event < ActiveRecord::Base
 
   as_enum :category, event: 0, dm: 1
 
+
   geocoded_by :address
   after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
 
   is_impressionable :counter_cache => true, :unique => true
+
+  has_attached_file :cover, :styles => { :medium => "600x600>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  validates_attachment_content_type :cover, :content_type => /\Aimage\/.*\Z/
 
   def self.search(args)
     address = args[:address]

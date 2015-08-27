@@ -15,6 +15,9 @@
     </div>
     <span class="user-name"><%=current_user.name%></span>
   </div>
+
+  <%=form_for @event, :html => {:class => "event-info"} do |f|%>
+   <div class="event-form">
 <!-- options -->
   <div class="options">
     <div class="create actived">
@@ -28,6 +31,7 @@
       <% end %>
     </div>
   </div>
+
 <!-- description -->
   <div class="step-by-step">
     <div class="step-wrapper">
@@ -56,10 +60,11 @@
   </div>
 
 <!-- event input 1st -->
-  <%=form_for @event, :html => {:class => "event-info"} do |f|%>
+
   <!-- <form class="event-info"> -->
 <!-- drop selection -->
 <!-- #TODO -->
+
     <div class="section-wrapper">
       <div class="drop-section-wrapper">
         <select>
@@ -77,8 +82,9 @@
     <div class="info-box">
       <label for="event-title2">主題圖片</label>
       <span>
-        <input type="text" id="event-title2">
-        <a href="" class="select-file">選取檔案</a>
+        <!-- <input type="text" id="event-title2"> -->
+        <%= f.file_field :cover %>
+        <!-- <a href="" class="select-file">選取檔案</a> -->
       </span>
     </div>
     <div class="info-box">
@@ -131,7 +137,7 @@
     <div class="editor-wrapper">
       <span>文案編輯</span>
       <div class="editor">
-
+        <%= f.text_area :description, rows: '3' %>
       </div>
     </div>
 
@@ -148,6 +154,9 @@
         </a>
       </div>
     </div>
+    </div>
+
+<%= render :partial => "partials/promotion" ,:locals => { :f => f }%>
   <%end%>
   <!-- </form> -->
 
@@ -155,20 +164,24 @@
 
 </div>
 
-<%= render :partial => "partials/promotion" %>
 
 <%= content_for :handwrite_js do %>
   <script>
     $(document).ready(function() {
+      $('.ckeditor').ckeditor({
+
+  // optional config
+      });
         $('select').material_select();
+        JoinFuns.initMaterialDatepicker();
          $('.new-promo-wrapper').hide();
         $('.next').on("click",function(){
-          $('.new-event-wrapper').hide();
+          $('.event-form').hide();
           $('.new-promo-wrapper').show();
         });
         $('.cancle').on("click",function(){
-          $('.new-event-wrapper').show();
           $('.new-promo-wrapper').hide();
+          $('.event-form').show();
         })
       });
   </script>

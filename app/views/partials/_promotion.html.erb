@@ -4,16 +4,7 @@
 </div> -->
 <!-- main wrapper -->
 <div class="new-promo-wrapper">
-  <div class="new-promo">
-    <i class="material-icons">accessibility</i><span>HOST | 新建類別</span>
-  </div>
-<!-- avatar -->
-  <div class="avatar-wrapper">
-    <div class="image-wrapper">
-      <%= image_placeholder width: 100, height: 100, text: 'pic' %>
-    </div>
-    <span class="user-name">Arthur Reynolds</span>
-  </div>
+
 <!-- options -->
   <div class="options">
     <div class="create">
@@ -52,7 +43,7 @@
 
 <!-- promo input 1st -->
 
-  <form class="promo-info">
+  <div class="promo-info">
 
     <div class="info-box">
       <span class="title">帳戶餘額</span>
@@ -76,7 +67,8 @@
         <div class="border-wrapper">
           <label for="promo-title7">宣傳預算</label>
           <span>
-            <input type="text" id="promo-title7" placeholder="請輸入您的宣傳預算">
+           <!--  <input type="text" id="promo-title7" placeholder="請輸入您的宣傳預算"> -->
+           <%= f.text_field :budget %>
           </span>
         </div>
       </div>
@@ -86,9 +78,21 @@
     <div class="select-wrapper">
       <span class="promo-time">曝光時間</span>
       <span class="check-wrapper">
-        <input type="radio" name="second" id="second-0">
-        <label for="second-0">0 秒</label>
-        <input type="radio" name="second" id="second-3">
+       <!--  <input type="radio" name="second" id="second-0"> -->
+        <%= f.radio_button :showtime,"0"%>
+        <%= f.label :showtime, '0秒',:value => '0' %>
+        <%= f.radio_button :showtime,"3"%>
+        <%= f.label :showtime, '3秒',:value => '3' %>
+        <%= f.radio_button :showtime,"5"%>
+        <%= f.label :showtime, '5秒',:value => '5' %>
+        <%= f.radio_button :showtime,"10"%>
+        <%= f.label :showtime, '10秒',:value => '10' %>
+        <%= f.radio_button :showtime,"30"%>
+        <%= f.label :showtime, '30秒',:value => '30' %>
+        <%= f.radio_button :showtime,"60"%>
+        <%= f.label :showtime, '60秒',:value => '60' %>
+        <!-- <label for="second-0">0 秒</label> -->
+        <!-- <input type="radio" name="second" id="second-3">
         <label for="second-3">3 秒</label>
         <input type="radio" name="second" id="second-5">
         <label for="second-5">5 秒</label>
@@ -97,7 +101,7 @@
         <input type="radio" name="second" id="second-30">
         <label for="second-30">30 秒</label>
         <input type="radio" name="second" id="second-60">
-        <label for="second-60">60 秒</label>
+        <label for="second-60">60 秒</label> -->
       </span>
     </div>
     <div class="content-wrapper">
@@ -116,13 +120,16 @@
         </a>
       </div>
       <div class="option next actived">
-        <a href="#">
+       <!--  <a href="#">
           <span>SUBMIT | 送出資料</span>
-        </a>
+        </a> -->
+        <%= f.submit "送出資料" %>
+
+
       </div>
     </div>
 
-  </form>
+  </div>
 
 
 

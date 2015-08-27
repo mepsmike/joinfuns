@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150822142533) do
+ActiveRecord::Schema.define(version: 20150827125514) do
 
   create_table "collects", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -32,15 +32,14 @@ ActiveRecord::Schema.define(version: 20150822142533) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "title"
     t.string   "hoster"
     t.string   "address"
     t.datetime "start_time"
     t.datetime "end_time"
     t.string   "contact_phone"
-    t.string   "cover"
     t.text     "description"
     t.integer  "price"
     t.integer  "category_cd"
@@ -50,9 +49,15 @@ ActiveRecord::Schema.define(version: 20150822142533) do
     t.string   "website"
     t.string   "email"
     t.string   "type_cd"
-    t.integer  "comments_count",    default: 0
-    t.integer  "impressions_count", default: 0
+    t.integer  "comments_count",     default: 0
+    t.integer  "impressions_count",  default: 0
     t.integer  "user_id"
+    t.decimal  "budget"
+    t.decimal  "showtime"
+    t.string   "cover_file_name"
+    t.string   "cover_content_type"
+    t.integer  "cover_file_size"
+    t.datetime "cover_updated_at"
   end
 
   create_table "hosts", force: :cascade do |t|
@@ -105,6 +110,20 @@ ActiveRecord::Schema.define(version: 20150822142533) do
     t.datetime "updated_at", null: false
     t.integer  "event_id"
     t.decimal  "price"
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "title"
+    t.string   "cover"
+    t.string   "link"
+    t.string   "address"
+    t.decimal  "price"
+    t.string   "end_time"
+    t.string   "phone"
+    t.string   "email"
+    t.text     "description"
   end
 
   create_table "users", force: :cascade do |t|

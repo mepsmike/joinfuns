@@ -2,7 +2,7 @@
   <meta property="og:url"  content="http://localhost:3000/<%= @event.id %>" />
   <meta property="og:title"  content="<%= @event.title %>" />
   <meta proverty="og:locale" content="zh-TW" />
-  <meta property="og:image" content="<%= @event.photos[0].pic.url %>" />
+  <meta property="og:image" content="<%= @event.cover.url %>" />
   <meta property="og:description" content="<%= @event.description %>" />
   <meta property="og:site_name"  content="joinfuns" />
   <meta property="fb:app_id" content="652196168244318" />
@@ -19,7 +19,7 @@
     <div class="poster-wrapper">
 
       <!-- <img src="http://blog.techartgroup.com/wp-content/uploads/2014/02/pic_news.jpg" alt=""> -->
-      <%= image_tag @event.photos[0].pic.url %>
+      <%= image_tag @event.cover.url %>
     </div>
     <!-- page description -->
     <div class="page-description">
@@ -35,10 +35,10 @@
           <span class="times">活動場次：</span><span>活動只有一場次</span>
         </li>
         <li>
-          <span class="organizer">主辦單位：</span><span><%= @event.organizer %></span>
+          <span class="organizer">主辦單位：</span><span><%= @event.user.name %></span>
         </li>
         <li>
-          <span class="sponsor">主辦人：</span><span><%= @event.hoster %></span>
+          <span class="sponsor">主辦人：</span><span><%= @event.user.name %></span>
         </li>
         <li>
           <span class="address">地址：</span><span><%= @event.address %></span>
@@ -147,7 +147,7 @@
           <!-- close button -->
           <!-- <i class="shorten-close-btn fa fa-close" role="button"></i> -->
 
-          <div class="shorten-dm-cover" style="background-image: url(<%=e.photos[0].pic.url %>);">
+          <div class="shorten-dm-cover" style="background-image: url(<%=e.cover.url %>);">
           </div>
           <div class="info-wrapper">
 

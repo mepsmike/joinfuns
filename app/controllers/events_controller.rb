@@ -40,7 +40,7 @@ class EventsController < ApplicationController
   def new
     @event= Event.new
 
-    8.times{ @event.photos.build }
+    #8.times{ @event.photos.build }
     3.times{ @event.prices.build }
   end
 
@@ -94,7 +94,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :category, :contact_phone, :email, :website, :organizer, :price, :event_type, :description, :address, :hoster, :start_time, :end_time, photos_attributes:[:pic], prices_attributes:[:price])
+    params.require(:event).permit(:title, :category, :contact_phone, :email, :website, :organizer, :price, :event_type, :description, :address, :hoster, :start_time, :end_time, :cover, :budget, :showtime, prices_attributes:[:price])
   end
 
   def setting_layout
