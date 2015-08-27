@@ -1,7 +1,7 @@
 class SubjectsController < ApplicationController
 
   def index
-
+    @subjects = Subject.all
   end
 
   def new
@@ -22,6 +22,10 @@ class SubjectsController < ApplicationController
   end
 
   def show
+
+    @subject = Event.find(params[:id])
+
+    @subjects = Event.includes(:photos, :prices).all # TODO, show filter out hotest events
 
 
   end

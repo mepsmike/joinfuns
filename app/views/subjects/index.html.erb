@@ -1,11 +1,11 @@
 <div class="subjects-index-wrapper">
   <div class="subjects-container">
-    <% 20.times.each do %>
+    <% @subjects.each do |s|%>
       <div class="subject-unit">
         <div class="subject-inner trans-03s">
-          <div class="subject-cover-wrapper" style="background-image: url(<%= asset_url('subject-cover.jpg') %>);"></div>
+          <div class="subject-cover-wrapper" style="background-image: url(<%= s.cover.url %>);"></div>
           <div class="subject-info-wrapper">
-            <h3>Groningen</h3>
+            <h3><%= s.title %></h3>
 
             <div class="progress">
               <% progress = rand(5..100) %>
@@ -31,7 +31,7 @@
             </div>
 
             <div class="get-button">
-              <%#= link_to 'Get', show_subject_path %>
+              <%= link_to 'Get' %>
               <!-- <a href="#">Get</a> -->
             </div>
           </div>

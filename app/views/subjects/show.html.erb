@@ -1,0 +1,213 @@
+<% content_for :head do %>
+  <meta property="og:url"  content="http://localhost:3000/<%= @subject.id %>" />
+  <meta property="og:title"  content="<%= @subject.title %>" />
+  <meta proverty="og:locale" content="zh-TW" />
+  <meta property="og:image" content="<%= @subject.cover.url %>" />
+  <meta property="og:description" content="<%= @subject.description %>" />
+  <meta property="og:site_name"  content="joinfuns" />
+  <meta property="fb:app_id" content="652196168244318" />
+<% end %>
+
+
+<div class="dm-page-wrapper">
+<!-- navigation path -->
+  <div class="dm-page-path">
+    <span>標案 / <%= link_to @subject.user.name,host_path(@subject.user.id) %> / <%=@subject.title%> </span>
+  </div>
+  <div class="page-promotion">
+    <!-- page poster -->
+    <div class="poster-wrapper">
+
+      <!-- <img src="http://blog.techartgroup.com/wp-content/uploads/2014/02/pic_news.jpg" alt=""> -->
+      <%= image_tag @subject.cover.url %>
+    </div>
+    <!-- page description -->
+    <div class="page-description">
+      <h2 class="page-title"><%= @subject.title %></h2>
+      <ul class="page-info">
+        <li>
+          <span class="date">活動時間：</span><span><%= @subject.start_time %></span>~<span><%= @subject.end_time %></span>
+        </li>
+        <li>
+          <span class="event">費用資訊：</span><span>城市通話抽獎</span>
+        </li>
+        <li>
+          <span class="times">活動場次：</span><span>活動只有一場次</span>
+        </li>
+        <li>
+          <span class="organizer">主辦單位：</span><span><%= @subject.user.name %></span>
+        </li>
+        <li>
+          <span class="sponsor">主辦人：</span><span><%= @subject.user.name %></span>
+        </li>
+        <li>
+          <span class="address">地址：</span><span><%= @subject.address %></span>
+        </li>
+        <li>
+          <span class="websit">網址：</span><span><%= link_to @subject.website %></span>
+        </li>
+        <li>
+          <span class="email">email：</span><span><%= link_to @subject.email %></span>
+        </li>
+        <li>
+          <span class="phone">電話：</span><span><%= @subject.contact_phone %></span>
+        </li>
+      </ul>
+      <!-- page price -->
+      <div class="page-event-price">
+        <span>票價資訊</span>
+        <!-- price list -->
+        <%@subject.prices.each do |p| %>
+          <div class="price"><span>NT</span><span class="value"><%=p.price%></span></div>
+        <% end %>
+        <!-- <div class="price actived"><span>NT</span><span class="value">300</span></div>
+        <div class="price"><span>NT</span><span class="value">600</span></div>
+        <div class="price"><span>NT</span><span class="value">900</span></div> -->
+
+      </div>
+      <!-- options -->
+      <div class="page-options-wrapper">
+        <ul>
+          <li>
+
+           <%=link_to "javascript:fbShare('http://alpha.joinfuns.com/event/#{@subject.id}/', '#{@subject.title}', '#{@subject.description}', '#{@subject.cover}', 520, 350, '#{current_user.id}')",:class=>"option share fb-share-button" do%>
+              <span class="content">分享活動</span>
+           <%end%>
+
+<!--             <a href="#" class="option share fb-share-button" data-href="http://localhost:3000"> -->
+<!--
+            </a> -->
+          </li>
+          <li>
+            <%= link_to collect_event_path(@subject),:method=>"post", :class=>"option favorite",:remote=>true do %>
+              <%if @collect %>
+                <span>取消收藏</span>
+              <% else %>
+                <span>收藏活動</span>
+              <% end %>
+            <% end %>
+
+          </li>
+          <li>
+            <a href="#" class="option join">
+              <span>參加活動去</span>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+  <!-- secondary page -->
+  <div class="page-secondary">
+    <div class="page-editor">
+      <div class="ck-editor">
+        <%= @subject.description.html_safe %>
+      </div>
+      <div class="leaveword">
+        <span>留言：</span>
+        <%= form_for @comment,:url => event_comments_path(@subject),:remote=>true do |c|%>
+        <!-- <textarea name="leaveword" id="leaveword" cols="30" rows="10"></textarea> -->
+        <%= c.text_area :content %>
+        <%= c.submit "發表" ,:id =>"commit", :class => "submit" %>
+       <!--  <div class="submit">
+          <span>送出留言</span>
+        </div> -->
+        <% end %>
+      </div>
+      <div class="page-msg-wrapper">
+        <%= @subject.comments_count %> 則評論
+        <% @comments.each do |c|%>
+        <!-- <div class="unit-wrapper">
+          <div class="avatar">
+            <%= image_tag current_user.image %>
+          </div>
+          <span class="name" title="Hey Mike 塞me">
+            <%= current_user.name %>
+          </span>
+          <div class="leave-msg">
+            <span>
+              <%= c.content %>
+            </span>
+          </div>
+        </div> -->
+          <%= render partial: "partials/comment",:locals => { :c => c }  %>
+        <% end %>
+      </div>
+    </div>
+  <!-- right side shorten dm Klein-->
+    <div class="shorten-dm-wrapper">
+      <div class="main-title">
+        <span>熱門活動</span>
+      </div>
+      <div class="unit-shorten-cover">
+<% @subjects.each do |e| %>
+        <div class="unit-shorten-dm">
+
+          <!-- close button -->
+          <!-- <i class="shorten-close-btn fa fa-close" role="button"></i> -->
+
+          <div class="shorten-dm-cover" style="background-image: url(<%=e.cover.url %>);">
+          </div>
+          <div class="info-wrapper">
+
+            <h4 class="title dm"><%=e.title%></h4>
+            <!-- shorten dm info -->
+            <div class="shorten-dm-info">
+              <span class="host">Host：</span>
+              <span><%=e.hoster%></span>
+            </div>
+            <!-- price -->
+            <div class="shorten-price">
+              <span>Price：</span>
+              <!-- price list -->
+              <% e.prices.each do |p| %>
+                <div class="price" data-behavior="price-tag"><span>NT </span><span class="value"><%=p.price%></span></div>
+              <% end %>
+              <!-- <div class="price actived"><span>NT</span><span class="value">300</span></div>
+              <div class="price"><span>NT</span><span class="value">600</span></div>
+              <div class="price"><span>NT</span><span class="value">900</span></div> -->
+            </div>
+            <!-- option -->
+            <div class="option-wrapper">
+              <%= link_to event_path(e), class: 'option join' do %>
+                <span>參加</span>
+              <% end %>
+              <div class="join-count">
+                <span><%= number_with_delimiter(rand(1..100000), :delimiter => ","  ) %></span>
+                <span>Join it</span>
+              </div>
+            </div>
+          </div>
+        </div>
+<% end %>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<div id="fb-root"></div>
+<%= content_for :handwrite_js do %>
+
+
+<script>
+
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.4&appId=652196168244318";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+function fbShare(url, title, descr, image, winWidth, winHeight, uid) {
+    var winTop = (screen.height / 2) - (winHeight / 2);
+    var winLeft = (screen.width / 2) - (winWidth / 2);
+    window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + title + '&p[summary]=' + descr + '&p[url]=' + url + '&p[images][0]=' + image, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight + ',uid=' + uid);
+}
+
+</script>
+
+<% end %>
+

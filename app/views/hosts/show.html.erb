@@ -96,7 +96,10 @@
       </div>
 <!-- partials dm -->
       <% @in_progress_events.each do |e|%>
-        <%= render partial: 'partials/short_dm',:locals => { :e => e, :status => "inprogress" } %>
+        <%= render partial: 'partials/short_dm',:locals => { :e => e, :status => "inprogress", :type=> "0" } %>
+      <% end %>
+      <% @in_progress_subjects.each do |e|%>
+        <%= render partial: 'partials/short_dm',:locals => { :e => e, :status => "inprogress", :type=> "1" } %>
       <% end %>
     </div>
 
@@ -125,7 +128,13 @@
           <div class="overlay">
             <span>expired</span>
           </div>
-          <%= render partial: 'partials/short_dm',:locals => { :e => e , :status => "over"} %>
+          <%= render partial: 'partials/short_dm',:locals => { :e => e , :status => "over", :type=> "0"} %>
+        <% end %>
+         <% @overdue_subjects.each do |e|%>
+          <div class="overlay">
+            <span>expired</span>
+          </div>
+          <%= render partial: 'partials/short_dm',:locals => { :e => e , :status => "over", :type=> "1"} %>
         <% end %>
 
 
@@ -140,6 +149,8 @@
   <script>
 $(document).ready(function() {
   $("a.fancybox").fancybox();
+  $('div[data-etype="1"][data-status="inprogress"]').hide();
+  $('div[data-etype="1"][data-status="over"]').hide();
 
   $("#in_event").on("click",function(e){
 
