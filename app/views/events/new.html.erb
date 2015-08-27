@@ -5,7 +5,7 @@
 <!-- main wrapper -->
 <div class="new-event-wrapper">
   <div class="new-event">
-    <i class="material-icons">accessibility</i><span>HOST | 新建類別</span>
+    <i class="material-icons">accessibility</i><span><%=current_user.name%> | 新建活動</span>
   </div>
 <!-- avatar -->
   <div class="avatar-wrapper">
@@ -27,7 +27,7 @@
     </div>
     <div class="create">
       <%=link_to new_subject_path do %>
-        <span>Subject | 新建活動</span>
+        <span>Subject | 新建標案</span>
       <% end %>
     </div>
   </div>
