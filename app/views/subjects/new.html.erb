@@ -1,19 +1,22 @@
 <!-- navigation path -->
-<div class="host-page-path">
+<!-- <div class="host-page-path">
   <span>頁面路徑  / 主辦單位活動列表 / 台北威秀影城</span>
-</div>
+</div> -->
 <!-- main wrapper -->
 <div class="new-subject-wrapper">
   <div class="new-subject">
-    <i class="material-icons">accessibility</i><span>HOST | 新建類別</span>
+    <i class="material-icons">accessibility</i><span><%= current_user.name %> | 新建標案</span>
   </div>
 <!-- avatar -->
   <div class="avatar-wrapper">
     <div class="image-wrapper">
-      <%= image_placeholder width: 100, height: 100, text: 'pic' %>
+     <%= image_tag current_user.image ,width: 100, height: 100 %>
     </div>
-    <span class="user-name">Arthur Reynolds</span>
+    <span class="user-name"><%=current_user.name%></span>
   </div>
+
+  <%=form_for @subject, :html => {:class => "subject-info"} do |f|%>
+  <div class="subject-form">
 <!-- options -->
   <div class="options">
     <div class="create">
@@ -23,19 +26,19 @@
     </div>
     <div class="create actived">
       <a href="#">
-        <span>Subject | 新建活動</span>
+        <span>Subject | 新建標案</span>
       </a>
     </div>
   </div>
 <!-- description -->
   <div class="step-by-step">
     <div class="step-wrapper">
-      <span>在JoinFuns建立的活動將獲得優先曝光</span>
+      <span>在JoinFuns建立的標案將獲得優先曝光</span>
       <div class="circle-wrapper">
 
         <div class="step actived">
           <span class="circle">1</span>
-          <span>建立活動資訊</span>
+          <span>建立標案資訊</span>
         </div>
 
         <div class="step">
@@ -56,26 +59,27 @@
 
 <!-- subject input 1st -->
 
-  <form class="subject-info">
+
     <div class="info-box actived">
       <label for="subject-title1">活動主題</label>
-      <span><input type="text" id="subject-title1"></span>
+      <span><%= f.text_field :title %></span>
     </div>
     <div class="info-box">
       <label for="subject-title2">主題圖片</label>
       <span>
-        <input type="text" id="subject-title2">
-        <a href="" class="select-file">選取檔案</a>
+        <!-- <input type="text" id="subject-title2">
+        <a href="" class="select-file">選取檔案</a> -->
+        <%= f.file_field :cover %>
       </span>
 
     </div>
     <div class="info-box">
       <label for="subject-title3">原始商品連結</label>
-      <span><input type="text" id="subject-title3"></span>
+      <span><%= f.text_field :link %></span>
     </div>
     <div class="info-box">
       <label for="subject-title4">地址</label>
-      <span><input type="text" id="subject-title4"></span>
+      <span><%= f.text_field :address %></span>
     </div>
 
 <!-- drop selection -->
@@ -93,22 +97,22 @@
 <!-- subject input 2nd -->
     <div class="info-box">
       <label for="subject-title5">商品價格</label>
-      <span><input type="text" id="subject-title5"></span>
+      <span><%= f.text_field :price %></span>
     </div>
     <div class="info-box">
       <label for="subject-title6">聯絡電話</label>
-      <span><input type="text" id="subject-title6"></span>
+      <span><%= f.text_field :phone %></span>
     </div>
     <div class="info-box">
       <label for="subject-title7">連絡信箱</label>
-      <span><input type="text" id="subject-title7"></span>
+      <span><%= f.text_field :email %></span>
     </div>
 
 <!-- ck - editor -->
     <div class="editor-wrapper">
       <span>文案編輯</span>
       <div class="editor">
-        <span>Editor</span>
+        <%= f.text_area :description, rows: '3' %>
       </div>
     </div>
 
@@ -125,14 +129,14 @@
         </a>
       </div>
     </div>
+    </div>
 
-  </form>
+ <%= render :partial => "partials/promotion" ,:locals => { :f => f }%>
+  <%end%>
 
 
 
 </div>
-
-<%= render :partial => "partials/promotion" %>
 
 <%= content_for :handwrite_js do %>
   <script>
@@ -140,12 +144,13 @@
         $('select').material_select();
         $('.new-promo-wrapper').hide();
         $('.next').on("click",function(){
-          $('.new-subject-wrapper').hide();
+          $('.subject-form').hide();
           $('.new-promo-wrapper').show();
         });
         $('.cancle').on("click",function(){
-          $('.new-subject-wrapper').show();
+
           $('.new-promo-wrapper').hide();
+          $('.subject-form').show();
         })
 
       });

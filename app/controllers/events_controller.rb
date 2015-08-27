@@ -58,11 +58,6 @@ class EventsController < ApplicationController
     end
   end
 
-  def promotion
-
-
-  end
-
   def collect
 
     @event = Event.find(params[:id])
