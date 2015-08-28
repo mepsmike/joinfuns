@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150827134506) do
+ActiveRecord::Schema.define(version: 20150828035152) do
 
   create_table "collects", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -94,6 +94,31 @@ ActiveRecord::Schema.define(version: 20150827134506) do
   add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
   add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
   add_index "impressions", ["user_id"], name: "index_impressions_on_user_id"
+
+  create_table "orders", force: :cascade do |t|
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "name",            limit: 255
+    t.string   "email",           limit: 255
+    t.string   "phone",           limit: 255
+    t.string   "address",         limit: 255
+    t.string   "payment_method",  limit: 255
+    t.integer  "amount",          limit: 4
+    t.integer  "user_id",         limit: 4
+    t.string   "payment_status",  limit: 255, default: "pending"
+    t.string   "shipping_status", limit: 255, default: "pending"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.string   "type",           limit: 255
+    t.string   "payment_method", limit: 255
+    t.integer  "order_id",       limit: 4
+    t.integer  "amount",         limit: 4
+    t.boolean  "paid",           limit: 1,     default: false
+    t.text     "params",         limit: 65535
+  end
 
   create_table "photos", force: :cascade do |t|
     t.datetime "created_at",       null: false

@@ -1,6 +1,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.integration_mode = :production
+  end
   # Code is not reloaded between requests.
   config.cache_classes = true
 

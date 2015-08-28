@@ -100,6 +100,8 @@ gem 'simple_enum'
 gem 'by_star', :git => "git://github.com/radar/by_star"
 gem 'social-share-button'
 gem 'impressionist'
+gem 'activemerchant', "~> 1.43.3"
+gem 'active_merchant_allpay', '>=0.1.2'
 
 gem 'ckeditor_rails'
 
