@@ -1,0 +1,42 @@
+<div class="subjects-index-wrapper">
+  <div class="subjects-container">
+    <% @subjects.each do |s|%>
+      <div class="subject-unit">
+        <div class="subject-inner trans-03s">
+          <div class="subject-cover-wrapper" style="background-image: url(<%= s.cover.url %>);"></div>
+          <div class="subject-info-wrapper">
+            <h3><%= s.title %></h3>
+
+            <div class="progress">
+              <% progress = rand(5..100) %>
+              <div class="determinate" style="width: <%= progress %>%"></div>
+            </div>
+            <span class="progress-value">
+              <%= progress %>%
+            </span>
+
+            <div class="time-info-wrapper">
+              <div class="hour">
+                <span class='value'><%= rand(0..23).to_s.rjust(2, '0') %></span>
+                <span class="unit">hr</span>
+              </div>
+              <div class="minute">
+                <span class='value'><%= rand(0..59).to_s.rjust(2, '0') %></span>
+                <span class="unit">min</span>
+              </div>
+              <div class="second">
+                <span class='value'><%= rand(0..59).to_s.rjust(2, '0') %></span>
+                <span class="unit">sec</span>
+              </div>
+            </div>
+
+            <div class="get-button">
+              <%= link_to 'Get' %>
+              <!-- <a href="#">Get</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

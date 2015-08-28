@@ -10,13 +10,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :subjects, only: [:index, :show, :new, :create]
+
   resources :hosts
 
   get 'beta_sign_in' => 'prototype#sign_in', as: :sign_in
   get 'beta_sign_up' => 'prototype#sign_up', as: :sign_up
   get 'main' => 'prototype#main'
-  get 'subjects' => 'prototype#subjects_index', as: :subjects
-  get 'subject/23' => 'prototype#subject_show', as: :show_subject
+  #get 'subjects' => 'prototype#subjects_index', as: :subjects
+  #get 'subject/23' => 'prototype#subject_show', as: :show_subject
   get 'dm_poster' => 'prototype#dm_poster'
   get 'host_page' => 'prototype#host_page'
   get 'host_new_subject' => 'prototype#host_new_subject'

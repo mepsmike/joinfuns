@@ -1,0 +1,91 @@
+<div class="new-event-form-wrapper">
+  <%= form_for @event ,:html => { :multipart => true } do |f|  %>
+    <div class="new-event-form row">
+
+      <div class="input-field">
+        <%= f.text_field :title, placeholder: '活動標題' %>
+      </div>
+
+      <div class="input-field">
+        <%= f.text_field :organizer, placeholder: '主辦單位' %>
+      </div>
+
+      <div class="input-field">
+        <%= f.text_field :hoster, placeholder: '主辦人' %>
+      </div>
+
+      <div class="input-field">
+        <%= f.text_field :address, placeholder: '活動地址' %>
+      </div>
+
+      <div class="input-field">
+        <%= f.text_field :contact_phone, placeholder: '聯絡電話' %>
+      </div>
+
+      <div class="input-field">
+        <%= f.text_field :email, placeholder: 'Email' %>
+      </div>
+
+      <div class="input-field">
+        <%= f.text_field :website, placeholder: '網站' %>
+      </div>
+
+      <!-- <div class="input-field">
+        <%= f.text_field :price, placeholder: '活動費用' %>
+      </div -->>
+
+      <div class="input-field">
+        <%= f.date_field :start_time, class: 'datepicker date', placeholder: '活動開始時間' %>
+      </div>
+
+      <div class="input-field">
+        <%= f.date_field :end_time, class: 'datepicker date', placeholder: '活動結束時間' %>
+      </div>
+
+      <div class="input-field">
+        <%= f.select :category, enum_option_pairs(Event, :category), {include_blank: '請選擇類型'} %>
+      </div>
+
+      <div class="input-field">
+        <%= f.text_area :description, rows: '10', placeholder: '活動描述', :class => "ckeditor" %>
+      </div>
+
+      <%= f.fields_for :prices do |price| %>
+        <div class="input-field">
+          <%= price.text_field :price, placeholder: '活動費用' %>
+        </div>
+
+      <% end %>
+
+      <%= f.fields_for :photos do |photo| %>
+        <div class="file-field input-field">
+          <input class="file-path validate" type="text"/>
+          <div class="btn">
+            <span>活動圖片</span>
+            <!-- <input type="file" /> -->
+            <%= photo.file_field :pic %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="submit-btn">
+        <%= button_tag type: 'submit', data: {disable_with: "資料上傳中 <i class='fa fa-circle-o-notch fa-spin'></i>"} do %>
+          送出資料
+        <% end %>
+      </div>
+
+    </div>
+  <% end %>
+</div>
+
+
+<%= content_for :handwrite_js do %>
+  <script>
+    $('.ckeditor').ckeditor({
+
+  // optional config
+    });
+    $(document).ready(JoinFuns.initMaterialSelect());
+    $(document).ready(JoinFuns.initMaterialDatepicker());
+  </script>
+<% end %>
