@@ -1,3 +1,7 @@
+
+require "active_merchant/billing/integrations/action_view_helper"
+ActionView::Base.send(:include, ActiveMerchant::Billing::Integrations::ActionViewHelper)
+
 ActiveMerchant::Billing::Integrations::Allpay.setup do |allpay|
   if Rails.env.development?
     # default setting for stage test
@@ -11,3 +15,4 @@ ActiveMerchant::Billing::Integrations::Allpay.setup do |allpay|
     allpay.hash_iv     = ''
   end
 end
+

@@ -1,5 +1,5 @@
 <% content_for :head do %>
-  <meta property="og:url"  content="http://localhost:3000/<%= @event.id %>" />
+  <meta property="og:url"  content="http://alpha.joinfuns.com/events/<%= @event.id %>" />
   <meta property="og:title"  content="<%= @event.title %>" />
   <meta proverty="og:locale" content="zh-TW" />
   <meta property="og:image" content="<%= @event.cover.url %>" />
@@ -70,7 +70,7 @@
         <ul>
           <li>
 
-           <%=link_to "javascript:fbShare('http://alpha.joinfuns.com/event/#{@event.id}/', '#{@event.title}', '#{@event.description}', '#{@event.cover}', 520, 350, '#{current_user.id}')",:class=>"option share fb-share-button" do%>
+           <%=link_to "javascript:fbShare('http://alpha.joinfuns.com/events/#{@event.id}/', '#{@event.title}', '#{@event.description}', '#{@event.cover}', 520, 350, '#{current_user.id}')",:class=>"option share fb-share-button" do%>
               <span class="content">分享活動</span>
            <%end%>
 

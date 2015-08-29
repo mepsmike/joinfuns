@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :collects
   has_many :events
   has_many :subjects
+  has_many :orders
   has_many :collect_events ,:through => :collects ,:source =>:event
   def self.from_omniauth(auth)
     # Case 1: Find existing user by facebook uid
