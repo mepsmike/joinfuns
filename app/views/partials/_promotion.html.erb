@@ -158,6 +158,16 @@ function displayTimes(){
 $( "input" ).change( displaySecs );
 $( "#event_budget" ).keyup(displayTimes);
 
+$("#free-promo").change(function() {
+    if(this.checked) {
+
+      $(".border-wrapper").hide();
+      $(".select-wrapper").hide();
+      $(".content-wrapper").hide();
+
+    }
+});
+
 </script>
 
 <% end %>
