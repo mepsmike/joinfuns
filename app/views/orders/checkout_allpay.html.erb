@@ -1,0 +1,15 @@
+
+
+
+<p>
+  <strong>Email:</strong>
+  <%= @order.email %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @order.amount %>
+</p>
+
+
+<%= render_payment_service_button(@order, "credit_card") %>

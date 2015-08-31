@@ -10,7 +10,15 @@ Rails.application.routes.draw do
     end
   end
 
+
+
   resources :subjects, only: [:index, :show, :new, :create]
+
+
+  resources :orders, only: [:index, :show, :new, :create] do
+    get :checkout_allpay, :on => :member
+    post "notify", on: :member
+  end
 
   resources :hosts
 
