@@ -136,3 +136,28 @@
 
 
 </div>
+
+
+<%= content_for :handwrite_js do %>
+
+
+<script>
+
+function displaySecs() {
+  var second = $("input:checked").val();
+  $( ".timing span" ).text(second);
+}
+
+function displayTimes(){
+
+  var budget = $("#event_budget").val();
+  var per = 1;
+  $(".remaining span").text(budget/per);
+}
+
+$( "input" ).change( displaySecs );
+$( "#event_budget" ).keyup(displayTimes);
+
+</script>
+
+<% end %>
