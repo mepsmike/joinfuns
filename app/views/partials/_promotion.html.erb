@@ -47,13 +47,13 @@
 
     <div class="info-box">
       <span class="title">帳戶餘額</span>
-      <span class="balance">NT 20,000</span>
+      <span class="balance"><%= cureent_user.money %></span>
     </div>
 
 <!-- option for -->
     <div class="deposit-wrapper">
       <!-- <a href="#" class="option"> -->
-      <%= link_to new_order_path do %>
+      <%= link_to new_order_path,target: "_blank" do %>
         <span>立即儲值</span>
       <% end%>
       <!-- </a> -->

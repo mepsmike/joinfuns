@@ -58,7 +58,12 @@ class EventsController < ApplicationController
   def create
     @event= Event.new(event_params)
     @event.user = current_user
-    category = view_context.te(@event, :category)
+    if params[:budget]
+      @event.category_cd = 1
+    else
+      @event.category_cd = 0
+    end
+    #category = view_context.te(@event, :category)
 
     if @event.save
       flash[:success] = "#{category} 已成功建立！"
