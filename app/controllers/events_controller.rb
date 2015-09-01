@@ -58,15 +58,19 @@ class EventsController < ApplicationController
   def create
     @event= Event.new(event_params)
     @event.user = current_user
-    if params[:budget]
+
+    if params[:event][:budget]
+      money = current_user.money - params[:event][:budget].to_f
+      User.update(current_user.id,:money=>money)
       @event.category_cd = 1
     else
       @event.category_cd = 0
     end
+
     #category = view_context.te(@event, :category)
 
     if @event.save
-      flash[:success] = "#{category} 已成功建立！"
+      flash[:success] = "已成功建立！"
       redirect_to events_path
     else
       flash[:error] = "請檢查欄位後再試一次。"
