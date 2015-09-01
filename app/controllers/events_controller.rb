@@ -133,9 +133,9 @@ class EventsController < ApplicationController
   end
 
   def get_collect
-
-    current_user.collects.find_by_event_id( params[:id] )
-
+    if current_user
+      current_user.collects.find_by_event_id( params[:id] )
+    end
   end
 
 end
