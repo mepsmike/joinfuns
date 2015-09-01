@@ -23,6 +23,17 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+
+    if params[:uid]
+      @event.budget -= 1.5
+      @event.save
+      @user=User.find_by_id(params[:uid])
+      @user.money += 0.5
+      @user.save
+    else
+      @event.budget -= 1
+      @event.save
+    end
     #@hit_count = @event.impressionist_count(:filter=>:ip_address)
     @events = Event.includes(:photos, :prices).all # TODO, show filter out hotest events
     #@sticker = Geocoder.coordinates(@event.address)
@@ -47,10 +58,19 @@ class EventsController < ApplicationController
   def create
     @event= Event.new(event_params)
     @event.user = current_user
-    category = view_context.te(@event, :category)
+
+    if params[:event][:budget]
+      money = current_user.money - params[:event][:budget].to_f
+      User.update(current_user.id,:money=>money)
+      @event.category_cd = 1
+    else
+      @event.category_cd = 0
+    end
+
+    #category = view_context.te(@event, :category)
 
     if @event.save
-      flash[:success] = "#{category} 已成功建立！"
+      flash[:success] = "已成功建立！"
       redirect_to events_path
     else
       flash[:error] = "請檢查欄位後再試一次。"
@@ -133,9 +153,9 @@ class EventsController < ApplicationController
   end
 
   def get_collect
-
-    current_user.collects.find_by_event_id( params[:id] )
-
+    if current_user
+      current_user.collects.find_by_event_id( params[:id] )
+    end
   end
 
 end

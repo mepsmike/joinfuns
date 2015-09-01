@@ -70,7 +70,7 @@
         <ul>
           <li>
 
-           <%=link_to "javascript:fbShare('http://alpha.joinfuns.com/events/#{@event.id}/', '#{@event.title}', '#{@event.description}', '#{@event.cover}', 520, 350, '#{current_user.id}')",:class=>"option share fb-share-button" do%>
+           <%=link_to "javascript:fbShare('http://alpha.joinfuns.com/events/#{@event.id}?uid=#{current_user.try(:id)}', '#{@event.title}', '#{@event.description}', '#{@event.cover}', 520, 350)",:class=>"option share fb-share-button" do%>
               <span class="content">分享活動</span>
            <%end%>
 
@@ -79,6 +79,7 @@
             </a> -->
           </li>
           <li>
+          <%if current_user%>
             <%= link_to collect_event_path(@event),:method=>"post", :class=>"option favorite",:remote=>true do %>
               <%if @collect %>
                 <span>取消收藏</span>
@@ -86,6 +87,12 @@
                 <span>收藏活動</span>
               <% end %>
             <% end %>
+          <%else%>
+            <%= link_to root_path, :class=>"option favorite" do %>
+                <span>收藏活動</span>
+            <% end %>
+
+          <% end %>
 
           </li>
           <li>
@@ -201,10 +208,10 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-function fbShare(url, title, descr, image, winWidth, winHeight, uid) {
+function fbShare(url, title, descr, image, winWidth, winHeight) {
     var winTop = (screen.height / 2) - (winHeight / 2);
     var winLeft = (screen.width / 2) - (winWidth / 2);
-    window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + title + '&p[summary]=' + descr + '&p[url]=' + url + '&p[images][0]=' + image, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight + ',uid=' + uid);
+    window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + title + '&p[summary]=' + descr + '&p[url]=' + url + '&p[images][0]=' + image, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
 }
 
 </script>
