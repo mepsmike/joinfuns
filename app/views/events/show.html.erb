@@ -70,7 +70,7 @@
         <ul>
           <li>
 
-           <%=link_to "javascript:fbShare('http://alpha.joinfuns.com/events/#{@event.id}/', '#{@event.title}', '#{@event.description}', '#{@event.cover}', 520, 350)",:class=>"option share fb-share-button" do%>
+           <%=link_to "javascript:fbShare('http://alpha.joinfuns.com/events/#{@event.id}?uid=#{current_user.try(:id)}', '#{@event.title}', '#{@event.description}', '#{@event.cover}', 520, 350)",:class=>"option share fb-share-button" do%>
               <span class="content">分享活動</span>
            <%end%>
 
