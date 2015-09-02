@@ -34,4 +34,7 @@ Rails.application.routes.draw do
   get 'host_new_event' => 'prototype#host_new_event'
   get 'host_promotion' => 'prototype#host_promotion'
 
+  get '/events/get_balance.js.erb' => "events#get_balance"
+
+
 end
