@@ -70,6 +70,7 @@ class EventsController < ApplicationController
     #category = view_context.te(@event, :category)
 
     if @event.save
+
       flash[:success] = "已成功建立！"
       redirect_to events_path
     else
@@ -97,6 +98,18 @@ class EventsController < ApplicationController
      format.js
     end
 
+
+  end
+
+  def get_balance
+
+    @balance = current_user.money
+
+    respond_to do |format|
+
+      format.js
+
+    end
 
   end
 
