@@ -16,10 +16,14 @@
         <!-- shorten-dm information -->
       <div class="shorten-dm-info-wrapper">
         <!-- class [dm, event] 可切換 icon -->
+        <%if x.category_cd==1 %>
         <h4 class="title dm"><%= x.title %></h4>
+        <% else %>
+         <h4 class="title event"><%= x.title %></h4>
+        <% end %>
 
         <div class="shorten-dm-info">
-          <span class="host"><%= x.hoster %></span>
+          <span class="host"><%= x.user.try(:name) %></span>
         </div>
 
         <!-- shorten-dm-price -->
