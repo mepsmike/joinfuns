@@ -100,6 +100,18 @@ class EventsController < ApplicationController
 
   end
 
+  def get_balance
+
+    @balance = current_user.money
+
+    respond_to do |format|
+
+      format.js
+
+    end
+
+  end
+
   # def search
   #   @events = @events.where("address like ?", params[:address]) unless address.blank?
   #   @events = @events.where("title like ?", params[:keyword]) unless keyword.blank?

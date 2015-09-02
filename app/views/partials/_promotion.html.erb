@@ -48,6 +48,7 @@
     <div class="info-box">
       <span class="title">帳戶餘額</span>
       <span class="balance"><%= current_user.money %></span>
+      <span><%= link_to "重新整理",controller: "events", action: "get_balance" ,:method=>"get",:remote=>true%></span>
     </div>
 
 <!-- option for -->
