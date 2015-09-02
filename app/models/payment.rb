@@ -20,6 +20,10 @@ class Payment < ActiveRecord::Base
       o = self.order
       o.payment_status = "paid"
       o.save( :validate => false )
+
+      u = self.order.user
+      u.money += self.amount.to_f
+      u.save
     end
   end
 

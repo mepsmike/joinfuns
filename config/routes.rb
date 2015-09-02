@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  root 'prototype#index'
+  #root 'prototype#index'
+  root 'events#index'
 
   resources :events, only: [:index, :show, :new, :create] do
     resources :comments, :controller => 'event_comments'
@@ -10,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-
+  resources :prototype, only:[:index]
 
   resources :subjects, only: [:index, :show, :new, :create]
 

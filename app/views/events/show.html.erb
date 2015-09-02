@@ -88,7 +88,7 @@
               <% end %>
             <% end %>
           <%else%>
-            <%= link_to root_path, :class=>"option favorite" do %>
+            <%= link_to prototype_index_path, :class=>"option favorite" do %>
                 <span>收藏活動</span>
             <% end %>
 
@@ -157,12 +157,15 @@
           <div class="shorten-dm-cover" style="background-image: url(<%=e.cover.url %>);">
           </div>
           <div class="info-wrapper">
-
+            <% if e.category_cd ==1 %>
             <h4 class="title dm"><%=e.title%></h4>
+            <% else %>
+            <h4 class="title event"><%=e.title%></h4>
+            <% end %>
             <!-- shorten dm info -->
             <div class="shorten-dm-info">
               <span class="host">Host：</span>
-              <span><%=e.hoster%></span>
+              <span><%=e.user.try(:name)%></span>
             </div>
             <!-- price -->
             <div class="shorten-price">
