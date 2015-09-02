@@ -59,7 +59,7 @@ class EventsController < ApplicationController
     @event= Event.new(event_params)
     @event.user = current_user
 
-    if @event.budget<=current_user.money && params[:event][:budget]
+    if params[:event][:budget]
       money = current_user.money - params[:event][:budget].to_f
       User.update(current_user.id,:money=>money)
       @event.category_cd = 1
@@ -69,7 +69,7 @@ class EventsController < ApplicationController
 
     #category = view_context.te(@event, :category)
 
-    if @event.budget<=current_user.money && @event.save
+    if @event.save
 
       flash[:success] = "已成功建立！"
       redirect_to events_path
