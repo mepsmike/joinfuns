@@ -6,4 +6,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     events_path
   end
+
+  def current_user
+    super || GuestUser.new
+  end
 end

@@ -13,33 +13,13 @@
         <% end %>
       </li>
       <li>
-        <%if current_user%>
         <%= link_to new_event_path do %>
           <i class="material-icons">add_box</i>
           <span>Create New | 創建</span>
         <% end %>
-        <%else%>
-        <%= link_to prototype_index_path do %>
-          <i class="material-icons">add_box</i>
-          <span>Create New | 創建</span>
-        <% end %>
-        <%end%>
       </li>
       <li class='user-menu-trigger'>
-        <a href="#">
-          <%= icon 'gear' %>
-          <span class="user-name"><%= current_user.name%></span>
-          <div class="user-avatar">
-        <%if current_user %>
-            <%= image_tag current_user.image, class: 'responsive-img circle' %>
-
-          </div>
-
-        </a>
-        <%end%>
-        <a href="">
-          <i class="material-icons">arrow_forward</i>
-        </a>
+        <%= render partial: "common/#{get_current_user_class}_menu_trigger" %>
       </li>
     </ul>
   </div>

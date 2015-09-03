@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   layout :setting_layout
   impressionist :actions=>[:show]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
 
