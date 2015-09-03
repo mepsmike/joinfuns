@@ -15,4 +15,8 @@ module ApplicationHelper
 
     "https://graph.facebook.com/#{user.fb_uid}/picture?height=#{height}&width=#{width}"
   end
+
+  def get_current_user_class
+    current_user.class.name.underscore
+  end
 end

@@ -1,0 +1,10 @@
+<a class="user-info" href="#">
+  <%= icon 'gear' %>
+  <span class="user-name"><%= current_user.name%></span>
+  <div class="user-avatar">
+    <%= image_tag current_user.image, class: 'responsive-img circle' %>
+  </div>
+</a>
+<a class="arrow" href="">
+  <i class="material-icons">arrow_forward</i>
+</a>

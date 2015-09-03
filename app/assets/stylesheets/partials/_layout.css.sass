@@ -142,9 +142,10 @@ nav
         padding: 0 4em
       &:hover a
         color: $black
-    .user-menu-trigger a
-      padding: 0
-      &:first-child
+    .user-menu-trigger
+      a
+        padding: 0
+      .user-info
         +span(8)
         display: block
         padding: 5px 0
@@ -154,7 +155,7 @@ nav
           top: 5px
           float: right //gear
 
-      &:last-child
+      .arrow
         +span(4)
         display: block
         padding-top: 1px
