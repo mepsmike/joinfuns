@@ -27,13 +27,14 @@
       </li>
       <li class='user-menu-trigger'>
         <a href="#">
+          <%= icon 'gear' %>
+          <span class="user-name"><%= current_user.name%></span>
           <div class="user-avatar">
         <%if current_user %>
             <%= image_tag current_user.image, class: 'responsive-img circle' %>
 
           </div>
-          <span class="user-name"><%= current_user.name%></span>
-          <%= icon 'gear' %>
+
         </a>
         <%end%>
         <a href="">
@@ -65,11 +66,11 @@
       </div>
       <div class="short-button">
 
-<!--         <a href="#">
+         <a href="#">
           <span>Order</span>
           <i class="material-icons">storage</i>
         </a>
-        <a href="#">熱門排序</a>
+        <!--<a href="#">熱門排序</a>
         <a href="#">時間排序</a> -->
 
         <%= link_to "熱門排序", params.merge(:order => "hottest") %>

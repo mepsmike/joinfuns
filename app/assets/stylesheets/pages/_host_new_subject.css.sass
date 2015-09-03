@@ -1,8 +1,5 @@
-.main-function-bar-wrapper
-  display: none // for test
-.application-container
+.new-subject-outter
   background: $black-op80 // test dark-bg
-
   .new-subject-wrapper
     position: relative
     width: $w-desktop
@@ -103,6 +100,7 @@
           margin-right: 0
           text-align: center
           +border-radius(6px)
+
         label
           border-right: 1px solid $white
           padding: 0 1em
@@ -123,6 +121,18 @@
             &:focus
               outline: none
               +box-shadow(none) //for safari
+          label
+            padding: .6em 3em
+            background: $black-op50
+            text-align: center
+            +border-radius(6px)
+            border: none
+            float: right
+            margin: .2em
+            cursor: pointer
+            color: $yellow
+            input[type="file"]
+              display: none
         // &.actived
         //   border: 1px solid $yellow
         //   label
@@ -182,7 +192,7 @@
 
       .form-options
         +clearfix
-        margin: 1em 0
+        padding: 1em 0
         .option
           +span(6)
           text-align: center

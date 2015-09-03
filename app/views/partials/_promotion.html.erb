@@ -116,7 +116,7 @@
 
     </div>
 <!-- form option -->
-    <div class="form-options">
+    <div class="final-options">
       <div class="option cancle">
         <a href="#">
           <span>上一步 | 填寫詳細資訊</span>
@@ -126,8 +126,9 @@
        <!--  <a href="#">
           <span>SUBMIT | 送出資料</span>
         </a> -->
-        <%= f.submit "送出資料" %>
-
+        <a href="">
+          <%= f.submit "SUBMIT | 送出資料" %>
+        </a>
 
       </div>
     </div>
@@ -143,6 +144,7 @@
 
 
 <script>
+$('.main-function-bar-wrapper').hide();
 
 function displaySecs() {
   var second = $("input:checked").val();

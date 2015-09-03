@@ -94,7 +94,7 @@ nav
   left: 0
 
 .application-container
-  padding-bottom: $v-footer-height + 20px
+  padding-bottom: $v-footer-height // was + 20px
 
 .main-navibar
   $logo-width: 108px
@@ -114,6 +114,8 @@ nav
     +span(3)
     height: $v-navi-height
     font-size: $fz-l
+    &:hover
+      background: rgba($white, .3)
     img
       display: inline-block
       width: $logo-width
@@ -126,13 +128,18 @@ nav
         color: $dark-gray
         position: relative
         top: 6px
+      &:hover
+        background: rgba($white, .3)
       &:hover i
         color: $black
+
+
 
       a
         color: $dark-gray
         font-weight: 600
-        display: inline
+        display: inline-block
+        padding: 0 4em
       &:hover a
         color: $black
     .user-menu-trigger a
@@ -140,7 +147,7 @@ nav
       &:first-child
         +span(8)
         display: block
-        padding-top: 5px
+        padding: 5px 0
         i
           font-size: $fz-xl
           padding-left: .2em
@@ -156,14 +163,14 @@ nav
 
     .user-avatar
       display: block
-      float: left
+      float: right
       width: 30px
       height: 30px
       img
         border: 3px solid $white
     .user-name
       display: block
-      float: left
+      float: right
       margin-top: -4px
       margin-left: .5em
       height: 30px
