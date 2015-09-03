@@ -1,6 +1,4 @@
-.main-function-bar-wrapper
-  display: none // for test
-.application-container
+.new-event-outter
   background: $black-op80 // test dark-bg
 
   .new-event-wrapper
@@ -90,35 +88,56 @@
 
     .event-info
       +clearfix
+
       .price-option
         clear: both
         +clearfix
-        span:first-child
-          border-right: 1px solid $silver
-          padding: .2em
-          float: left
-          margin-top: .8em
-          label
-            font-size: $fz-m
-            color: $white
-            padding: 0 1em
-        span:last-child
-          margin-top: 1em
-          float: left
 
-        .add
-          display: block
-          border: 1px solid $silver
-          +border-radius(6px)
-          font-size: $fz-m
-          margin: 0 2em
-          float: left
-          i
-            line-height: inherit
-            padding: .3em 3em
-            color: $white
-            top: 0  // init i pos
-            right: 0 // init i pos
+        span
+          display: inline-block
+          margin: 0 .5em
+          &.add-option
+            // padding: .5em 0
+            input[type="text"]
+              +border-radius(6px)
+              +reset-box-model
+              display: block
+              padding: 0 .5em
+              border: 1px solid $silver
+              +box-sizing(border-box)
+              &:focus
+                outline: none
+                +box-shadow(none) //for safari
+
+          &:first-child
+            border-right: 1px solid $silver
+            padding: .2em
+            float: left
+            margin-top: .8em
+            label
+              font-size: $fz-m
+              color: $white
+              padding: 0 1em
+          &:last-child
+            margin-top: 1em
+            float: right
+
+
+
+
+        // .add
+        //   display: block
+        //   border: 1px solid $silver
+        //   +border-radius(6px)
+        //   font-size: $fz-m
+        //   margin: 0 2em
+        //   float: left
+        //   i
+        //     line-height: inherit
+        //     padding: .3em 3em
+        //     color: $white
+        //     top: 0  // init i pos
+        //     right: 0 // init i pos
 
       .info-box
         +border-radius(6px)
@@ -159,12 +178,20 @@
             &:focus
               outline: none
               +box-shadow(none) //for safari
-          a
+          label
             padding: .6em 3em
             background: $black-op50
-            color: $yellow
             text-align: center
             +border-radius(6px)
+            border: none
+            float: right
+            margin: .2em
+            cursor: pointer
+            color: $yellow
+            input[type="file"]
+              display: none
+
+
 
         &.actived
           border: 1px solid $yellow
