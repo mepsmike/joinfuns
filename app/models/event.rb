@@ -36,11 +36,7 @@ class Event < ActiveRecord::Base
 
   def is_collected?(user)
 
-    if user.collects.find_by(event_id: self.id)
-      return true
-    else
-      return false
-    end
+    user.collects.exists?(event_id: self.id)
 
   end
 
