@@ -34,6 +34,16 @@ class Event < ActiveRecord::Base
 
   end
 
+  def is_collected?(user)
+
+    if user.collects.find_by(event_id: self.id)
+      return true
+    else
+      return false
+    end
+
+  end
+
   def self.search(args)
     address = args[:address]
     keyword = args[:keyword]

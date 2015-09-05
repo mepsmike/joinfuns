@@ -46,7 +46,7 @@ class EventsController < ApplicationController
     @comment = Comment.new
     @comments = @event.comments.order("created_at desc")
     # render "prototype/dm_poster"
-    @collect = get_collect
+    #@collect = @event.is_collected?(current_user)
   end
 
   def new
@@ -82,10 +82,10 @@ class EventsController < ApplicationController
 
     @event = Event.find(params[:id])
 
-    collect = get_collect
+    collect = @event.is_collected?(current_user)
 
     if collect
-      collect.destroy
+      current_user.collects.find_by(:event_id => @event.id).destroy
     else
       current_user.collects.create!( :event => @event )
     end
@@ -164,10 +164,6 @@ class EventsController < ApplicationController
 
   end
 
-  def get_collect
-    if current_user
-      current_user.collects.find_by_event_id( params[:id] )
-    end
-  end
+
 
 end
