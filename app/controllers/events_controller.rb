@@ -27,18 +27,11 @@ class EventsController < ApplicationController
 
     @event.event_show_process(params[:uid]) if @event.budget
 
-    #@hit_count = @event.impressionist_count(:filter=>:ip_address)
-    @events = Event.includes(:photos, :prices, :user).all # TODO, show filter out hotest events
-    #@sticker = Geocoder.coordinates(@event.address)
-    #gon.sticker = @sticker
-    # respond_to do |format|
-    #   format.html
-    #   format.js
-    # end
+    @events = Event.includes(:photos, :prices, :user).order('impressions_count DESC ').limit(10)
+
     @comment = Comment.new
     @comments = @event.comments.order("created_at desc")
-    # render "prototype/dm_poster"
-    #@collect = @event.is_collected?(current_user)
+
   end
 
   def new

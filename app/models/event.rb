@@ -41,7 +41,7 @@ class Event < ActiveRecord::Base
   end
 
   def event_show_process(user)
-    if user!=nil
+    if user
       self.budget -= 1.5
       self.save
       u = User.find_by_id(user)
