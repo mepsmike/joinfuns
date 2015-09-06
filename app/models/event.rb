@@ -45,7 +45,6 @@ class Event < ActiveRecord::Base
       self.budget -= 1.5
       self.save
       u = User.find_by_id(user)
-
       u.money += 0.5
       u.save
     else
