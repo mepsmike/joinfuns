@@ -40,6 +40,20 @@ class Event < ActiveRecord::Base
 
   end
 
+  def event_show_process(user)
+    if user!=nil
+      self.budget -= 1.5
+      self.save
+      u = User.find_by_id(user)
+
+      u.money += 0.5
+      u.save
+    else
+      self.budget -=1
+      self.save
+    end
+  end
+
   def self.search(args)
     address = args[:address]
     keyword = args[:keyword]

@@ -25,16 +25,8 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
 
-    if params[:uid]
-      @event.budget -= 1.5
-      @event.save
-      @user=User.find_by_id(params[:uid])
-      @user.money += 0.5
-      @user.save
-    else
-      @event.budget -= 1
-      @event.save
-    end
+    @event.event_show_process(params[:uid]) if @event.budget
+
     #@hit_count = @event.impressionist_count(:filter=>:ip_address)
     @events = Event.includes(:photos, :prices).all # TODO, show filter out hotest events
     #@sticker = Geocoder.coordinates(@event.address)
