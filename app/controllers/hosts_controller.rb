@@ -12,4 +12,22 @@ class HostsController < ApplicationController
 
   end
 
+  def update
+
+    if current_user.update(get_params)
+      redirect_to host_path(current_user)
+      flash[:notice] = "更新成功"
+    else
+      render :action => :show
+    end
+
+  end
+
+
+  private
+
+  def get_params
+    params.require(:user).permit(:name, :website, :cell_phone, :email, :address, :description)
+  end
+
 end

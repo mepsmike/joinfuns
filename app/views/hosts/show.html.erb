@@ -21,16 +21,20 @@
 
           </div>
           <span><%=@host.name%></span>
+          <div><%= render_edit_btn(@host) %></div>
+          <div id="modal1" class="modal"><%= render_edit_form(@host)%></div>
+
+
         </div>
 <!-- info detail -->
         <ul class="host-info">
           <li class="address">
             <span>地址</span>
-            <span></span>
+            <span><%=@host.address%></span>
           </li>
           <li class="website">
             <span>網址</span>
-            <span></span>
+            <span><%=@host.website%></span>
           </li>
           <li class="email">
             <span>E-mail</span>
@@ -38,11 +42,11 @@
           </li>
           <li class="tel">
             <span>電話</span>
-            <span></span>
+            <span><%=@host.cell_phone%></span>
           </li>
           <li class="descrption">
             <span>描述</span>
-            <span></span>
+            <span><%=@host.description%></span>
           </li>
         </ul>
 <!-- phtotos -->
@@ -144,11 +148,13 @@
 
   </div>
 
+
 </div>
 
 <%= content_for :handwrite_js do %>
   <script>
 $(document).ready(function() {
+  $('.modal-trigger').leanModal();
   $("a.fancybox").fancybox();
   $('div[data-etype="1"][data-status="inprogress"]').hide();
   $('div[data-etype="1"][data-status="over"]').hide();
