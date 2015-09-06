@@ -20,7 +20,7 @@ class Event < ActiveRecord::Base
   validates_attachment_content_type :cover, :content_type => /\Aimage\/.*\Z/
 
 
-  validate :enough_money, if: Proc.new { |a| a.budget.present? }
+  validate :enough_money, if: Proc.new { |a| a.budget.present? }, :on => :create
 
   def enough_money
 
