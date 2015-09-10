@@ -25,28 +25,13 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
 
-    if params[:uid]
-      @event.budget -= 1.5
-      @event.save
-      @user=User.find_by_id(params[:uid])
-      @user.money += 0.5
-      @user.save
-    else
-      @event.budget -= 1
-      @event.save
-    end
-    #@hit_count = @event.impressionist_count(:filter=>:ip_address)
-    @events = Event.includes(:photos, :prices).all # TODO, show filter out hotest events
-    #@sticker = Geocoder.coordinates(@event.address)
-    #gon.sticker = @sticker
-    # respond_to do |format|
-    #   format.html
-    #   format.js
-    # end
+    @event.event_show_process(params[:uid]) if @event.budget
+
+    @events = Event.includes(:prices, :user).order('impressions_count DESC ').limit(10)
+
     @comment = Comment.new
     @comments = @event.comments.order("created_at desc")
-    # render "prototype/dm_poster"
-    @collect = get_collect
+
   end
 
   def new
@@ -61,7 +46,8 @@ class EventsController < ApplicationController
     @event.user = current_user
     budget = params[:event][:budget]
 
-    if budget
+
+    if budget && budget!=""
       @event.category_cd = 1
     else
       @event.category_cd = 0
@@ -71,7 +57,7 @@ class EventsController < ApplicationController
 
     if @event.save
       flash[:success] = "已成功建立！"
-      redirect_to events_path
+      redirect_to events_path(latitude:@event.latitude,longitude:@event.longitude)
     else
       flash[:error] = "請檢查欄位後再試一次。"
       render :new
@@ -82,10 +68,10 @@ class EventsController < ApplicationController
 
     @event = Event.find(params[:id])
 
-    collect = get_collect
+    collect = @event.is_collected?(current_user)
 
     if collect
-      collect.destroy
+      current_user.collects.find_by(:event_id => @event.id).destroy
     else
       current_user.collects.create!( :event => @event )
     end
@@ -142,8 +128,8 @@ class EventsController < ApplicationController
     latitude = cookies[:lat]
     longitude = cookies[:lng]
 
-    return @events = Event.includes(:photos, :prices).search(combine_keyword: combine_keyword, time: time, keyword: keyword, address: address, distance: distance, latitude: latitude, longitude: longitude) if params[:search]
-    @events = Event.includes(:photos, :prices).all
+    return @events = Event.includes(:prices).search(combine_keyword: combine_keyword, time: time, keyword: keyword, address: address, distance: distance, latitude: latitude, longitude: longitude) if params[:search]
+    @events = Event.includes(:prices).all
   end
 
   def events_order
@@ -164,10 +150,6 @@ class EventsController < ApplicationController
 
   end
 
-  def get_collect
-    if current_user
-      current_user.collects.find_by_event_id( params[:id] )
-    end
-  end
+
 
 end

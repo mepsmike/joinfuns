@@ -1,11 +1,10 @@
 class Event < ActiveRecord::Base
-  has_many :photos
+
   has_many :comments
   has_many :prices
   has_many :collects
   belongs_to :user
   has_many :user_collects, :through => :collects, :source => :user
-  accepts_nested_attributes_for :photos
   accepts_nested_attributes_for :prices
 
   as_enum :category, event: 0, dm: 1
@@ -20,7 +19,7 @@ class Event < ActiveRecord::Base
   validates_attachment_content_type :cover, :content_type => /\Aimage\/.*\Z/
 
 
-  validate :enough_money, if: Proc.new { |a| a.budget.present? }
+  validate :enough_money, if: Proc.new { |a| a.budget.present? }, :on => :create
 
   def enough_money
 
@@ -32,6 +31,25 @@ class Event < ActiveRecord::Base
       User.update(user.id,:money=>new_money)
     end
 
+  end
+
+  def is_collected?(user)
+
+    user.collects.exists?(event_id: self.id)
+
+  end
+
+  def event_show_process(user)
+    if user
+      self.budget -= 1.5
+      self.save
+      u = User.find_by_id(user)
+      u.money += 0.5
+      u.save
+    else
+      self.budget -=1
+      self.save
+    end
   end
 
   def self.search(args)

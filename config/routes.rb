@@ -21,7 +21,9 @@ Rails.application.routes.draw do
     post "notify", on: :member
   end
 
-  resources :hosts
+  resources :hosts do
+    resources :photos, :controller => 'host_photos'
+  end
 
   get 'beta_sign_in' => 'prototype#sign_in', as: :sign_in
   get 'beta_sign_up' => 'prototype#sign_up', as: :sign_up

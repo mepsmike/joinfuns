@@ -2,7 +2,7 @@
 <div class="host-page-wrapper">
 <!-- navigation path -->
   <div class="host-page-path">
-    <span>頁面路徑  / 主辦單位活動列表 / 台北威秀影城</span>
+    <span>頁面路徑  / 主辦單位活動列表</span>
   </div>
 
   <div class="event-wrapper">
@@ -17,58 +17,49 @@
 <!-- avatar -->
         <div class="avatar-wrapper">
           <div class="user-avatar">
-            <img src="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" alt="">
+           <%= image_tag @host.image %>
+
           </div>
-          <span>Arthur Reynolds</span>
+          <span><%=@host.name%></span>
+          <div><%= render_edit_btn(@host) %></div>
+          <div id="modal1" class="modal"><%= render_edit_form(@host)%></div>
+
+
         </div>
 <!-- info detail -->
         <ul class="host-info">
           <li class="address">
             <span>地址</span>
-            <span>kjklsdjfkjsdkfdskadsjef fisadjfkasdjf fisadjfkasdjf kdsjfkjds  kdsjfkjds</span>
+            <span><%=@host.address%></span>
           </li>
           <li class="website">
             <span>網址</span>
-            <span>google.com.tw</span>
+            <span><%=@host.website%></span>
           </li>
           <li class="email">
             <span>E-mail</span>
-            <span>asdaksdjfkassf@gmial.com</span>
+            <span><%=@host.email%></span>
           </li>
           <li class="tel">
             <span>電話</span>
-            <span>0912098129048</span>
+            <span><%=@host.cell_phone%></span>
           </li>
           <li class="descrption">
             <span>描述</span>
-            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem soluta, quasi natus debitis aut quia dolor repellat aperiam veniam laborum facilis vel unde nihil repudiandae at? Facilis enim unde doloribus.</span>
+            <span><%=@host.description%></span>
           </li>
         </ul>
 <!-- phtotos -->
         <div class="photos-wrapper">
           <span>相關照片</span>
           <ul>
+            <% @host_image.each do |i| %>
             <li>
-            <!-- rel= 內要放 host id -->
-              <a rel="host_id" href="#" class="fancybox">
-                <img src="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" alt="">
-              </a>
+              <%=link_to i.pic.url, :class=>"fancybox" do%>
+                <%= image_tag i.pic.url %>
+              <%end%>
             </li>
-            <li>
-              <a rel="host_id" href="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" class="fancybox">
-                <img src="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" alt="">
-              </a>
-            </li>
-            <li>
-              <a rel="host_id" href="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" class="fancybox">
-                <img src="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" alt="">
-              </a>
-            </li>
-            <li>
-              <a rel="host_id" href="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" class="fancybox">
-                <img src="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" alt="">
-              </a>
-            </li>
+            <% end %>
           </ul>
         </div>
 
@@ -143,40 +134,42 @@
 
   </div>
 
+
 </div>
 
 <%= content_for :handwrite_js do %>
   <script>
 $(document).ready(function() {
+  $('.modal-trigger').leanModal();
   $("a.fancybox").fancybox();
   $('div[data-etype="1"][data-status="inprogress"]').hide();
   $('div[data-etype="1"][data-status="over"]').hide();
 
   $("#in_event").on("click",function(e){
 
-    $('div[data-etype="0"][data-status="inprogress"]').hide();
-    $('div[data-etype="1"][data-status="inprogress"]').show();
+    $('div[data-etype="1"][data-status="inprogress"]').hide();
+    $('div[data-etype="0"][data-status="inprogress"]').show();
 
   })
 
   $("#in_subject").on("click",function(e){
 
-    $('div[data-etype="0"][data-status="inprogress"]').show();
-    $('div[data-etype="1"][data-status="inprogress"]').hide();
+    $('div[data-etype="1"][data-status="inprogress"]').show();
+    $('div[data-etype="0"][data-status="inprogress"]').hide();
 
   })
 
   $("#over_event").on("click",function(e){
 
-    $('div[data-etype="0"][data-status="over"]').hide();
-    $('div[data-etype="1"][data-status="over"]').show();
+    $('div[data-etype="1"][data-status="over"]').hide();
+    $('div[data-etype="0"][data-status="over"]').show();
 
   })
 
   $("#over_subject").on("click",function(e){
 
-    $('div[data-etype="0"][data-status="over"]').show();
-    $('div[data-etype="1"][data-status="over"]').hide();
+    $('div[data-etype="1"][data-status="over"]').show();
+    $('div[data-etype="0"][data-status="over"]').hide();
 
   })
 

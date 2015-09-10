@@ -1,0 +1,3 @@
+<%= link_to collect_event_path(@event),:method=>"post", :class=>"option favorite",:remote=>true do %>
+  <span><%=render_collect_btn(@event)%></span>
+<% end %>

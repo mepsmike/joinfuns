@@ -16,8 +16,25 @@
       handler = Gmaps.build('Google');
       handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
 
-      if(navigator.geolocation)
-      navigator.geolocation.getCurrentPosition(getpos);
+      urllat = getURLParameter('latitude');
+      urllng = getURLParameter('longitude');
+
+      if(urllat&&urllng!==null){
+        var pin = handler.addMarker({
+          lat: urllat,
+          lng: urllng
+        });
+
+        handler.map.centerOn(pin);
+      }
+      else{
+
+        if(navigator.geolocation)
+        navigator.geolocation.getCurrentPosition(getpos,defaultlocation);
+      }
+
+
+
 
       function getpos(pos){
         var pin = handler.addMarker({
@@ -30,6 +47,19 @@
 
 
       }
+
+      function defaultlocation(){
+        var pin = handler.addMarker({
+          lat: 25.033493,
+          lng: 121.564101
+        });
+        handler.map.centerOn(pin);
+      }
+
+      function getURLParameter(name) {
+        return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null
+      }
+
 
 
       markers_json = <%=raw @hash.to_json %>;
