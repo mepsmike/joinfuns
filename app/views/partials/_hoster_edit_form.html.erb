@@ -1,4 +1,4 @@
-  <%=form_for @host , url: host_path(@host) do |f|%>
+  <%=form_for @host , url: host_path(@host),:html => { :multipart => true } do |f|%>
   <div class="modal-content">
     <h4>主辦單位資料</h4>
 
@@ -31,6 +31,34 @@
       <%= f.text_field :description %>
       <%= f.label :description, "描述" %>
     </div>
+    <% if @host_image.empty? %>
+
+      <%= f.fields_for :photos, Photo.new do |photo| %>
+        <% 4.times do %>
+          <%=render partial: "partials/hoster_edit_form_photo" ,:locals => { :photo => photo}%>
+        <%end %>
+      <%end%>
+
+
+    <% else %>
+
+       <% @host_image.each_with_index do |img, index| %>
+            <% @count = 4 - (index + 1) %> <%# 計算沒有文件的可上傳空位 %>
+          <div id="img-<%=img.id%>">
+            <%= image_tag img.pic.url(:thumb) %>
+            <%= link_to "刪除", host_photo_path(@host,img),:remote => true,:method =>:delete %>
+          </div>
+          <% end %>
+          <% @count.times.each do %> <%# 產生輸入框補滿空位 %>
+          <div id="photo-upload">
+          <%= f.fields_for :photos, Photo.new do |photo| %>
+            <%= render partial: "partials/hoster_edit_form_photo", locals: { :photo => photo } %>
+          <%end%>
+          </div>
+          <% end %>
+
+
+    <% end %>
 
   </div>
   <div class="modal-footer">

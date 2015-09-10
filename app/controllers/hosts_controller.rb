@@ -3,6 +3,7 @@ class HostsController < ApplicationController
   def show
 
     @host = User.find_by_id(params[:id])
+    @host_image = @host.photos
     @in_progress_events = @host.events.where("end_time >= ?",Time.now)
     @overdue_events = @host.events.where("end_time < ?",Time.now)
     @in_progress_subjects = @host.subjects.where("end_time >= ?",Time.now)
@@ -24,10 +25,11 @@ class HostsController < ApplicationController
   end
 
 
+
   private
 
   def get_params
-    params.require(:user).permit(:name, :website, :cell_phone, :email, :address, :description)
+    params.require(:user).permit(:name, :website, :cell_phone, :email, :address, :description, photos_attributes:[:pic])
   end
 
 end

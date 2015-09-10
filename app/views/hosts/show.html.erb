@@ -53,27 +53,13 @@
         <div class="photos-wrapper">
           <span>相關照片</span>
           <ul>
+            <% @host_image.each do |i| %>
             <li>
-            <!-- rel= 內要放 host id -->
-              <a rel="host_id" href="#" class="fancybox">
-                <img src="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" alt="">
-              </a>
+              <%=link_to i.pic.url, :class=>"fancybox" do%>
+                <%= image_tag i.pic.url %>
+              <%end%>
             </li>
-            <li>
-              <a rel="host_id" href="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" class="fancybox">
-                <img src="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" alt="">
-              </a>
-            </li>
-            <li>
-              <a rel="host_id" href="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" class="fancybox">
-                <img src="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" alt="">
-              </a>
-            </li>
-            <li>
-              <a rel="host_id" href="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" class="fancybox">
-                <img src="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" alt="">
-              </a>
-            </li>
+            <% end %>
           </ul>
         </div>
 

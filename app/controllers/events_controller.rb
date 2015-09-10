@@ -27,7 +27,7 @@ class EventsController < ApplicationController
 
     @event.event_show_process(params[:uid]) if @event.budget
 
-    @events = Event.includes(:photos, :prices, :user).order('impressions_count DESC ').limit(10)
+    @events = Event.includes(:prices, :user).order('impressions_count DESC ').limit(10)
 
     @comment = Comment.new
     @comments = @event.comments.order("created_at desc")
@@ -46,7 +46,8 @@ class EventsController < ApplicationController
     @event.user = current_user
     budget = params[:event][:budget]
 
-    if budget
+
+    if budget && budget!=""
       @event.category_cd = 1
     else
       @event.category_cd = 0
@@ -56,7 +57,7 @@ class EventsController < ApplicationController
 
     if @event.save
       flash[:success] = "已成功建立！"
-      redirect_to events_path
+      redirect_to events_path(latitude:@event.latitude,longitude:@event.longitude)
     else
       flash[:error] = "請檢查欄位後再試一次。"
       render :new
@@ -127,8 +128,8 @@ class EventsController < ApplicationController
     latitude = cookies[:lat]
     longitude = cookies[:lng]
 
-    return @events = Event.includes(:photos, :prices).search(combine_keyword: combine_keyword, time: time, keyword: keyword, address: address, distance: distance, latitude: latitude, longitude: longitude) if params[:search]
-    @events = Event.includes(:photos, :prices).all
+    return @events = Event.includes(:prices).search(combine_keyword: combine_keyword, time: time, keyword: keyword, address: address, distance: distance, latitude: latitude, longitude: longitude) if params[:search]
+    @events = Event.includes(:prices).all
   end
 
   def events_order
