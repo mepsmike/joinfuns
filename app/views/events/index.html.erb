@@ -12,7 +12,7 @@
 
 <%= content_for :handwrite_js do %>
   <script>
-
+      $(".i-am-here").hide();
       handler = Gmaps.build('Google');
       handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
 
