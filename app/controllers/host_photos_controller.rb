@@ -2,9 +2,8 @@ class HostPhotosController < ApplicationController
 
   def destroy
 
-    @user=current_user
     get_my_photo
-
+    @photos = current_user.photos
     @photo.destroy
 
 
@@ -21,6 +20,7 @@ class HostPhotosController < ApplicationController
 
   def get_my_photo
     @photo=current_user.photos.find(params[:id])
+
   end
 
 end

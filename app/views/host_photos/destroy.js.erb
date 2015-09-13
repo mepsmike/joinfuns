@@ -1,7 +1,4 @@
 $("#img-<%=@photo.id%>").remove();
 
-<% html = j( f.fields_for :photos, Photo.new do |photo|
-            render partial: "partials/hoster_edit_form_photo", locals: { :photo => photo }
-          end) %>
-$("#photo-upload").append(html)
+
 

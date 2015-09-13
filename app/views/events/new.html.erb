@@ -96,7 +96,7 @@
       </div>
       <div class="info-box">
         <label for="event-title4">活動地址</label>
-        <span> <%= f.text_field :address %></span>
+        <span> <%= f.text_field :address  %></span>
       </div>
 
   <!-- time machine -->
@@ -169,22 +169,43 @@
 
 <%= content_for :handwrite_js do %>
   <script>
+
+
     $(document).ready(function() {
+      $.ajax({
+        url: "http://maps.google.com/maps/api/geocode/json?latlng=<%=cookies[:lat]%>,<%=cookies[:lng]%>&language=zh-TW&sensor=false&language=zh-TW&sensor=false",
+        type: 'GET',
+        dataType: 'json',
+        success: function(Jdata) {
+          console.log(Jdata);
+          $('#event_address').val(Jdata.results[0].address_components[4].short_name + Jdata.results[0].address_components[3].short_name + Jdata.results[0].address_components[1].short_name);
+
+        },
+        error: function() {
+         alert('ERROR!!!');
+        }
+      });
+
       $('.ckeditor').ckeditor({
 
   // optional config
       });
-        $('select').material_select();
-        JoinFuns.initMaterialDatepicker();
-         $('.new-promo-wrapper').hide();
-        $('.next').on("click",function(){
-          $('.event-form').hide();
-          $('.new-promo-wrapper').show();
-        });
-        $('.cancle').on("click",function(){
-          $('.new-promo-wrapper').hide();
-          $('.event-form').show();
-        })
+      $('select').material_select();
+      JoinFuns.initMaterialDatepicker();
+       $('.new-promo-wrapper').hide();
+      $('.next').on("click",function(){
+        $('.event-form').hide();
+        $('.new-promo-wrapper').show();
       });
+      $('.cancle').on("click",function(){
+        $('.new-promo-wrapper').hide();
+        $('.event-form').show();
+      });
+
+
+
+
+
+    });
   </script>
 <% end %>
