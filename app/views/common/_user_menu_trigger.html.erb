@@ -1,10 +1,12 @@
-<a class="user-info" href="#">
+<!-- <a class="user-info" href="#"> -->
+<%= link_to host_path(current_user.id), :class=>"user-info" do %>
   <%= icon 'gear' %>
   <span class="user-name"><%= current_user.name%></span>
   <div class="user-avatar">
     <%= image_tag current_user.image, class: 'responsive-img circle' %>
   </div>
-</a>
+<% end %>
+<!-- </a> -->
 <a class="arrow" href="">
   <i class="material-icons">arrow_forward</i>
 </a>
