@@ -47,13 +47,16 @@
 
 
           </div>
+          <div id="input-<%=img.id%>" style="display:none">
+            <%= render partial: "partials/hoster_edit_form_photo", locals: { :f => f } %>
+          </div>
           <% end %>
           <% @count.times.each do %> <%# 產生輸入框補滿空位 %>
-          <div id="photo-upload">
+
 
             <%= render partial: "partials/hoster_edit_form_photo", locals: { :f => f } %>
 
-          </div>
+
           <% end %>
 
 
@@ -65,3 +68,5 @@
     <%= f.submit "儲存", :class=>" modal-action modal-close waves-effect waves-green btn-flat"%>
   </div>
   <% end %>
+
+
