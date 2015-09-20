@@ -3,6 +3,7 @@ class HostPhotosController < ApplicationController
   def destroy
 
     get_my_photo
+    @host = current_user
     @photos = current_user.photos
     @photo.destroy
 
