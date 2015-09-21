@@ -125,6 +125,7 @@ class EventsController < ApplicationController
     combine_keyword = params[:combine_keyword]
     time = params[:time]
     distance = params[:distance]
+    price = params[:price]
     latitude = cookies[:lat]
     longitude = cookies[:lng]
 
