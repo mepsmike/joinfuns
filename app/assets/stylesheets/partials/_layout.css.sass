@@ -115,7 +115,7 @@ nav
     height: $v-navi-height
     font-size: $fz-l
     &:hover
-      background: rgba($white, .3)
+      background: rgba($gray, .5)
     img
       display: inline-block
       width: $logo-width
@@ -125,26 +125,29 @@ nav
       height: $v-navi-height
       line-height: $v-navi-height
       i
-        color: $dark-gray
+        color: $black
         position: relative
         top: 6px
       &:hover
-        background: rgba($white, .3)
+        background-color: $black-op85
       &:hover i
-        color: $black
+        color: $yellow
 
 
 
       a
-        color: $dark-gray
+        color: $black
         font-weight: 600
         display: inline-block
         padding: 0 4em
       &:hover a
-        color: $black
+        color: $yellow
     .user-menu-trigger
       a
         padding: 0
+      &:hover
+        color: $white
+        background-color: $fb_blue
       .user-info
         +span(8)
         display: block
