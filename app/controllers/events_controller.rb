@@ -47,7 +47,7 @@ class EventsController < ApplicationController
     budget = params[:event][:budget]
 
 
-    if budget && budget!=""
+    if budget && budget!="0"
       @event.category_cd = 1
     else
       @event.category_cd = 0
@@ -129,7 +129,7 @@ class EventsController < ApplicationController
     latitude = cookies[:lat]
     longitude = cookies[:lng]
 
-    return @events = Event.includes(:prices).search(combine_keyword: combine_keyword, time: time, keyword: keyword, address: address, distance: distance, latitude: latitude, longitude: longitude) if params[:search]
+    return @events = Event.includes(:prices).search(combine_keyword: combine_keyword, time: time, keyword: keyword, address: address, distance: distance, latitude: latitude, longitude: longitude, price: price) if params[:search]
     @events = Event.includes(:prices).all
   end
 
