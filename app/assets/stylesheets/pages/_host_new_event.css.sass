@@ -161,6 +161,7 @@
             border: 1px solid $silver
             input
               +reset-box-model
+              padding-left: 1em
               &:focus
                 outline: none
                 +box-shadow(none) //for safari
@@ -192,6 +193,9 @@
             margin: .2em
             cursor: pointer
             color: $yellow
+            &:hover
+              background-color: $yellow
+              color: $black
             input[type="file"]
               display: none
 

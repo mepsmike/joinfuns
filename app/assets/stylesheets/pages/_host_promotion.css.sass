@@ -110,19 +110,47 @@
       +border-radius(6px)
       border: 1px solid $yellow
       margin: 1em 0
-      padding: 1em
+      height: $v-radius + $v-navi-height
+      // padding: 1em
       span
         display: inline-block
       .title
         border-right: 1px solid $yellow
+        margin-top: .8em
+        padding-left: 1em
         padding-right: 1em
         font-size: $fz-m
         color: $yellow
         float: left
       .balance
+        +span(9)
+        margin-top: .8em
+        padding-left: 3.5em
         text-align: center
         display: block
         color: $yellow
+      .refresh
+        +border-radius($v-radius)
+        width: 7em
+        display: block
+        height: $v-navi-height
+        line-height: $v-navi-height
+        background-color: $black
+        border: 1px solid $yellow
+        margin-top: .18em
+        margin-right: .15em
+        text-align: center
+        float: right
+        a
+          display: block
+          line-height: $v-navi-height
+          font-size: 1em
+          color: $yellow
+          &:hover
+            color: $black
+            background-color: $yellow
+
+
 
 
     .deposit-wrapper

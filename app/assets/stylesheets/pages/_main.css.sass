@@ -247,6 +247,12 @@
         background: #bbb
     .join
       +sassy-button("flat", 4px, 12px, $yellow)
+      border: $darker-yellow 1px solid
+      color: $black
+      font-size: .9em
+      &:hover
+        color: $yellow
+        background-color: $black
     .option
       position: relative
       padding: 3.5px 0
@@ -254,5 +260,10 @@
       text-align: center
       line-height: $btn-height
     .unit-stat
-      display: inline-block
-      color: $yellow
+      display: block
+      padding-top: 1em
+      padding-left: 1em
+      padding-right: 2em
+      color: $black
+      font-size: .8em
+      float: right
