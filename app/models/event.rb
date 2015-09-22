@@ -17,7 +17,7 @@ class Event < ActiveRecord::Base
 
   has_attached_file :cover, :styles => { :medium => "600x600>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :cover, :content_type => /\Aimage\/.*\Z/
-
+  validates_numericality_of :budget
   validates_presence_of :title, :cover, :address, :contact_phone, :start_time, :end_time, :description
   validate :enough_money, if: Proc.new { |a| a.budget.present? }, :on => :create
 
