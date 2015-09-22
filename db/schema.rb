@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150909084927) do
+ActiveRecord::Schema.define(version: 20150921145911) do
 
   create_table "collects", force: :cascade do |t|
     t.datetime "created_at",           null: false
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20150909084927) do
     t.string   "cover_content_type", limit: 255
     t.integer  "cover_file_size",    limit: 4
     t.datetime "cover_updated_at"
+    t.string   "citytalk_price",     limit: 255
   end
 
   create_table "hosts", force: :cascade do |t|
