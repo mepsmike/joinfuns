@@ -185,9 +185,14 @@ function displayTimes(){
   $(".remaining span").text(budget/per);
 }
 
-$( "input" ).change( displaySecs );
-$( "input" ).change( displayCost );
-$( "input" ).change( displayTimes );
+function onchange(){
+  displaySecs();
+  displayCost();
+  displayTimes();
+}
+
+$( "input" ).change( onchange );
+
 $( "#event_budget" ).keyup(displayTimes);
 
 $("#free-promo").change(function() {
@@ -197,7 +202,6 @@ $("#free-promo").change(function() {
       $(".select-wrapper").hide();
       $(".content-wrapper").hide();
       $("#event_budget").val("0");
-
 
     }
     else{

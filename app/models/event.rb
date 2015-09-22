@@ -60,12 +60,12 @@ class Event < ActiveRecord::Base
     latitude = args[:latitude]
     longitude = args[:longitude]
     distance = args[:distance]
-    price = args[:price]
+    price = args[:price].to_i
 
 
 
     # where(:title, query) -> This would return an exact match of the query
-    filtered_events = Event.all
+    filtered_events = Event.joins(:prices)
 
     #where("address like ?", "%#{address}%") unless address.blank?
     filtered_events = filtered_events.where("address like ? or title like ?", "%#{combine_keyword}%", "%#{combine_keyword}%" ) if combine_keyword.present?
@@ -73,10 +73,29 @@ class Event < ActiveRecord::Base
     filtered_events = filtered_events.where("title like ?", "%#{keyword}%") if keyword.present?
     filtered_events = filter_by_time(code: time_code, collection: filtered_events) if time_code.present?
     filtered_events = filtered_events.near([latitude,longitude],distance, :units=>:km) if distance.present?
+    #filtered_events = filtered_events.where("prices.price = 0").distinct if price.present?
+    filtered_events = filter_by_price(code: price, collection: filtered_events) if price.present?
     filtered_events
   end
 
+
+
   private
+
+   def self.filter_by_price(args)
+    code = args[:code]
+    collection = args[:collection]
+
+    case code
+      when 0
+        collection.where("prices.price = 0").distinct
+      when 1
+        collection.where("prices.price < 300").distinct
+      when 2
+        collection.where("prices.price > 300").distinct
+    end
+
+  end
 
   def self.filter_by_time(args)
     code = args[:code]
@@ -84,14 +103,14 @@ class Event < ActiveRecord::Base
     current_time = Time.zone.now
 
     case code
-    when 0
-      collection.between_times(current_time - 1.weeks, current_time)
-    when 1
-      collection.between_times(current_time - 2.weeks, current_time)
-    when 2
-      collection.between_times(current_time - 4.weeks, current_time)
-    when 3
-      collection.between_times(current_time - 24.weeks, current_time)
+      when 0
+        collection.between_times(current_time - 1.weeks, current_time)
+      when 1
+        collection.between_times(current_time - 2.weeks, current_time)
+      when 2
+        collection.between_times(current_time - 4.weeks, current_time)
+      when 3
+        collection.between_times(current_time - 24.weeks, current_time)
     end
   end
 
