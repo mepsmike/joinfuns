@@ -71,7 +71,7 @@
           <label for="promo-title7">宣傳預算</label>
           <span>
            <!--  <input type="text" id="promo-title7" placeholder="請輸入您的宣傳預算"> -->
-           <%= f.text_field :budget %>
+           <%= f.text_field :budget, :value => 0  %>
           </span>
         </div>
       </div>
@@ -82,7 +82,7 @@
       <span class="promo-time">曝光時間</span>
       <span class="check-wrapper">
        <!--  <input type="radio" name="second" id="second-0"> -->
-        <%= f.radio_button :showtime,"0"%>
+        <%= f.radio_button :showtime,"0", :checked => "checked"%>
         <%= f.label :showtime, '0秒',:value => '0' %>
         <%= f.radio_button :showtime,"2"%>
         <%= f.label :showtime, '2秒',:value => '2' %>
@@ -110,8 +110,8 @@
     <div class="content-wrapper">
       <div class="inner-wrapper">
         <span class="timing">單次DM限制曝光時間：<span>0秒</span></span>
-        <span class="charge">單次曝光費用：<span>1</span>元/次</span>
-        <span class="remaining">目前預算可曝光次數：<span>20,000</span> /次</span>
+        <span class="charge">單次曝光費用：<span>0</span>元/次</span>
+        <span class="remaining">目前預算可曝光次數：<span>0</span> /次</span>
       </div>
 
     </div>
@@ -196,7 +196,8 @@ $("#free-promo").change(function() {
       $(".border-wrapper").hide();
       $(".select-wrapper").hide();
       $(".content-wrapper").hide();
-      $("#event_budget").val("");
+      $("#event_budget").val("0");
+
 
     }
     else{

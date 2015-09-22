@@ -47,7 +47,7 @@ class EventsController < ApplicationController
     budget = params[:event][:budget]
 
 
-    if budget && budget!=""
+    if budget && budget!="0"
       @event.category_cd = 1
     else
       @event.category_cd = 0
