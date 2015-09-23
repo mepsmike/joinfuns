@@ -15,8 +15,9 @@ class EventsController < ApplicationController
       marker.json({ :id => event.id })
       marker.picture({
         :url => view_context.image_path("#{event.category}-icon@2x.png"),
-        :width   => 86,
-        :height  => 102
+        :width   => 43,
+        :height  => 51,
+        :marker_anchor => [30, true]
       })
     end
 
@@ -47,7 +48,7 @@ class EventsController < ApplicationController
     budget = params[:event][:budget]
 
 
-    if budget && budget!="0"
+    if budget && budget!=""
       @event.category_cd = 1
     else
       @event.category_cd = 0
@@ -130,7 +131,7 @@ class EventsController < ApplicationController
     longitude = cookies[:lng]
 
     return @events = Event.includes(:prices).search(combine_keyword: combine_keyword, time: time, keyword: keyword, address: address, distance: distance, latitude: latitude, longitude: longitude, price: price) if params[:search]
-    @events = Event.includes(:prices).all
+    @events = Event.includes(:prices).where(['end_time > ?' , Date.today]).limit(100)
   end
 
   def events_order

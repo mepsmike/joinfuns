@@ -4,7 +4,7 @@
   <%= form_tag events_path, :method => :get do %>
     <div class="filter-section-wrapper">
       <div class="filter-section">
-        <h4>Distance</h4>
+        <h4>距離範圍</h4>
         <p class="range-field">
         <!--<input type="range" min="0.0" max="10.0" />-->
         <%= range_field_tag 'distance',:min=>"0.0", :max=>"10.0" %>
@@ -20,7 +20,7 @@
     <!-- Active Type -->
     <div class="filter-section-wrapper">
       <div class="filter-section">
-        <h4>Active Type</h4>
+        <h4>活動類別</h4>
         <div class="input-field">
           <!-- <select>
             <option value="0">All Category</option>
@@ -29,22 +29,22 @@
             <option value="3">Charity</option>
             <option value="4">Education</option>
           </select> -->
-          <%= select_tag :active_type, options_for_select([[ "All Category", "0" ],[ "Eat", "1" ],[ "Play", "2" ],[ "Charity", "3" ],[ "Education", "4" ]])%>
+          <%= select_tag :active_type, options_for_select([[ "所有類別", "0" ],[ "美食", "1" ],[ "玩樂", "2" ],[ "慈善", "3" ],[ "教育", "4" ]])%>
         </div>
       </div>
       <div class="filter-section">
         <!-- <input placeholder="Type Keyword" type="text"> -->
-        <%= text_field_tag'keyword', nil, placeholder: 'Type keyword' %>
+        <%= text_field_tag'keyword', nil, placeholder: '活動關鍵字' %>
       </div>
       <div class="filter-section">
-        <a href="#">Food<i class="material-icons right">chevron_right</i></a>
+        <a href="#">美食活動<i class="material-icons right">chevron_right</i></a>
       </div>
     </div>
 
     <!-- Time -->
     <div class="filter-section-wrapper">
       <div class="filter-section">
-        <h4>Time</h4>
+        <h4>活動時間</h4>
         <div class="input-field">
           <!-- <select>
             <option value="0">Recently</option>
@@ -52,7 +52,7 @@
             <option value="2">in 1 month</option>
             <option value="3">in 6 month</option>
           </select> -->
-          <%= select_tag :time, options_for_select([[ "Recently", "0" ], [ "in 2 weeks", "1" ], [ "in 1 month", "2" ], [ "in 6 month", "3" ]]) %>
+          <%= select_tag :time, options_for_select([[ "最近一週", "0" ], [ "最近兩週", "1" ], [ "一個月以內", "2" ], [ "半年以內", "3" ]]) %>
         </div>
       </div>
     </div>
@@ -60,14 +60,14 @@
     <!-- Price -->
     <div class="filter-section-wrapper">
       <div class="filter-section">
-        <h4>Price</h4>
+        <h4>活動價位</h4>
         <div class="input-field">
           <!-- <select>
             <option value="0">Free</option>
             <option value="1">1 ~ 299</option>
             <option value="2">Over 300</option>
           </select> -->
-          <%= select_tag :price , options_for_select([[ "free", "0" ], ["1~299","1"], ["Over 300","2"]]) %>
+          <%= select_tag :price , options_for_select([[ "免費活動", "0" ], ["NT 300 以下","1"], ["NT 300 以上","2"]]) %>
           <!-- , options_for_select ([[ "0", "Free" ],[ "1", "1~299" ],[ "2", "Over 300" ]]) -->
         </div>
       </div>
@@ -77,7 +77,11 @@
       <div class="filter-submit-btn">
         <!--<button type='submit' class="btn">Submit</button>-->
         <%= hidden_field_tag "search" %>
-        <%= submit_tag "search",:class => "btn" %>
+
+        <%= button_tag  class: 'btn' do %>
+          <span class="en">SUBMIT</span><br><span>送出查詢條件</span>
+        <% end %>
+
       </div>
     </div>
   <!--</form>-->
