@@ -20,6 +20,7 @@ class Event < ActiveRecord::Base
   validates_numericality_of :budget
   validates_presence_of :title, :cover, :address, :contact_phone, :start_time, :end_time, :description, :showtime, :budget
   validates_associated :prices
+  validate :enough_money, if: Proc.new { |a| a.budget.present? }, :on => :create
   def enough_money
 
     user = User.find_by_id(user_id)
